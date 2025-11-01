@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v6.1.9, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v6.1.9, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo-128x40.png" type="image/x-icon">
+  <meta name="description" content="">
+  
+  
+  <title>Home</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/parallax/jarallax.css">
+  <link rel="stylesheet" href="assets/animatecss/animate.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=UAumX8"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=UAumX8" type="text/css">
+
+  <link
+  rel="stylesheet"
+  href="https://site-assets.fontawesome.com/releases/v7.1.0/css/all.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://site-assets.fontawesome.com/releases/v7.1.0/css/sharp-solid.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://site-assets.fontawesome.com/releases/v7.1.0/css/sharp-regular.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://site-assets.fontawesome.com/releases/v7.1.0/css/sharp-light.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://site-assets.fontawesome.com/releases/v7.1.0/css/duotone.css"
+/>
+  
+  
+</head>
+<body>
+
+<style> 
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  border-left: 6px solid #2d7cbe;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 16px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 480px;          /* zwiększona szerokość */
+  max-width: 80vw;       /* dopasowanie do ekranu w razie potrzeby */
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.4s ease;
+  z-index: 999999;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.notification i {
+  color: #2d7cbe;
+  font-size: 24px;
+  margin-top: 4px;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 6px; /* odstęp między tytułem a wiadomością */
+}
+
+.notification-message {
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 8px;
+  word-break: normal;
+  white-space: normal;
+}
+
+/* Przycisk akcji "Open Page" jako span */
+.notification .action-btn {
+  display: inline-block;
+  background-color: #2d7cbe;
+  border: none;
+  color: white;
+  padding: 9px 16px;       /* większy padding dla proporcji jak button */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;          /* lekko większa czcionka */
+  transition: background-color 0.2s ease;
+  text-align: center;
+  min-width: 100px;         /* minimalna szerokość, żeby nie był wąski */
+  box-sizing: border-box;   /* padding wliczony w szerokość */
+}
+
+.notification .action-btn:hover {
+  background-color: #1c517c;
+}
+
+/* Przycisk zamykania "×" jako span - kwadratowy */
+.notification .close-btn {
+  display: inline-flex;         /* ułatwia centrowanie */
+  justify-content: center;      /* wyśrodkowanie poziome */
+  align-items: center;          /* wyśrodkowanie pionowe */
+  width: 32px;                  /* kwadratowa szerokość */
+  height: 32px;                 /* kwadratowa wysokość */
+  background-color: #e2e2e2;   /* tło takie jak hover przycisku akcji */
+  color: rgb(136, 136, 136);                 /* kolor tekstu */
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 20px;
+  border-radius: 6px;           /* zaokrąglone rogi */
+  text-align: center;
+  transition: background-color 0.2s ease;
+
+}
+
+.notification .close-btn:hover {
+  background-color: #2d7cbe;    /* efekt hover identyczny jak action-btn */
+  color: rgb(255, 255, 255);                 /* kolor tekstu */
+}
+
+
+</style>
+
+<audio id="notifSound" src="assets/sounds/notification.mp3" preload="auto"></audio>
+
+<div class="notification" id="errorNotification">
+  <i class="fa-solid fa-gift fa-bounce"></i>
+  <div class="notification-content">
+    <div class="notification-title">Hej, mamy dla Ciebie prezent!</div>
+    <div class="notification-message">
+      Zachęcamy do zaobserwowania naszego profilu na Facebooku aby zgarnąć darmową zniżkę!
+    </div>
+    <span class="action-btn" onclick="window.open('#top', '_blank')">Dawaj zniżkę!</span>
+  </div>
+  <span class="close-btn" onclick="closeNotification()">&times;</span>
+</div>
+
+<script>
+// Pobranie elementów
+const notif = document.getElementById('errorNotification');
+const closeBtn = notif.querySelector('.close-btn');
+const sound = document.getElementById('notifSound');
+
+// Funkcja pokazująca powiadomienie i odtwarzająca dźwięk
+function showNotification() {
+  notif.classList.add('show');
+  sound.currentTime = 0;
+  sound.play().catch(err => {
+    console.warn("Dźwięk nie został odtworzony:", err);
+  });
+}
+
+// Funkcja zamykająca powiadomienie
+function closeNotification() {
+  notif.classList.remove('show');
+}
+
+// Podpięcie przycisku zamykania
+closeBtn.addEventListener('click', closeNotification);
+
+// Obsługa pierwszego kliknięcia
+function handleFirstClick() {
+  setTimeout(showNotification, 1000);
+  window.removeEventListener('click', handleFirstClick);
+}
+
+window.addEventListener('click', handleFirstClick);
+
+</script>
+
+
+  
+  <section data-bs-version="5.1" class="menu menu2 cid-sFCw1qGFAI" once="menu" id="menu2-23">
+    
+    <nav class="navbar navbar-dropdown navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    
+                        <a href="index.html#top"><img src="assets/images/test.png" alt="" style="height: 3rem;"></a>
+                    
+                </span>
+                
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html">Strona Główna</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#header14-1j">O nas</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#features3-1p">Wykonane Zlecenia</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#features11-2">Cennik</a>
+                    </li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#bottom">Lokalizacja</a></li></ul>
+                
+                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="index.html#contacts2-1r">Skontaktuj się</a></div>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<section data-bs-version="5.1" class="header14 cid-sFzxmVl7J6 mbr-parallax-background" id="header14-1f">
+
+    
+
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);"></div>
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 image-wrapper hide-mobile">
+                <img src="assets/images/tlo1.png" alt="">
+            </div>
+            <div class="col-12 col-md">
+                <div class="text-wrapper">
+                    <img src="assets/images/logo-efektwow-2.png" alt="Efekt WOW">
+                    <p class="mbr-text mbr-fonts-style display-7">Profesjonalne pranie tapicerki samochodowej, pranie domowych mebli tapicerowanych, dywanów oraz kompleksowe czyszczenie samochodów i wiele więcej!</p>
+                    <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="index.html#features1-1i">Zapoznaj się z ofertą</a>
+                        <a class="btn btn-black display-4" href="index.html#header14-1j">Czytaj dalej</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+  .image-wrapper {
+    width: 54%; /* zwiększenie w stosunku do kontenera */
+    height: auto; /* zachowanie proporcji */
+}
+  .image-wrapper2 {
+    width: 56%; /* zwiększenie w stosunku do kontenera */
+    height: auto; /* zachowanie proporcji */
+}
+
+@media (max-width: 768px) {
+    .image-wrapper2 {
+    width: 100%; /* zwiększenie w stosunku do kontenera */
+    }
+}
+
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+}
+</style>
+
+<style>
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.text-wrapper img {
+  display: block;
+  margin: 0 auto;
+  animation: bounce 2s infinite;
+}
+</style>
+
+<section data-bs-version="5.1" class="features1 cid-sFzyUE9AaP" id="features1-1i">
+    
+
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(250, 250, 250);">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Czym się zajmujemy?</strong></h3>
+                
+            </div>
+        </div>
+<div class="services-container">
+  <div class="service-item">
+    <i class="fa-solid fa-car-side"></i>
+    <h3>Pranie ekstracyjne tapicerki samochodowej</h3>
+    <p>Usuwamy zabrudzenia i plamy przy użyciu bezpiecznych i skutecznych środków, a następnie płuczemy tkaninę profesjonalną płukanką, która nadaje kwiatowy zapach i wydłuża odporność materiału na zabrudzenia.</p>
+  </div>
+  <div class="service-item">
+    <i class="fa-solid fa-couch"></i>
+    <h3>Pranie ekstracyjne kanapy/łóżka/materaca/foteli</h3>
+    <p>Głębokie czyszczenie mebli domowych łączy skuteczne odplamianie z dokładnym płukaniem, dzięki czemu tkaniny pozostają świeże, pachnące i odporne na kolejne zabrudzenia.</p>
+  </div>
+  <div class="service-item">
+    <i class="fa-solid fa-vacuum"></i>
+    <h3>Całkowite czyszczenie wnętrza samochodu</h3>
+    <p>Kompleksowo czyścimy wnętrza samochodów – tapicerkę, podsufitki i plastiki. Stosujemy satynowy dressing, który przywraca blask i świeżość niczym w aucie prosto z salonu. Profesjonalne płukanie pozostawia delikatny, kwiatowy zapach</p>
+  </div>
+  <div class="service-item">
+    <i class="fa-solid fa-rug"></i>
+    <h3>Pranie ekstracyjne dywanów</h3>
+    <p>Przywracamy świeżość i intensywność kolorów dywanom i wykładzinom, łącząc skuteczne odplamianie z dokładnym płukaniem, które wydłuża jego świeżość i chroni włókna.</p>
+  </div>
+  <div class="service-item">
+    <i class="fa-solid fa-spray-can"></i>
+    <h3>Regeneracja wypłowiałych od słońca plastików samochodowych</h3>
+    <p>Odnawiamy zewnętrzne czarne plastiki auta bez użycia opalarki czy innych agresywnych metod. Szybko, tanio i skutecznie — efekt widać od razu, a trwałość to minimum rok.</p>
+  </div>
+  <div class="service-item">
+    <i class="fa-solid fa-hand-sparkles"></i>
+    <h3>Konserwacja i pielęgnacja skór</h3>
+    <p>Dogłębnie czyścimy skórę specjalnymi preparatami, a następnie zabezpieczamy ją mleczkiem ochronnym. Skóra staje się miękka, czysta i odporna na zabrudzenia oraz przedwczesne zużycie.</p>
+  </div>
+  <div class="service-item">
+    <i class="fa-solid fa-kitchen-set"></i>
+    <h3>Czyszczenie garnków, okapów kuchennych, fug i wentylacji metodą parową</h3>
+    <p>Usuwamy uporczywe zabrudzenia dzięki kombinacji pary pod ciśnieniem i skutecznych środków chemicznych, przywracając powierzchniom kuchennym pierwotny wygląd i higieniczną czystość.</p>
+  </div>
+  <div class="service-item">
+    <i class="fa-solid fa-wind"></i>
+    <h3>Usuwanie nieprzyjemnych zapachów z tkanin parą</h3>
+    <p>Eliminujemy nieprzyjemne zapachy z mebli i tapicerki przy użyciu pary wodnej i bezpiecznych preparatów, pozostawiając tkaniny świeże, pachnące i przyjemne w dotyku.</p>
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="header14 cid-sFzz5E692j mbr-parallax-background" id="header14-1j">
+
+    <style>
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* lepsza responsywność */
+  gap: 20px; /* odstęp między kolumnami i wierszami */
+  text-align: center;
+  margin: 50px auto; /* 50px góra/dół, auto na boki - wyśrodkowuje */
+  max-width: 1320px; /* ogranicza szerokość */
+  font-family: 'Poppins', sans-serif;
+}
+
+.service-item {
+  padding: 20px 10px; /* więcej miejsca wewnątrz bloku */
+}
+
+.service-item i {
+  font-size: 45px;             /* wielkość ikony */
+  color: #2d7cbe;              /* kolor ikony */
+  margin-bottom: 20px;         /* odstęp od nagłówka */
+    transition: all 0.3s ease;   /* płynna animacja przy hover */
+}
+.service-item:hover i {
+  color: #24669c;              /* kolor po najechaniu */
+  transform: scale(1.1);       /* lekko powiększa ikonę */
+}
+
+.service-item h3 {
+  font-weight: 700;             /* pogrubienie nagłówka */
+  font-size: 19px;
+  margin-bottom: 15px;          /* odstęp między tytułem a tekstem */
+  line-height: 1.1; /* większy odstęp między liniami tekstu */
+}
+
+.service-item p {
+  font-size: 14.5px;
+  color: #555;
+  max-width: 250px;             /* ograniczenie szerokości tekstu */
+  margin: 0 auto;               /* wycentrowanie w bloku */
+  line-height: 1.5;             /* lepsza czytelność */
+  font-weight: 500;             /* lekko pogrubiony tekst */
+}
+
+/* Responsywność */
+@media (max-width: 992px) {
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .services-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+    </style>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pVyzbR8/0y7Zp6J6f+5Rm2ZtWn5a6WxJ1sP6+nS9Lr6e4PzH2Yg/6Pxt/2J9tT6H6DcWl/Y+Xy+4cCj9+gQ8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);"></div>
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 image-wrapper2">
+                <img src="assets/images/tlo2.png" alt="">
+            </div>
+            <div class="col-12 col-md">
+                <div class="text-wrapper">
+                    <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2"><strong>O nas</strong></h1>
+                    <p class="mbr-text mbr-fonts-style display-7">
+                        Z pasji do czystości powstał Efekt WOW - firma, która odmienia wnętrza samochodów i domów. Pierzemy tapicerki, regenerujemy plastiki, przywracamy blask kokpitom i usuwamy zabrudzenia, które wydawały się nie do ruszenia.<br><br>W domach działamy z taką samą precyzją - od materacy i kanap po fugi, garnki, okapy i wentylacje. Zadzwoń o każdej porze - a jeśli chcesz poznać naszą historię, kliknij „Dowiedz się więcej”.<br></p>
+                    <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="index.html" target="_blank">Dowiedz się więcej</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <!-- Linking SwiperJS script -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Linking SwiperJS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+
+
+<section data-bs-version="5.1" class="features3 cid-sFzFvgBfc0" id="features3-1p">
+    <div class="mbr-overlay"></div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h4 class="mbr-section-title mbr-fonts-style align-center mb-5 display-2">
+                <strong>Wykonane projekty</strong>
+            </h4>
+        </div>
+        <div class="container swiper">
+            <div class="card-wrapper">
+                <ul class="card-list swiper-wrapper">
+                    <li class="card-item swiper-slide">
+                        <div class="card-link">
+                            <div class="item-img">
+                                <div class="overflow-hidden before-after-wrapper rounded-3xl">
+                                    <div class="before-image-wrapper" style="width: 50%;">
+                                        <div class="before-image" style="background-image: url('assets/images/projekty/przed1.png');"></div>
+                                    </div>
+                                    <div class="after-image" style="background-image: url('assets/images/projekty/po1.png');"></div>
+                                    <span class="handle draggable"></span>
+                                </div>
+                            </div>
+                            <p class="card-date">28.09.2025</p>
+                            <h2 class="card-title">
+                                Czarna skóra podłokietnika BMW, która była zabrudzona i miejscami zaplamiona, została dokładnie oczyszczona oraz zaimpregnowana przy użyciu specjalistycznych preparatów do pielęgnacji skóry. Dzięki temu odzyskała swój pierwotny wygląd, miękkość i elegancki połysk.
+                            </h2>
+                            <div class="mbr-section-btn mt-3">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card-item swiper-slide">
+                        <div class="card-link">
+                            <div class="item-img">
+                                <div class="overflow-hidden before-after-wrapper rounded-3xl">
+                                    <div class="before-image-wrapper" style="width: 50%;">
+                                        <div class="before-image" style="background-image: url('assets/images/projekty/przed2.png');"></div>
+                                    </div>
+                                    <div class="after-image" style="background-image: url('assets/images/projekty/po2.png');"></div>
+                                    <span class="handle draggable"></span>
+                                </div>
+                            </div>
+                            <p class="card-date">24.09.2025</p>
+                            <h2 class="card-title">
+                                Jasna wykładzina bagażnika BMW pełna piasku, brudu oraz licznych plam olejowych. Właściciel był przekonany, że nadaje się już tylko do wymiany. Udało nam się przywrócić jej wygląd niemal jak nowy. Dodane przez nas pasy, nadały wnętrzu wyjątkowego uroku i stylu.
+                            </h2>
+                            <div class="mbr-section-btn mt-3">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card-item swiper-slide">
+                        <div class="card-link">
+                            <div class="item-img">
+                                <div class="overflow-hidden before-after-wrapper rounded-3xl">
+                                    <div class="before-image-wrapper" style="width: 50%;">
+                                        <div class="before-image" style="background-image: url('assets/images/projekty/przed3.png');"></div>
+                                    </div>
+                                    <div class="after-image" style="background-image: url('assets/images/projekty/po3.png');"></div>
+                                    <span class="handle draggable"></span>
+                                </div>
+                            </div>
+                            <p class="card-date">16.10.2025</p>
+                            <h2 class="card-title">
+                                Wentylowany, skórzany fotel pokryty warstwą brudu, ziemi, plam i piasku. Z zachowaniem najwyższej precyzji oczyściliśmy każdy otwór wentylowanego materiału oraz zaimpregnowaliśmy skórę, co wyraźnie widać w efekcie końcowym naszej pracy.
+                            </h2>
+                            <div class="mbr-section-btn mt-3">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card-item swiper-slide">
+                        <div class="card-link">
+                            <div class="item-img">
+                                <div class="overflow-hidden before-after-wrapper rounded-3xl">
+                                    <div class="before-image-wrapper" style="width: 50%;">
+                                        <div class="before-image" style="background-image: url('assets/images/projekty/przed4.png');"></div>
+                                    </div>
+                                    <div class="after-image" style="background-image: url('assets/images/projekty/po4.png');"></div>
+                                    <span class="handle draggable"></span>
+                                </div>
+                            </div>
+                            <p class="card-date">20.09.2025</p>
+                            <h2 class="card-title">
+                               Wiekowy fotel z wypłowiałym już kolorem materiału od kurzu, ubiegu lat oraz z widocznym czarnym zabrudzeniem na jego oparciu. Za pomocą naszych skutecznych odplamiaczy, sprzętu oraz detergentów zrobiliśmy różnicę widoczną w sekundę odzyskując jego dawny kolor.
+                            </h2>
+                            <div class="mbr-section-btn mt-3">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card-item swiper-slide">
+                        <div class="card-link">
+                            <div class="item-img">
+                                <div class="overflow-hidden before-after-wrapper rounded-3xl">
+                                    <div class="before-image-wrapper" style="width: 50%;">
+                                        <div class="before-image" style="background-image: url('assets/images/projekty/przed5.png');"></div>
+                                    </div>
+                                    <div class="after-image" style="background-image: url('assets/images/projekty/po5.png');"></div>
+                                    <span class="handle draggable"></span>
+                                </div>
+                            </div>
+                            <p class="card-date">07.10.2025</p>
+                            <h2 class="card-title">
+                                Materac, który trzy miesiące temu został zasikany przez kocura i pozostawał wciąż w tym stanie, został przez nas dokładnie wyprany, wypłukany i oczyszczony parowo. Dzięki temu udało się całkowicie usunąć plamy i nieprzyjemny zapach, przywracając świeżość oraz higienę.
+                            </h2>
+                            <div class="mbr-section-btn mt-3">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card-item swiper-slide">
+                        <div class="card-link">
+                            <div class="item-img">
+                                <div class="overflow-hidden before-after-wrapper rounded-3xl">
+                                    <div class="before-image-wrapper" style="width: 50%;">
+                                        <div class="before-image" style="background-image: url('assets/images/projekty/przed6.png');"></div>
+                                    </div>
+                                    <div class="after-image" style="background-image: url('assets/images/projekty/po6.png');"></div>
+                                    <span class="handle draggable"></span>
+                                </div>
+                            </div>
+                            <p class="card-date">18.10.2025</p>
+                            <h2 class="card-title">
+                                 Wentylacja łazienkowa zapchana kurzem oraz gęstym osadem i ciemnymi zabrudzeniami. Dzięki naszej usłudze czyszczenia parowego, przywróciliśmy jej pełną drożność oraz wygląd jak w dniu montażu zdobywając kolejnego zadowolonego z naszych usług klienta.
+                            </h2>
+                            <div class="mbr-section-btn mt-3">
+                            </div>
+                        </div>
+                    </li>
+
+                        <li class="card-item swiper-slide">
+                        <div class="card-link">
+                            <div class="item-img">
+                                <div class="overflow-hidden before-after-wrapper rounded-3xl">
+                                    <div class="before-image-wrapper" style="width: 50%;">
+                                        <div class="before-image" style="background-image: url('assets/images/projekty/przed7.png');"></div>
+                                    </div>
+                                    <div class="after-image" style="background-image: url('assets/images/projekty/po7.png');"></div>
+                                    <span class="handle draggable"></span>
+                                </div>
+                            </div>
+                            <p class="card-date">04.10.2025</p>
+                            <h2 class="card-title">
+                                 Tylny zderzak samochodu, którego kolor stał się wypłowiały i poszarzały pod wpływem słońca, mimo stosunkowo młodego wieku wyglądał na mocno zużyty. Dzięki przeprowadzonej przez nas regeneracji udało się przywrócić mu pierwotny kolor i głębię, co całkowicie odmieniło wygląd auta od tylnej strony.
+                            </h2>
+                            <div class="mbr-section-btn mt-3">
+                            </div>
+                        </div>
+
+                </ul>
+                <div class="swiper-pagination"></div>
+
+                <div class="custom-swiper-button-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+                        <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+                    </svg>
+                </div>
+
+                <div class="custom-swiper-button-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+                        <path d="M400-240 640-480 400-720l-56 56 184 184-184 184 56 56Z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<style>
+.card-date {
+  font-size: 0.9rem;      /* mniejszy tekst */
+  color: #000000;            /* subtelny kolor */
+  text-align: left;       /* wyrównanie do lewej */
+  margin-top: 20px;       /* odstęp od elementów powyżej */
+  margin-bottom: 15px;    /* odstęp od tytułu poniżej */
+}
+
+  /* Importing Google fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+.card-wrapper {
+  max-width: 1100px;
+  margin: 0 60px 35px;
+  padding: 20px 32px;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card-list .card-item {
+  list-style: none;
+}
+
+.card-list .card-item .card-link {
+  display: block;
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+}
+.card-list .card-item .card-link:active {
+  cursor: grabbing;
+}
+.card-list .card-item .card-link:hover {
+  border-color: #2d7cbe;
+}
+.card-list .card-link .card-image {
+  width: 100%;
+  border-radius: 10px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.card-list .card-link{
+  color: #5372F0;
+  width: fit-content;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  border-radius: 50px;
+  font-weight: 400;
+  background: #DDE4FF;
+  margin: 16px 0 18px;
+}
+.card-list .card-link{
+  color: #2d7cbe;
+  background: #ffffff;
+}
+.card-list .card-link .card-title {
+  color: #000;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4; /* zwiększa odstęp między liniami */
+}
+.card-list .card-link .card-button {
+  height: 35px;
+  width: 35px;
+  color: #2d7cbe;
+  margin: 30px 0 5px;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #2d7cbe;
+  transform: rotate(-45deg);
+  transition: 0.4s ease;
+}
+.card-list .card-link:hover .card-button {
+  color: #fff;
+  background: #2d7cbe;
+}
+.card-title {
+  margin-bottom: 25px; /* odstęp pod tekstem */
+}
+.card-wrapper .swiper-pagination-bullet {
+  height: 13px;
+  width: 13px;
+  opacity: 0.5;
+  background: #2d7cbe;
+}
+.card-wrapper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+.card-wrapper .swiper-slide-button {
+  color: #2d7cbe;
+  margin-top: -35px;
+}
+/* Responsive media query code for small screens */
+@media (max-width: 768px) {
+  .card-wrapper {
+    margin: 0 10px 25px;
+  }
+  .card-wrapper .swiper-slide-button {
+    display: none;
+  }
+}
+.custom-swiper-button-prev,
+.custom-swiper-button-next {
+  width: 50px;
+  height: 50px;
+  background-color: #2d7cbe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+.custom-swiper-button-prev { left: 10px; }
+.custom-swiper-button-next { right: 10px; }
+
+.custom-swiper-button-prev svg,
+.custom-swiper-button-next svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
+
+</style>
+<style>
+  @media (max-width: 768px) {
+  .card-wrapper {
+    margin: 0 20px 20px;   /* zmniejszony margines boczny */
+    padding: 10px 60px 20px 10px; /* padding po lewej większy, po prawej mniejszy */
+  }
+
+  .card-list .card-item .card-link {
+    width: 95%;             /* karta zajmuje prawie całą szerokość, zostawiając trochę z lewej */
+    margin: 12px 0 15px;    /* margines górny i dolny */
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* pozostaw resztę stylów mobilnych bez zmian */
+  .card-list .card-link .card-title {
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .card-date {
+    font-size: 0.8rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .card-list .card-link .card-button {
+    height: 30px;
+    width: 30px;
+    margin: 20px 0 5px;
+  }
+
+  .card-wrapper .swiper-pagination-bullet {
+    height: 10px;
+    width: 10px;
+  }
+
+  .custom-swiper-button-prev,
+  .custom-swiper-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-swiper-button-prev svg,
+  .custom-swiper-button-next svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+</style>
+
+<script>
+new Swiper('.card-wrapper', {
+    loop: true,
+    allowTouchMove: false, // ⬅ wyłącza przesuwanie łapką
+    spaceBetween: 35,
+    
+    // Pagination bullets
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true
+    },
+
+    // Navigation arrows – wskazanie na własne przyciski
+    navigation: {
+        nextEl: '.custom-swiper-button-next',
+        prevEl: '.custom-swiper-button-prev',
+    },
+
+    // Responsive breakpoints
+    breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+    }
+});
+</script>
+
+
+
+<style>
+  ::selection {
+
+    background-color: #2d7cbe; /* kolor tła zaznaczenia */
+    color: #ffffff;           /* kolor tekstu zaznaczonego */
+}
+    .before-after-wrapper {
+  outline: 4px solid #2d7cbe;
+  position: relative;
+  aspect-ratio: 3/2;
+    border-radius: 6px;
+}
+
+.before-after-wrapper::before {
+  background-color: hsla(172, 61%, 82%, 75%);
+  border-radius: 40px;
+  top: 10px;
+  color: #2d7cbe;
+  content: 'before';
+  left: 10px;
+  opacity: 0;
+  padding: 5px 10px;
+  position: absolute;
+  transition: opacity 200ms ease-in-out;
+  z-index: 15;
+}
+
+:global(.before-after-wrapper.show-before::before) {
+  opacity: 1;
+}
+
+.before-after-wrapper::after {
+  background-color: hsla(172, 61%, 82%, 75%);
+  border-radius: 40px;
+  top: 10px;
+  color: #2d7cbe;
+  opacity: 0;
+  padding: 5px 10px;
+  position: absolute;
+  right: 10px;
+  transition: opacity 200ms ease-in-out;
+  z-index: 15;
+  content: 'after';
+}
+
+:global(.before-after-wrapper.show-after::after) {
+  opacity: 1;
+}
+
+.before-image-wrapper {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.before-image {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.after-image {
+  background-size: cover;
+  inset: 0;
+  position: absolute;
+}
+
+.handle {
+  align-items: center;
+  background: #2d7cbe;
+  bottom: 0;
+  cursor: col-resize;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 0;
+  width: 4px;
+  z-index: 20;
+}
+
+.handle::before {
+  content: '';
+  position: absolute;
+  inset: 0 -20px;
+}
+
+.handle::after {
+  align-items: center;
+  background: #2d7cbe;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%23f0f0f0"><path d="m680-280-56-56 103-104H520v-80h207L624-624l56-56 200 200-200 200Zm-400 0L80-480l200-200 56 56-103 104h207v80H233l103 104-56 56Z"/></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  color: #2d7cbe;
+  content: '';
+  display: flex;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  max-height: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  min-width: 40px;
+}
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script>
+  // sprawdź, czy urządzenie obsługuje dotyk
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+  // pobierz wszystkie bloki
+  const imageWrappers = document.querySelectorAll('.before-after-wrapper');
+
+  // zainicjalizuj slider dla każdego bloku
+  imageWrappers.forEach(wrapper => {
+    const handle = wrapper.querySelector('.handle');
+    dragElement(handle, wrapper);
+  });
+
+  // funkcja pobierająca współrzędne kursora/touch
+  function getCoords(e) {
+    let x, y;
+    if (isTouch) {
+      x = e.touches[0].clientX;
+      y = e.touches[0].clientY;
+    } else {
+      x = e.clientX;
+      y = e.clientY;
+    }
+    return { x, y };
+  }
+
+  // funkcja obsługująca drag
+  function dragElement(el, wrapper) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+    if (isTouch) {
+      el.ontouchstart = dragInit;
+    } else {
+      el.onmousedown = dragInit;
+    }
+
+    function dragInit(e) {
+      e.preventDefault();
+      const { x, y } = getCoords(e);
+      pos3 = x;
+      pos4 = y;
+
+      if (isTouch) {
+        document.ontouchend = closeElementDrag;
+        document.ontouchmove = elementDrag;
+      } else {
+        document.onmouseup = closeElementDrag;
+        document.onmousemove = elementDrag;
+      }
+    }
+
+    function elementDrag(e) {
+      e.preventDefault();
+      const { x, y } = getCoords(e);
+      pos1 = pos3 - x;
+      pos2 = pos4 - y;
+      pos3 = x;
+      pos4 = y;
+
+      let wrapperRight = el.offsetLeft - pos1;
+
+      if (wrapperRight >= 0 && wrapperRight <= wrapper.offsetWidth) {
+        el.style.left = `${el.offsetLeft - pos1}px`;
+        wrapper.querySelector('.before-image-wrapper').style.width = `${wrapperRight}px`;
+      }
+    }
+
+    function closeElementDrag() {
+      if (isTouch) {
+        document.ontouchend = null;
+        document.ontouchmove = null;
+      } else {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+  }
+</script>
+
+
+
+<!-- SEKCJA BLOKÓW PRODUKTÓW -->
+<section data-bs-version="5.1" class="features11 cid-v0u270Fd9v mbr-parallax-background" id="features11-2">
+  <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);"></div>
+  <div class="container">
+
+    <div class="container">
+        <div class="mbr-section-head">
+            <h4 class="mbr-section-title mbr-fonts-style align-center mb-5 display-2"><strong>Cennik usług</strong></h4>
+                       <div class="info-box">
+    Stosujemy skuteczne i całkowicie bezpieczne dla ludzi oraz zwierząt środki czyszczące.
+    Każdą tkaninę pierzemy metodą ekstrakcyjną, a następnie poddajemy specjalistycznemu płukaniu,
+    które nadaje przyjemny kwiatowy zapach i zwiększa odporność materiału na zabrudzenia –
+    dzięki temu świeżość utrzymuje się znacznie dłużej!
+  </div>
+</div>
+                    </div>
+                </div>
+            </div>
+<div class="cennik">
+  <div class="cennik-header">
+    <div class="cennik-cell category">KATEGORIA</div>
+    <div class="cennik-cell">USŁUGA</div>
+    <div class="cennik-cell">OPIS USŁUGI</div>
+    <div class="cennik-cell price-cell">CENA</div>
+  </div>
+
+  <!-- DOM -->
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-home fa-solid fa-car"></i></div>
+    <div class="cennik-cell title-cell">Regeneracja koloru zewnętrznego plastiku auta</div>
+    <div class="cennik-cell">Przywracamy czarny, głęboki kolor wypłowiałym od słońca (siwym) plastikom zewnętrznym. Twój samochód odzyska wygląd jak dawniej!</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 40 PLN</span></div>
+  </div>
+
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-home fa-solid fa-car"></i></div>
+    <div class="cennik-cell title-cell">Dressing elementów wnętrza/nadanie koloru plastikom</div>
+    <div class="cennik-cell">Nabłyszczamy i zabezpieczamy wnętrze satynowym dressingiem, który odświeża kolor i pozostawia przyjemny zapach.</div>
+    <div class="cennik-cell price-cell"><span class="price">50 PLN</span></div>
+  </div>
+
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-home fa-solid fa-car"></i></div>
+    <div class="cennik-cell title-cell">Dodatkowe czyszczenie parowe / dezynfekcja wnętrza samochodu</div>
+    <div class="cennik-cell">Para wodna o wysokiej temperaturze usuwa bakterie, roztocza i brud z każdego zakamarka. Idealne uzupełnienie czyszczenia ekstrakcyjnego.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 50 PLN</span></div>
+  </div>
+
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-home fa-solid fa-car"></i></div>
+    <div class="cennik-cell title-cell">Specjalistyczne usunięcie przykrego zapachu z tkaniny auta parą</div>
+    <div class="cennik-cell">Skutecznie eliminujemy zapachy po zalaniach, zwierzętach, dymie czy żywności. Połączenie prania ekstrakcyjnego i parowego gwarantuje trwały efekt świeżości nawet w najcięższych przypadkach.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 80 PLN</span></div>
+  </div>
+
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-home fa-solid fa-car"></i></div>
+    <div class="cennik-cell title-cell">Pranie tapicerki auta</div>
+    <div class="cennik-cell">Pranie ekstrakcyjne tapicerki przywraca świeżość i kolor tkanin. Stosujemy bezpieczne środki i pachnące płukanki o kwiatowym aromacie, nadające dłuższej odporności na zabrudzenia. W tym pakiecie pierzemy całą tapicerkę samochodową (od podłogi i fotele, aż po bagażnik)</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 150 PLN</span></div>
+  </div>
+
+  <!-- SAMOCHÓD -->
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-car fa-solid fa-car"></i></div>
+    <div class="cennik-cell title-cell">Całkowite wyczyszczenie</div>
+    <div class="cennik-cell">Kompleksowe odświeżenie wnętrza: odkurzanie, mycie plastików, pranie tapicerki, podsufitki i bagażnika. Samochód wygląda i pachnie jak nowy.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 250 PLN</span></div>
+  </div>
+    <!-- SAMOCHÓD -->
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-car fa-solid fa-car"></i></div>
+    <div class="cennik-cell title-cell">Pakiet LUXUS</div>
+    <div class="cennik-cell">Kompleksowe pranie ekstracyjne tapicerki samochodu wraz z nabłyszczeniem/dressingiem elementów wnętrza oraz parową dezynfekcją wentylacji/nawiewów/elementów wypasażenia samochodu.</div>
+    <div class="cennik-cell price-cell"><span class="price">300 PLN</span></div>
+  </div>
+
+  <div class="cennik-header">
+    <div class="cennik-cell category">KATEGORIA</div>
+    <div class="cennik-cell">USŁUGA</div>
+    <div class="cennik-cell">OPIS USŁUGI</div>
+    <div class="cennik-cell price-cell">CENA</div>
+  </div>
+
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-car fa-solid fa-house"></i></div>
+    <div class="cennik-cell title-cell">Pranie fotela</div>
+    <div class="cennik-cell">Dokładne pranie i odświeżenie tapicerki fotela. Idealne, gdy chcesz nadać świeżości pojedynczym meblom bez konieczności prania całego zestawu.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 50 PLN</span></div>
+  </div>
+
+    <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-car fa-solid fa-house"></i></div>
+    <div class="cennik-cell title-cell">Pranie dywanów</div>
+    <div class="cennik-cell">Usuwamy kurz, brud i alergeny. Dywan odzyskuje miękkość, kolor i przyjemny zapach — bez nadmiaru wilgoci.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 80 PLN</span></div>
+  </div>
+
+  <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-car fa-solid fa-house"></i></div>
+    <div class="cennik-cell title-cell">Pranie kanapy/łóżka/materaca</div>
+    <div class="cennik-cell">Skutecznie usuwamy plamy, sierść i nieprzyjemne zapachy. Tkaniny odzyskują świeżość, miękkość i higieniczną czystość.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 100 PLN</span></div>
+  </div>
+
+    <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-car fa-solid fa-house"></i></div>
+    <div class="cennik-cell title-cell">Specjalistyczne czyszczenie parowe eliminujące przykre zapachy</div>
+    <div class="cennik-cell">Para o wysokiej temperaturze wnika w głąb tkanin, neutralizując źródło nieprzyjemnych zapachów i dezynfekując powierzchnię.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 80 PLN</span></div>
+  </div>
+      <div class="cennik-row">
+    <div class="cennik-cell category"><i class="icon-category-car fa-solid fa-house"></i></div>
+    <div class="cennik-cell title-cell">Czyszczenie parą okapu / wentylacji / fugi</div>
+    <div class="cennik-cell">Usuwamy tłuszcz, kamień i brud z trudno dostępnych miejsc. Metoda parowa dezynfekuje powierzchnię i przywraca jej świeży wygląd.</div>
+    <div class="cennik-cell price-cell"><span class="price">OD 80 PLN</span></div>
+  </div>
+</div>
+
+    
+</section>
+
+
+<style>
+.info-box {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 25px 35px;
+  background: linear-gradient(135deg, #f0f7ff, #ffffff);
+  border: 2px solid #2d7cbe;
+  border-radius: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #1f1f1f;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(45, 124, 190, 0.1);
+  transition: transform 0.4s ease;
+}
+.cennik {
+  width: 100%;
+  max-width: 1100px;
+  border: 3px solid #2d7cbe;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 auto;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  transform: translateY(20px); /* lekki ruch w dół */
+  transition: opacity 1s ease-out, transform 0.8s ease-out;
+}
+/* Klasa aktywna po pojawieniu się na ekranie */
+.cennik.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Układ wierszy */
+.cennik-header, .cennik-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+}
+
+/* Nagłówek */
+.cennik-header {
+  background: #2d7cbe;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Pojedyncza komórka */
+.cennik-cell {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 17px;     /* odsunięcie od kolumny opisu */
+  padding-right: 17px;     /* odsunięcie od kolumny opisu */
+}
+
+/* Kategoria — mniejsza szerokość */
+.cennik-cell.category {
+  flex: 0.4;
+  justify-content: center;
+}
+.cennik-cell:nth-child(3) {
+  flex: 1.5; /* kolumna opis dużo szersza */
+  justify-content: flex-start; /* tekst przy lewej krawędzi */
+}
+
+/* Cena — też mniejsza szerokość */
+.cennik-cell.price-cell {
+  flex: 0.4;
+  justify-content: left;
+}
+
+/* Styl ceny */
+.price {
+  background: #2d7cbe;
+  color: #fff;
+  padding: 6px 13px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: left; /* zmiana z center na left */
+}
+
+/* Dodaj border całemu wierszowi */
+.cennik-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* Tekst w kolumnie Opis (wszystkie wiersze) */
+.cennik-row .cennik-cell:nth-child(3) {
+  font-size: 0.8rem;  /* mniejszy tekst */
+  line-height: 1.3;   /* odstępy między liniami */
+  justify-content: flex-start;
+  text-align: left;
+  word-break: break-word; /* złamanie długich słów */
+}
+.icon-category-home {
+  font-size: 1.55rem;        /* rozmiar ikony */
+  color: #2d7cbe;           /* kolor ikony */
+  margin: 0;                /* usuwa ewentualne marginesy */
+  display: block;           /* block lub inline-block */
+  text-align: center;       /* wyśrodkowanie wewnątrz kolumny */
+  transition: transform 0.3s ease; /* płynne przejście przy hover */
+}
+.icon-category-car {
+  font-size: 1.5rem;        /* rozmiar ikony */
+  color: #2d7cbe;           /* kolor ikony */
+  margin: 0;                /* usuwa ewentualne marginesy */
+  display: block;           /* block lub inline-block */
+  text-align: center;       /* wyśrodkowanie wewnątrz kolumny */
+  transition: transform 0.3s ease; /* płynne przejście przy hover */
+}
+/* Efekt powiększenia przy hover */
+.icon-category-home:hover,
+.icon-category-car:hover {
+  transform: scale(1.1); /* powiększenie 30% */
+  filter: brightness(85%); /* przyciemnia ikonę do 70% jasności */
+}
+/* Tekst Tytułu pogrubiony */
+.title-cell {
+  font-weight: 600;
+  font-size: 15px;
+}
+</style>
+<style>
+  /* ========================= */
+/* 📱 Wersja mobilna — pionowa */
+/* ========================= */
+@media (max-width: 768px) {
+  /* Ukryj nagłówek tabeli, bo nie ma sensu w układzie pionowym */
+  .cennik-header {
+    display: none;
+  }
+
+  /* Każdy wiersz to „karta” w pionie */
+  .cennik-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Ogólne komórki */
+  .cennik-cell {
+    width: 100%;
+    padding: 6px 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  /* Kategoria (ikona) — większa, na górze */
+  .cennik-cell.category {
+    order: -1; /* przesuń na samą górę */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 600;
+    color: #2d7cbe;
+    margin-bottom: 4px;
+  }
+
+  .icon-category-home,
+  .icon-category-car {
+    font-size: 1.6rem;
+    margin-right: 8px;
+  }
+
+  /* Tytuł poniżej kategorii */
+  .title-cell {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 3px;
+  }
+
+  /* Opis pod tytułem */
+  .cennik-row .cennik-cell:nth-child(3) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  /* Cena na samym dole */
+  .cennik-cell.price-cell {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+  }
+
+  .price {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    border-radius: 18px;
+  }
+
+  /* Usuń marginesy boczne jeśli są */
+  .cennik {
+    border-width: 2px;
+  }
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const cennik = document.querySelector('.cennik');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible'); // dodaje klasę fade-in
+        observer.unobserve(entry.target);      // odłącza obserwator po pierwszym wejściu
+      }
+    });
+  }, { threshold: 0.2 }); // 20% widoczności wystarczy
+
+  observer.observe(cennik);
+});
+</script>
+
+<section data-bs-version="5.1" class="counter1 counters cid-v0tSs48mcc" id="counter1-1">
+	
+
+	
+	<div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(250, 250, 250);">
+	</div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 content-head">
+				<div class="card-wrapper mb-5">
+					<div class="card-box align-center">
+						<h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Co nas wyróżnia?</strong></h4>
+
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row content-row mt-4">
+			<div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb active">
+				<div class="item-wrapper">
+					<div class="title mb-3">
+						<h3 class="count mbr-fonts-style display-1">40</h3>
+					</div>
+					<h4 class="card-title mbr-fonts-style display-5">
+						<strong>Zadowolonych klientów</strong></h4>
+					<p class="mbr-text card-text mbr-fonts-style mb-0 display-7">
+						W ciągu tylko trzech miesięcy zyskaliśmy zaufanie 40 klientów, którzy wracają do nas z uśmiechem i pełnym zadowoleniem.
+					</p>
+				</div>
+			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+				<div class="item-wrapper">
+					<div class="title mb-3">
+						<h3 class="count mbr-fonts-style display-1">60</h3>
+					</div>
+					<h4 class="card-title mbr-fonts-style display-5"><strong>Uratowanych tkanin</strong></h4>
+					<p class="mbr-text card-text mbr-fonts-style mb-0 display-7">
+						Dzięki naszym profesjonalnym usługom udało nam się przywrócić życie aż 60 zaplamionym lub zabrudzonym tkaninom.
+					</p>
+				</div>
+			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+				<div class="item-wrapper">
+					<div class="title mb-3">
+						<h3 class="count mbr-fonts-style display-1">
+							10</h3>
+					</div>
+					<h4 class="card-title mbr-fonts-style display-5">
+						<strong>Pozytywnych opinii</strong></h4>
+					<p class="mbr-text card-text mbr-fonts-style mb-0 display-7">
+						Otrzymaliśmy już 10 w pełni pozytywnych opinii od klientów, którzy docenili naszą rzetelność i jakość usług.
+					</p>
+				</div>
+			</div>
+
+<iframe src="https://app.reviewconnect.me/embed/reviews/rYAeanbJkifyKo7xRF69xzQkJrdm7Otn" width="100%" height="440" frameborder="0" title="Co myślą o nas klienci? Reviews"></iframe>
+
+		</div>
+	</div>
+</section>
+
+<section data-bs-version="5.1" class="features23 cid-sFAyHxWQ1N mbr-parallax-background" id="features24-20">
+
+    
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card-wrapper mb-4">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2">
+                            <strong>Sposób działania</strong></h4>
+                        <p class="mbr-text mbr-fonts-style mb-4 display-7">Nasza współpraca przebiega w prosty i przejrzysty sposób. Od pierwszego kontaktu aż po gotowy efekt — dbamy o to, by każdy etap był dla Ciebie jasny i komfortowy. Zobacz, jak to działa krok po kroku!</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="item first mbr-flex p-4">
+                    <div class="icon-wrap w-100">
+                        <div class="icon-box">
+                            <span class="step-number mbr-fonts-style display-5">1</span>
+                        </div>
+                    </div>
+
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Skontaktuj się</strong></h4>
+                        <h5 class="mbr-text mbr-black mbr-fonts-style display-4">Zadzwoń, napisz lub wypełnij formularz kontaktowy. Opowiedz nam o swoich potrzebach i oczekiwaniach — doradzimy najlepsze rozwiązanie dopasowane dla Ciebie.</h5>
+                    </div>
+                </div>
+                <!-- <span mbr-icon class="mbr-iconfont mobi-mbri-devices mobi-mbri"></span> -->
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="item mbr-flex p-4">
+                    <div class="icon-wrap w-100">
+                        <div class="icon-box">
+                            <span class="step-number mbr-fonts-style display-5">2</span>
+                        </div>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Ustal termin</strong></h4>
+                        <h5 class="mbr-text mbr-black mbr-fonts-style display-4">Po zapoznaniu się z Twoim zleceniem ustalamy dogodny termin realizacji. Omawiamy szczegóły naszej współpracy oraz zakres pracy.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="item mbr-flex p-4">
+                    <div class="icon-wrap w-100">
+                        <div class="icon-box">
+                            <span class="step-number mbr-fonts-style display-5">3</span>
+                        </div>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Realizacja usługi</strong></h4>
+                        <h5 class="mbr-text mbr-black mbr-fonts-style display-4">Przystępujemy do działania! Realizujemy czyszczenie zgodnie z ustaleniami, dbając o każdy detal i stały kontakt z Tobą na każdym etapie pracy.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="item mbr-flex p-4">
+                    <div class="icon-wrap w-100">
+                        <div class="icon-box">
+                            <span class="step-number mbr-fonts-style display-5">4</span>
+                        </div>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>Gotowe!</strong></h4>
+                        <h5 class="mbr-text mbr-black mbr-fonts-style display-4">Otrzymujesz finalny efekt — w pełni dopracowany, odświeżony, czysty i gotowy na nowo do użytku. W razie potrzeby oferujemy również wsparcie po zakończeniu czyszczenia!</h5>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+        </div>
+    </div>
+</section>
+
+
+<section data-bs-version="5.1" class="form5 cid-sFzDs3t9EG" id="form5-1m">
+    
+    <div class="mbr-overlay"></div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Umów swój termin!</strong></h3>
+            <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-7">Sprawdź dostępność w kalendarzu i wypełnij formularz kontaktowy.</h4>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="qhcwVxK38vONO+ogLadon9HpwbgL1DhANZ+E98MKi3JGdv2ZQ0NVMTqB50PhoyyvBJmEEYxEbLCJSX0uraw9D41zGeiE96cYx4umfemk09K+qup3I7NCdl1gm6ydzN5M">
+                    <div class="row">
+                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Dziękujemy za wypełnienie formularza!</div>
+                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...! some
+                            problem!</div>
+                    </div>
+                    <div class="dragArea row">
+                        <div class="col-md col-sm-12 form-group mb-3" data-for="name">
+                            <input type="text" name="name" placeholder="Imię" data-form-field="name" class="form-control" value="" id="name-form5-1m">
+                        </div>
+                        <div class="col-md col-sm-12 form-group mb-3" data-for="email">
+                            <input type="email" name="email" placeholder="E-mail kontaktowy" data-form-field="email" class="form-control" value="" id="email-form5-1m">
+                        </div>
+                        
+                        <div class="col-12 form-group mb-3" data-for="textarea">
+                            <textarea name="textarea" placeholder="Wiadomość" data-form-field="textarea" class="form-control" id="textarea-form5-1m"></textarea>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-primary display-4">Wyślij wiadomość</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+              <link rel="stylesheet" href="kalendarz.css" />
+          <div class="calendar">
+    <div class="calendar-header">
+      <span id="current-month"></span>
+      <button id="month-button">▼</button>
+      <div class="month-select" id="month-select"></div>
+    </div>
+    <div class="calendar-days" id="calendar-days"></div>
+  </div>
+
+  <script src="kalendarz.js"></script>
+
+    </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="contacts2 cid-sFzIA7KGYz mbr-parallax-background" id="contacts2-1r">
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
+    </div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Inne sposoby kontaktu</strong></h3>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="card col-12 col-md-6">
+                <div class="kontakt-panel">
+                    <div class="ikonka-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
+                    </div>
+                    <div class="tekst-wrapper">
+                        <h6 class="tytul-karty mb-1 display-5">
+                            <strong>Numer telefonu</strong></h6>
+                        <p class="tekst-karty display-7"><a href="tel:+48668454924" class="text-primary">+48 668 454 924</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6">
+                <div class="kontakt-panel">
+                    <div class="ikonka-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+                    </div>
+                    <div class="tekst-wrapper">
+                        <h6 class="tytul-karty mb-1 display-5">
+                            <strong>E-mail</strong>
+                        </h6>
+                        <p class="tekst-karty display-7"><a href="mailto:efektwowzamosc@gmail.com" class="text-primary">efektwowzamosc@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6">
+                <div class="kontakt-panel">
+                    <div class="ikonka-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-globe mobi-mbri"></span>
+                    </div>
+                    <div class="tekst-wrapper">
+                        <h6 class="tytul-karty mb-1 display-5"><strong>Lokalizacja</strong></h6>
+                        <p class="tekst-karty display-7">
+                            <a href="index.html#map2-1y" class="text-primary">Żdanówek 140, 22-400 Zamość</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Panel kontaktowy */
+.kontakt-panel {
+    background-color: #fafafa;
+    border-radius: 10px;
+    padding: 20px 20px 20px 60px; /* zwiększony padding z lewej */
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+}
+
+/* Efekt przy najechaniu */
+.kontakt-panel:hover {
+    transform: translateY(-5px);
+}
+
+/* Ikona w panelu */
+.ikonka-wrapper {
+    font-size: 40px;
+    color: #0d6efd;
+    margin-right: 20px; /* trochę większy odstęp od tekstu */
+    display: flex;
+    align-items: center;
+}
+
+/* Tekst w panelu */
+.tekst-wrapper {
+    flex: 1;
+}
+
+/* Tytuł karty */
+.tytul-karty {
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+/* Tekst karty i linki */
+.tekst-karty a {
+    text-decoration: none;
+}
+
+.tekst-karty a:hover {
+    text-decoration: underline;
+}
+
+</style>
+
+<section data-bs-version="5.1" class="form5 cid-sFzDs3t9EG" id="form5-1m">
+    
+    <div class="mbr-overlay"></div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Nasi partnerzy</strong></h3>
+        </div>
+<div class="partnerzy-nova-container">
+
+    <div class="partnerzy-nova-grid">
+      <div class="partnerzy-nova-blok partnerzy-bg">
+        <img src="assets/images/partners/sackydesign-logo.png" alt="partner1" />
+        <p class="partnerzy-nova-blok-opis">Usługi graficzne online, które gwarantują klientom estetyczne i komfortowe wrażenia wizualne.</p>
+        <a href="https://sackydesign.pl/" target="_blank" rel="noopener noreferrer" class="partnerzy-nova-btn">Odwiedź stronę</a>
+      </div>
+
+<div class="partnerzy-nova-blok partnerzy-bg-2 partnerzy-centered">
+  <img src="assets/images/partners/partner-logo.png" alt="partner2" />
+  <p class="partnerzy-nova-blok-opis2">Miejsce na opis twoich usług lub firmy, który pozwoli zaprezentować Twoją markę.</p>
+</div>
+
+
+<div class="partnerzy-nova-blok partnerzy-bg-2 partnerzy-centered">
+  <img src="assets/images/partners/partner-logo.png" alt="partner3" />
+  <p class="partnerzy-nova-blok-opis2">Miejsce na opis twoich usług lub firmy, który pozwoli zaprezentować Twoją markę.</p>
+</div>
+    </div>
+  </div>
+
+
+    </div>
+    </div>
+</section>
+
+<style>
+  .partnerzy-nova {
+  background-color: #f9fafb;
+}
+
+.partnerzy-nova-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+.partnerzy-nova-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+.partnerzy-bg-2 {
+  background-color: #fcfcfc;
+}
+.partnerzy-bg {
+  background-color: #ffffff;
+}
+
+.partnerzy-nova-blok {
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.partnerzy-nova-blok:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.partnerzy-nova-blok img {
+  height: 60px;
+  margin-bottom: 20px;
+  object-fit: contain;
+  filter: brightness(0.5) contrast(1.1);
+}
+
+.partnerzy-nova-blok h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.partnerzy-nova-blok-opis {
+  color: #000000;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.partnerzy-nova-blok-opis2 {
+  color: #5a5a5a;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.partnerzy-nova-btn {
+  background-color: #2d7cbe;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.partnerzy-nova-btn:hover {
+  background-color: #205a8a;
+  color: #fff;
+}
+.partnerzy-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* wyśrodkowanie pionowe */
+  align-items: center;     /* wyśrodkowanie poziome */
+  text-align: center;
+  height: 100%;            /* wypełnia przestrzeń grida */
+  min-height: 260px;       /* zapewnia odpowiednią wysokość */
+}
+
+/* możesz dodać też nieco odstępu między logo a opisem */
+.partnerzy-centered img {
+  margin-bottom: 20px;
+}
+</style>
+
+<section data-bs-version="5.1" class="map2 cid-sFAxp7Y5iM" id="map2-1y">
+    
+    
+    <div>
+        
+        <div class="google-map"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1503.4698048204204!2d23.19445991825175!3d50.673084127945124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47235dd279780817%3A0x4bebe7549a033d9e!2sEfekt%20WOW!5e0!3m2!1spl!2spl!4v1761247933354!5m2!1spl!2spl" allowfullscreen=""></iframe></div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="footer3 cid-sFCygHrmNf" once="footers" id="footer3-24">
+
+    
+
+    
+
+    <div class="container">
+        <div class="row align-center mbr-white">
+            <div class="row row-links">
+                <ul class="foot-menu">
+                    
+                    
+                    
+                    
+                    
+                <li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#top" class="text-white text-primary">Strona Główna</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#features1-1i" class="text-white">O nas</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#features3-1p" class="text-white">Wykonane Zlecenia</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#features11-2" class="text-white text-primary">Cennik</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#map2-1y" class="text-white">Lokalizacja</a></li></ul>
+            </div>
+            <div class="row social-row">
+                <div class="social-list align-right pb-2">
+                    
+                    
+                    
+                    
+                    
+                    
+                <div class="soc-item">
+                        <a href="https://www.facebook.com/efektpraniawow" target="_blank">
+                            <span class="mbr-iconfont mbr-iconfont-social socicon-facebook socicon"></span>
+                        </a>
+                    </div><div class="soc-item">
+                        <a href="https://www.tiktok.com/@efektwowpranie" target="_blank">
+                            <span class="mbr-iconfont mbr-iconfont-social socicon-tiktok socicon"></span>
+                        </a>
+                    </div><div class="soc-item">
+                        <a href="mailto:efektwowzamosc@gmail.com">
+                            <span class="mbr-iconfont mbr-iconfont-social socicon-mail socicon"></span>
+                        </a>
+                    </div></div>
+            </div>
+            <div class="row row-copirayt">
+                <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">© EfektWOW 2025. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </div>
+
+     <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
+    <input name="animation" type="hidden">
+</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script> <script src="assets/embla/embla.min.js"></script>  <script src="assets/embla/script.js"></script> <script src="assets/theme/js/script.js"></script>  <script src="assets/formoid/formoid.min.js"></script>  
+  
+  
+
+
+    <style>
+::-webkit-scrollbar-thumb {
+    background-color: #2d7cbe; /* niebieski uchwyt */
+}
+
+::-webkit-scrollbar-track {
+    background: inherit; /* zachowuje tło elementu, praktycznie domyślne */
+}
+
+/* Firefox */
+* {
+    scrollbar-color: #2d7cbe #2c2c2c; /* uchwyt / track przezroczysty, tło niebieskie widać tylko uchwyt */
+}
+
+    </style>
+  </body>
+</html>
