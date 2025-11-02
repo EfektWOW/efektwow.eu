@@ -170,43 +170,53 @@
     <div class="notification-message">
       Zachęcamy do zaobserwowania naszego profilu na Facebooku aby zgarnąć darmową zniżkę!
     </div>
-    <span class="action-btn" onclick="window.open('#top', '_blank')">Dawaj zniżkę!</span>
+    <span class="action-btn" onclick="window.open('promocje.html', '_blank')">Dawaj zniżkę!</span>
   </div>
   <span class="close-btn" onclick="closeNotification()">&times;</span>
 </div>
 
 <script>
-// Pobranie elementów
-const notif = document.getElementById('errorNotification');
-const closeBtn = notif.querySelector('.close-btn');
-const sound = document.getElementById('notifSound');
+  // Pobranie elementów
+  const notif = document.getElementById('errorNotification');
+  const closeBtn = notif.querySelector('.close-btn');
+  const sound = document.getElementById('notifSound');
+  const discountBtn = document.getElementById('discountBtn'); // przycisk "dawaj zniżkę"
 
-// Funkcja pokazująca powiadomienie i odtwarzająca dźwięk
-function showNotification() {
-  notif.classList.add('show');
-  sound.currentTime = 0;
-  sound.play().catch(err => {
-    console.warn("Dźwięk nie został odtworzony:", err);
-  });
-}
+  // Funkcja pokazująca powiadomienie i odtwarzająca dźwięk
+  function showNotification() {
+    notif.classList.add('show');
+    sound.currentTime = 0;
+    sound.play().catch(err => {
+      console.warn("Dźwięk nie został odtworzony:", err);
+    });
+  }
 
-// Funkcja zamykająca powiadomienie
-function closeNotification() {
-  notif.classList.remove('show');
-}
+  // Funkcja zamykająca powiadomienie i zapisująca stan w localStorage
+  function closeNotification() {
+    notif.classList.remove('show');
+    localStorage.setItem('discountClicked', 'true'); // oznaczamy, że powiadomienie już było
+  }
 
-// Podpięcie przycisku zamykania
-closeBtn.addEventListener('click', closeNotification);
+  // Podpięcie przycisku zamykania
+  closeBtn.addEventListener('click', closeNotification);
 
-// Obsługa pierwszego kliknięcia
-function handleFirstClick() {
-  setTimeout(showNotification, 1000);
-  window.removeEventListener('click', handleFirstClick);
-}
+  // Sprawdzenie w localStorage, czy użytkownik już kliknął "dawaj zniżkę" lub zamknął powiadomienie
+  const discountClicked = localStorage.getItem('discountClicked');
 
-window.addEventListener('click', handleFirstClick);
+  if (!discountClicked) {
+    // Obsługa pierwszego kliknięcia
+    function handleFirstClick() {
+      setTimeout(showNotification, 1000);
+      window.removeEventListener('click', handleFirstClick);
+    }
+    window.addEventListener('click', handleFirstClick);
+  }
 
+  // Po kliknięciu "dawaj zniżkę" zapisujemy w localStorage
+  discountBtn.addEventListener('click', closeNotification);
 </script>
+
+
 
 
   
@@ -436,7 +446,7 @@ window.addEventListener('click', handleFirstClick);
                     <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2"><strong>O nas</strong></h1>
                     <p class="mbr-text mbr-fonts-style display-7">
                         Z pasji do czystości powstał Efekt WOW - firma, która odmienia wnętrza samochodów i domów. Pierzemy tapicerki, regenerujemy plastiki, przywracamy blask kokpitom i usuwamy zabrudzenia, które wydawały się nie do ruszenia.<br><br>W domach działamy z taką samą precyzją - od materacy i kanap po fugi, garnki, okapy i wentylacje. Zadzwoń o każdej porze - a jeśli chcesz poznać naszą historię, kliknij „Dowiedz się więcej”.<br></p>
-                    <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="index.html" target="_blank">Dowiedz się więcej</a></div>
+                    <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="o-nas.html" target="_blank">Dowiedz się więcej</a></div>
                 </div>
             </div>
         </div>
