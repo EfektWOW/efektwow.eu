@@ -1429,12 +1429,12 @@ document.addEventListener("DOMContentLoaded", function() {
 				<div class="item-wrapper">
 					<div class="title mb-3">
 						<h3 class="count mbr-fonts-style display-1">
-							10</h3>
+							11</h3>
 					</div>
 					<h4 class="card-title mbr-fonts-style display-5">
 						<strong>Pozytywnych opinii</strong></h4>
 					<p class="mbr-text card-text mbr-fonts-style mb-0 display-7">
-						Otrzymaliśmy już 10 w pełni pozytywnych opinii od klientów, którzy docenili naszą rzetelność i jakość usług.
+						Otrzymaliśmy już 11 w pełni pozytywnych opinii od klientów, którzy docenili naszą rzetelność i jakość usług.
 					</p>
 				</div>
 			</div>
@@ -1706,6 +1706,98 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
     </div>
 </section>
+
+<section data-bs-version="5.1" class="contacts2 cid-sFzIA7KGYz mbr-parallax-background" id="contacts2-1r">
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);"></div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Zobacz nasze filmy</strong>
+            </h3>
+        </div>
+
+<div class="tiktok-widget-container">
+
+    <div class="tiktok-wrapper">
+        <iframe id="tiktok1" scrolling="no" width="325" height="510" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="tiktok-wrapper">
+        <iframe id="tiktok2" scrolling="no" width="325" height="510" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="tiktok-wrapper">
+        <iframe id="tiktok3" scrolling="no" width="325" height="510" frameborder="0" allowfullscreen></iframe>
+
+    </div>
+</div>
+
+</section>
+
+<style>
+.tiktok-widget-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: nowrap;       /* wymusza 1 linię */
+    overflow-x: auto;        /* dla węższych ekranów umożliwia scroll poziomy */
+    margin-top: 45px;
+    margin-bottom: 70px;
+}
+
+.tiktok-widget-container iframe {
+    min-width: 0;            /* ważne dla flex */
+    width: 325px;
+    height: 575px;
+}
+
+
+/* Responsywny styl dla telefonów */
+@media (max-width: 768px) {
+    .tiktok-widget-container {
+        flex-direction: column;  
+        gap: 20px;               
+        overflow-x: visible;     
+        align-items: center;     
+    }
+
+    .tiktok-wrapper {
+        width: 90%;             
+        padding-top: 0;          /* usuwa padding-top, który robi przerwę */
+        height: calc(90% * 16 / 9); /* ustawia wysokość proporcjonalną do szerokości */
+    }
+}
+</style>
+
+
+<script>
+  const tiktokLinks = [
+    "https://www.tiktok.com/embed/7569592825998871830",
+    "https://www.tiktok.com/embed/7568987162843090198",
+    "https://www.tiktok.com/embed/7561780872630816022",
+    "https://www.tiktok.com/embed/7555789913678204163",
+    "https://www.tiktok.com/embed/7554702531910241558",
+    "https://www.tiktok.com/embed/7553731893338934550",
+    "https://www.tiktok.com/embed/7552662138557369623",
+    "https://www.tiktok.com/embed/7548202340969352471",
+    "https://www.tiktok.com/embed/7542605764817456406",
+    "https://www.tiktok.com/embed/7541861389141429526",
+    "https://www.tiktok.com/embed/7540359271364545814",
+    "https://www.tiktok.com/embed/7539585183729683734",
+    "https://www.tiktok.com/embed/7537688959791467798"
+  ];
+
+  function getRandomIndexes(array, count) {
+    const shuffled = array.slice().sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  const randomLinks = getRandomIndexes(tiktokLinks, 3);
+
+  document.getElementById('tiktok1').src = randomLinks[0];
+  document.getElementById('tiktok2').src = randomLinks[1];
+  document.getElementById('tiktok3').src = randomLinks[2];
+</script>
+
+
 
 <style>
   .partnerzy-nova {
