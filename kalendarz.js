@@ -5,8 +5,7 @@ const monthNames = [
 
 // przykładowe zajęte dni
 const busyDays = {
-  "2025-11": [3, 7, 8, 10, 12, 17, 18, 19, 20, 21],
-  "2025-12": [4, 12, 22, 24, 25, 26, 28, 31],
+  "2025-12": [6, 7, 10, 22, 24, 25, 26, 28, 31],
 };
 
 const currentMonthText = document.getElementById("current-month");
