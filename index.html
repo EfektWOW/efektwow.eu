@@ -770,7 +770,7 @@
   }
 
   .card-list .card-item .card-link {
-    width: 95%;             /* karta zajmuje prawie całą szerokość, zostawiając trochę z lewej */
+    width: 80%;             /* karta zajmuje prawie całą szerokość, zostawiając trochę z lewej */
     margin: 12px 0 15px;    /* margines górny i dolny */
     padding: 12px;
     border-radius: 10px;
@@ -787,6 +787,7 @@
     font-size: 0.8rem;
     margin-top: 15px;
     margin-bottom: 10px;
+    text-align: center; /* wyśrodkowanie daty na telefonie */
   }
 
   .card-list .card-link .card-button {
@@ -1385,6 +1386,30 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<style>
+  .my-section-title {
+    text-align: center !important;
+    font-size: 3rem;          /* wielkość podobna do display-2 */
+    font-weight: bold;         /* pogrubienie */
+    margin-bottom: 1rem;      /* odstęp od reszty */
+    font-family: inherit;      /* zachowanie fontu strony */
+    line-height: 1.2;          /* ładne rozmieszczenie linii */
+}
+
+/* jeśli chcesz responsywne dopasowanie rozmiaru */
+@media (max-width: 768px) {
+      .card-wrapper, .card-box {
+        text-align: center !important;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    .my-section-title {
+        font-size: 2.2rem;
+    }
+}
+
+</style>
+
 <section data-bs-version="5.1" class="counter1 counters cid-v0tSs48mcc" id="counter1-1">
 	
 
@@ -1393,16 +1418,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	</div>
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-12 content-head">
-				<div class="card-wrapper mb-5">
-					<div class="card-box align-center">
-						<h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Co nas wyróżnia?</strong></h4>
-
-						
-						
-					</div>
-				</div>
-			</div>
+<div class="col-12 content-head text-center">
+    <div class="card-wrapper mb-5">
+        <div class="card-box">
+            <h4 class="my-section-title" style="text-align:center;">Co nas wyróżnia?</h4>
+        </div>
+    </div>
+</div>
 		</div>
 		<div class="row content-row mt-4">
 			<div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb active">
