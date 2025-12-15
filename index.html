@@ -1440,16 +1440,327 @@ document.addEventListener("DOMContentLoaded", function() {
 				</div>
 			</div>
 
-      <!--
-<div style="margin-bottom: 50px;">
-  <script defer async src='https://cdn.trustindex.io/loader.js?7cfbbdb5993d74945896da27dec'></script>
-</div> -->
 
-<iframe src="https://app.reviewconnect.me/embed/reviews/V1WhpNPzA8epSgvDwB308kUCRwtGW069" width="100%" height="440" frameborder="0" title="test Reviews"></iframe>
+<div class="reviews-container">
+  <button class="arrow-reviews left"><i class="fa-solid fa-chevron-left"></i></button>
+
+  <div class="reviews-wrapper">
+    <div class="reviews-track" id="reviewsTrack"></div>
+  </div>
+
+
+  <button class="arrow-reviews right"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
+  <a href="https://search.google.com/local/writereview?placeid=ChIJFwh4edJdI0cRnj0DmlTn60s" target="_blank">
+    <button type="button" class="btn btn-primary display-4 review-btn">Napisz opinię</button>
+  </a>
+</div>
+
+
+
+
+
 
 		</div>
 	</div>
 </section>
+
+
+<style>
+  .review-btn {
+  margin-top: -15px;
+  margin-bottom: 65px;
+}
+
+.reviews-container {
+  position: relative;
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: "Poppins", sans-serif;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reviews-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reviews-wrapper {
+  overflow: hidden; /* przycina tylko karty, strzałki nie są przycinane */
+}
+
+.reviews-track {
+  display: flex;
+  transition: transform 0.4s ease;
+  padding: 10px 0; /* aby cienie kart były widoczne */
+}
+
+.review-card {
+  flex: 0 0 calc(100% / 3 - 20px);
+  margin: 0 10px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  border: 1px solid #2d7cbe;   /* kolor i grubość obrysu */
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.avatar-reviews {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.name-reviews {
+  font-weight: bold;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date-reviews {
+  font-size: 12px;
+  color: #777;
+  margin-left: left;
+}
+
+.stars-reviews {
+  color: #f5b301;
+  font-size: 12px;
+  margin-left: left;
+  gap: 6px; /* reguluj odstęp */
+}
+
+.review-text {
+  font-size: 14px;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* maksymalnie 4 linie */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  margin-top: 6px; /* delikatny odstęp od nagłówka */
+  margin-bottom: 6px; /* minimalna przestrzeń pod treścią */
+}
+
+.arrow-reviews {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #2d7cbe;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px; /* rozmiar ikony */
+}
+
+.arrow-reviews.left { left: -35px; }
+.arrow-reviews.right { right: -35px; }
+
+.arrow-reviews:hover { opacity: 0.8; }
+
+/* nieaktywne */
+.arrow-reviews.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+</style>
+
+<style>
+@media (max-width: 768px) {
+  .review-card {
+    flex: 0 0 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .review-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .review-name-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* data wyrównana do lewej */
+    text-align: left;
+  }
+
+  .stars-reviews,
+  .review-text {
+    text-align: center; /* gwiazdki i tekst wyśrodkowane */
+    width: 100%;
+  }
+
+  .arrow-reviews.left {
+    left: 8px;
+  }
+
+  .arrow-reviews.right {
+    right: 8px;
+  }
+  
+}
+
+
+</style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const reviewsSection = document.querySelector('.reviews-container');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          reviewsSection.classList.add('visible');
+          observer.unobserve(reviewsSection); // animacja tylko raz
+        }
+      });
+    }, { threshold: 0.2 }); // 20% sekcji widoczne
+
+    observer.observe(reviewsSection);
+  } else {
+    // fallback dla starszych przeglądarek
+    reviewsSection.classList.add('visible');
+  }
+});
+</script>
+
+
+<script src="reviews.js"></script> <!-- wczytanie tablicy reviews -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const MAX_REVIEWS = 20;
+  const track = document.getElementById('reviewsTrack');
+  const leftArrow = document.querySelector('.arrow-reviews.left');
+  const rightArrow = document.querySelector('.arrow-reviews.right');
+  let index = 0;
+  let cardWidth = 0;
+
+  const visibleReviews = reviews.slice(0, MAX_REVIEWS);
+  visibleReviews.forEach(r => track.appendChild(createCard(r)));
+
+  function createCard(r) {
+    const div = document.createElement('div');
+    div.className = 'review-card';
+    div.innerHTML = `
+      <div class="review-header">
+        <img class="avatar-reviews" src="${r.avatar}" alt="${r.name}" loading="lazy">
+        <div>
+          <div class="name-reviews">${r.name}</div>
+          <div class="date-reviews">${r.date}</div>
+        </div>
+      </div>
+      <div class="stars-reviews">
+        ${'<i class="fa-solid fa-star"></i>'.repeat(r.stars)}
+        ${'<i class="fa-regular fa-star"></i>'.repeat(5 - r.stars)}
+      </div>
+      <div class="review-text">${r.text}</div>
+    `;
+    return div;
+  }
+
+  // Oblicza szerokość kart tylko dla desktopu
+  function updateCardWidth() {
+    if (window.innerWidth > 768) {
+      const card = document.querySelector('.review-card');
+      if (!card) return;
+      cardWidth = card.offsetWidth + 20; // uwzględnia margin
+    } else {
+      cardWidth = 0; // mobile używa translateX w %
+    }
+    updatePosition(false);
+  }
+
+  function getVisibleCount() {
+    const w = window.innerWidth;
+    if (w <= 768) return 1;
+    if (w <= 1200) return 2;
+    return 3;
+  }
+
+  // Aktualizacja pozycji tracka
+  function updatePosition(animate = true) {
+    track.style.transition = animate ? 'transform 0.4s ease' : 'none';
+
+    if (window.innerWidth <= 768) {
+      // MOBILE → przesuw w %
+      track.style.transform = `translateX(-${index * 100}%)`;
+    } else {
+      // DESKTOP → przesuw w px
+      track.style.transform = `translateX(${-index * cardWidth}px)`;
+    }
+
+    updateArrows();
+  }
+
+  function updateArrows() {
+    const maxIndex = visibleReviews.length - getVisibleCount();
+    leftArrow.style.background = index <= 0 ? '#ccc' : '#2d7cbe';
+    leftArrow.style.cursor = index <= 0 ? 'not-allowed' : 'pointer';
+
+    rightArrow.style.background = index >= maxIndex ? '#ccc' : '#2d7cbe';
+    rightArrow.style.cursor = index >= maxIndex ? 'not-allowed' : 'pointer';
+  }
+
+  function next() {
+    const maxIndex = visibleReviews.length - getVisibleCount();
+    if (index < maxIndex) {
+      index++;
+      updatePosition(true);
+    }
+  }
+
+  function prev() {
+    if (index > 0) {
+      index--;
+      updatePosition(true);
+    }
+  }
+
+  leftArrow.addEventListener('click', prev);
+  rightArrow.addEventListener('click', next);
+
+  window.addEventListener('resize', () => {
+    updateCardWidth();
+  });
+
+  updateCardWidth();
+});
+</script>
+
 
 <section data-bs-version="5.1" class="features23 cid-sFAyHxWQ1N mbr-parallax-background" id="features24-20">
 
