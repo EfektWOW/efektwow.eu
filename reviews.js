@@ -1,4 +1,19 @@
 const reviews = [
+  // nowa opinia – najnowsza
+  {
+    name: "Marta B",
+    text: "Świetny kontakt, szybko i starannie wykonane czyszczenie samochodu wewnątrz, dziękuję raz jeszcze i polecam :)",
+    stars: 5,
+    date: "27.12.2025",
+    avatar: "https://lh3.googleusercontent.com/a/ACg8ocIRCbaYp2bT6P4AsPLUCGm2z-pnFcnG6lNHYhc4ZTHchVksYQ=w36-h36-p-rp-mo-br100"
+  },
+  {
+    name: "Kosma Bit",
+    text: "Profesjonalnie, sprawnie i bardzo dokładnie wykonane czyszczenie. Przesympatyczny Pan. Z pewnością skorzystam z usług ponownie.",
+    stars: 5,
+    date: "17.12.2025",
+    avatar: "https://lh3.googleusercontent.com/a/ACg8ocLUH1A8DTOsJqvaAjKcnwGJy-pbPR0idXLVHjmeE9-zlkMZJQ=w36-h36-p-rp-mo-br100"
+  },
   {
     name: "Agnieszka Łoza",
     text: "Jestem bardzo zadowolona, pełny profesjonalizm. Polecam",
