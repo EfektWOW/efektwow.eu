@@ -1,6 +1,6 @@
 const reviews = [
   // nowa opinia – najnowsza
-  { 
+  {
     name: "Ewelina Oleksiak",
     text: "Jestem bardzo zadowolona z usługi czyszczenia kanapy i dywanu. Już od pierwszego kontaktu obsługa była profesjonalna i uprzejma, a cały proces przebiegał sprawnie i bezproblemowo. Kanapa, która wcześniej miała widoczne plamy i ślady użytkowania, wygląda teraz jak nowa – odzyskała świeżość, kolor i przyjemny zapach. Dywan również został dokładnie wyczyszczony, a wszelkie zabrudzenia zostały skutecznie usunięte. Z czystym sumieniem polecam tą firmę każdemu, kto chce odświeżyć swoje meble i dywany – efekt naprawdę robi wrażenie!",
     stars: 5,
