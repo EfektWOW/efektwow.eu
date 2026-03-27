@@ -1,6 +1,34 @@
 const reviews = [
   // nowa opinia – najnowsza
   {
+    name: "Ewelina Oleksiak",
+    text: "Jestem bardzo zadowolona z usługi czyszczenia kanapy i dywanu. Już od pierwszego kontaktu obsługa była profesjonalna i uprzejma, a cały proces przebiegał sprawnie i bezproblemowo. Kanapa, która wcześniej miała widoczne plamy i ślady użytkowania, wygląda teraz jak nowa – odzyskała świeżość, kolor i przyjemny zapach. Dywan również został dokładnie wyczyszczony, a wszelkie zabrudzenia zostały skutecznie usunięte. Z czystym sumieniem polecam tą firmę każdemu, kto chce odświeżyć swoje meble i dywany – efekt naprawdę robi wrażenie!",
+    stars: 5,
+    date: "19.03.2026",
+    avatar: "https://lh3.googleusercontent.com/a/ACg8ocIYh6XU7Eaq1rphXXz0-pL_jtIfpLlDA9yoEbhBPGenJFYlJw=w36-h36-p-rp-mo-br100"
+  },
+  {
+    name: "P L",
+    text: "Szybka i sprawnie wykonana usługa. Dosyć trudne plamy zalanej olejem tapicerki z samochodu po wykonanym praniu i odświeżeniu jak najbardziej odzyskały pierwotny wygląd. Polecam jeśli chodzi o wykonywanie podobnych usług. Konkurencyjna cena oraz szybki termin realizacji.",
+    stars: 5,
+    date: "16.03.2026",
+    avatar: "https://lh3.googleusercontent.com/a-/ALV-UjWhK19Pu0PkVcW_4bJPUT8cUlp4GFfrhQS-a5LWLvVP-iA2p8Qh=w36-h36-p-rp-mo-br100"
+  },
+  {
+    name: "Ewa Zaremba-Flis",
+    text: "Polecam! Kanapy i fotele (a także walizka) wyczyszczane perfekcyjnie.",
+    stars: 5,
+    date: "08.03.2026",
+    avatar: "https://lh3.googleusercontent.com/a-/ALV-UjVjIln1TtKj3_ZEyIhZ0wOgkFTxQEiWqSyt7J7FcyqQlP9ebIBf=w36-h36-p-rp-mo-br100"
+  },
+  {
+    name: "Robert B",
+    text: "Polecam. Dywany umyte szybko i sprawnie.",
+    stars: 5,
+    date: "14.02.2026",
+    avatar: "https://lh3.googleusercontent.com/a/ACg8ocLXDkewzECCcmXdEoJf3ppDDJfdexsKXtZD1n8rvvec5-G9vQ=w36-h36-p-rp-mo-ba3-br100"
+  },
+  {
     name: "Marta B",
     text: "Świetny kontakt, szybko i starannie wykonane czyszczenie samochodu wewnątrz, dziękuję raz jeszcze i polecam :)",
     stars: 5,
