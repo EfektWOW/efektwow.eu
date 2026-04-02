@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
@@ -41,6 +40,7 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 button:hover {
@@ -57,6 +57,7 @@ button:hover {
 
 <div class="container">
 
+  <!-- LOGIN -->
   <div id="loginBox">
     <h2>🔐 Logowanie</h2>
     <input id="email" placeholder="Email">
@@ -64,36 +65,42 @@ button:hover {
     <button onclick="login()">Zaloguj</button>
   </div>
 
+  <!-- PANEL -->
   <div id="panelBox" class="hidden">
     <h2>⚙️ Panel strony</h2>
 
-```
-<h3>Liczby</h3>
-<input id="clients" placeholder="Zadowoleni klienci">
-<input id="fabrics" placeholder="Tkaniny">
-<input id="reviews" placeholder="Opinie">
+    <h3>Liczby</h3>
+    <input id="clients" placeholder="Zadowoleni klienci">
+    <input id="fabrics" placeholder="Tkaniny">
+    <input id="reviews" placeholder="Opinie">
 
-<h3>Kalendarz</h3>
-<input id="busyDays" placeholder="np. 3,4,18">
+    <h3>Kalendarz</h3>
+    <input id="busyDays" placeholder="np. 3,4,18">
 
-<h3>TikTok</h3>
-<input id="t1" placeholder="Link TikTok 1">
-<input id="t2" placeholder="Link TikTok 2">
-<input id="t3" placeholder="Link TikTok 3">
+    <h3>TikTok</h3>
+    <input id="t1" placeholder="Link TikTok 1">
+    <input id="t2" placeholder="Link TikTok 2">
+    <input id="t3" placeholder="Link TikTok 3">
 
-<button onclick="save()">💾 Zapisz zmiany</button>
-```
-
+    <button onclick="save()">💾 Zapisz zmiany</button>
+    <button onclick="logout()">🚪 Wyloguj</button>
   </div>
 
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// 🔥 TWÓJ CONFIG
+// 🔥 KONFIG FIREBASE
 const firebaseConfig = {
   apiKey: "AIzaSyBUU4jcNfegYzyQwAfdUu2mtR7tEnaVN1w",
   authDomain: "panel-wow.firebaseapp.com",
@@ -104,34 +111,50 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-// 🔐 LOGIN
+// 🔐 LOGIN Z ZAPAMIĘTYWANIEM
 window.login = async () => {
   try {
+    await setPersistence(auth, browserLocalPersistence); // zapamiętaj sesję
     await signInWithEmailAndPassword(auth, email.value, password.value);
+    // login udany → panel pokaż
     document.getElementById("loginBox").classList.add("hidden");
     document.getElementById("panelBox").classList.remove("hidden");
     loadData();
   } catch (e) {
     alert("Błąd logowania");
+    console.log(e);
   }
 };
 
-// 📥 POBIERANIE DANYCH
+// 📥 AUTO LOGOWANIE PO ODŚWIEŻENIU
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("panelBox").classList.remove("hidden");
+    loadData();
+  } else {
+    document.getElementById("loginBox").classList.remove("hidden");
+    document.getElementById("panelBox").classList.add("hidden");
+  }
+});
+
+// 📥 POBIERANIE DANYCH Z FIRESTORE
 async function loadData() {
   const snap = await getDoc(doc(db, "settings", "main"));
   const d = snap.data();
+  if (!d) return;
 
-  clients.value = d.clients;
-  fabrics.value = d.fabrics;
-  reviews.value = d.reviews;
-  busyDays.value = d.busyDays;
+  clients.value = d.clients || '';
+  fabrics.value = d.fabrics || '';
+  reviews.value = d.reviews || '';
+  busyDays.value = d.busyDays || '';
 
-  t1.value = d.tiktok1;
-  t2.value = d.tiktok2;
-  t3.value = d.tiktok3;
+  t1.value = d.tiktok1 || '';
+  t2.value = d.tiktok2 || '';
+  t3.value = d.tiktok3 || '';
 }
 
-// 💾 ZAPIS
+// 💾 ZAPIS DO FIRESTORE
 window.save = async () => {
   await setDoc(doc(db, "settings", "main"), {
     clients: Number(clients.value),
@@ -142,8 +165,13 @@ window.save = async () => {
     tiktok2: t2.value,
     tiktok3: t3.value
   });
-
   alert("Zapisano!");
+};
+
+// 🚪 WYLOGOWANIE
+window.logout = async () => {
+  await signOut(auth);
+  alert("Wylogowano!");
 };
 </script>
 
