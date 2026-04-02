@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Panel admina</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f5f5f5;
+  padding: 30px;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #333;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div id="loginBox">
+    <h2>🔐 Logowanie</h2>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Hasło">
+    <button onclick="login()">Zaloguj</button>
+  </div>
+
+  <div id="panelBox" class="hidden">
+    <h2>⚙️ Panel strony</h2>
+
+```
+<h3>Liczby</h3>
+<input id="clients" placeholder="Zadowoleni klienci">
+<input id="fabrics" placeholder="Tkaniny">
+<input id="reviews" placeholder="Opinie">
+
+<h3>Kalendarz</h3>
+<input id="busyDays" placeholder="np. 3,4,18">
+
+<h3>TikTok</h3>
+<input id="t1" placeholder="Link TikTok 1">
+<input id="t2" placeholder="Link TikTok 2">
+<input id="t3" placeholder="Link TikTok 3">
+
+<button onclick="save()">💾 Zapisz zmiany</button>
+```
+
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// 🔥 TWÓJ CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyBUU4jcNfegYzyQwAfdUu2mtR7tEnaVN1w",
+  authDomain: "panel-wow.firebaseapp.com",
+  projectId: "panel-wow"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore();
+
+// 🔐 LOGIN
+window.login = async () => {
+  try {
+    await signInWithEmailAndPassword(auth, email.value, password.value);
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("panelBox").classList.remove("hidden");
+    loadData();
+  } catch (e) {
+    alert("Błąd logowania");
+  }
+};
+
+// 📥 POBIERANIE DANYCH
+async function loadData() {
+  const snap = await getDoc(doc(db, "settings", "main"));
+  const d = snap.data();
+
+  clients.value = d.clients;
+  fabrics.value = d.fabrics;
+  reviews.value = d.reviews;
+  busyDays.value = d.busyDays;
+
+  t1.value = d.tiktok1;
+  t2.value = d.tiktok2;
+  t3.value = d.tiktok3;
+}
+
+// 💾 ZAPIS
+window.save = async () => {
+  await setDoc(doc(db, "settings", "main"), {
+    clients: Number(clients.value),
+    fabrics: Number(fabrics.value),
+    reviews: Number(reviews.value),
+    busyDays: busyDays.value,
+    tiktok1: t1.value,
+    tiktok2: t2.value,
+    tiktok3: t3.value
+  });
+
+  alert("Zapisano!");
+};
+</script>
+
+</body>
+</html>

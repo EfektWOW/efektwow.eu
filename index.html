@@ -2358,5 +2358,54 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
     </style>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// 🔥 TWÓJ CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyBUU4jcNfegYzyQwAfdUu2mtR7tEnaVN1w",
+  authDomain: "panel-wow.firebaseapp.com",
+  projectId: "panel-wow"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+
+// 🔄 AUTOMATYCZNE AKTUALIZACJE
+onSnapshot(doc(db, "settings", "main"), (snap) => {
+  const d = snap.data();
+  if (!d) return;
+
+  // 🔢 LICZBY
+  document.querySelectorAll(".count")[0].innerText = d.clients;
+  document.querySelectorAll(".count")[1].innerText = d.fabrics;
+  document.querySelectorAll(".count")[2].innerText = d.reviews;
+
+  // 📝 OPISY
+  document.querySelectorAll(".card-text")[0].innerText =
+    `W ciągu tylko trzech miesięcy zyskaliśmy zaufanie ${d.clients} klientów, którzy wracają do nas z uśmiechem i pełnym zadowoleniem.`;
+
+  document.querySelectorAll(".card-text")[1].innerText =
+    `Dzięki naszym profesjonalnym usługom udało nam się przywrócić życie aż ${d.fabrics} zaplamionym lub zabrudzonym tkaninom.`;
+
+  document.querySelectorAll(".card-text")[2].innerText =
+    `Otrzymaliśmy już ${d.reviews} w pełni pozytywne opinie od klientów, którzy docenili naszą staranność i jakość usług.`;
+
+  // 📅 KALENDARZ
+  const now = new Date();
+  const key = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}`;
+  busyDays[key] = d.busyDays.split(",").map(x => Number(x));
+  renderCalendar(now);
+
+  // 🎥 TIKTOK
+  document.getElementById("tiktok1").src = d.tiktok1;
+  document.getElementById("tiktok2").src = d.tiktok2;
+  document.getElementById("tiktok3").src = d.tiktok3;
+});
+</script>
+
+
   </body>
 </html>
