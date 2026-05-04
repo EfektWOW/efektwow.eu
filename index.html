@@ -1775,7 +1775,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<script src="reviews.js"></script> <!-- wczytanie tablicy reviews -->
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -2452,6 +2451,77 @@ onSnapshot(doc(db, "settings", "main"), (snap) => {
   document.getElementById("tiktok2").src = d.tiktok2;
   document.getElementById("tiktok3").src = d.tiktok3;
 });
+</script>
+
+<script>
+async function loadReviews() {
+  const track = document.getElementById("reviewsTrack");
+  if (!track) return;
+
+  track.innerHTML = "";
+
+  const snap = await getDocs(collection(db, "reviews"));
+
+  let reviews = [];
+
+  snap.forEach(docSnap => {
+    reviews.push({
+      id: docSnap.id,
+      ...docSnap.data()
+    });
+  });
+
+  // sortowanie (najnowsze pierwsze)
+  reviews.sort((a, b) => (b.date || 0) - (a.date || 0));
+
+  reviews.forEach(r => {
+    const div = document.createElement("div");
+    div.classList.add("review-card");
+
+    // HEADER
+    const header = document.createElement("div");
+    header.className = "review-header";
+
+    // AVATAR z ui-avatars
+    const img = document.createElement("img");
+    img.className = "avatar-reviews";
+
+    const nameForAvatar = encodeURIComponent(r.name?.trim() || "Klient");
+
+    img.src = `https://ui-avatars.com/api/?name=${nameForAvatar}&background=2d7cbe&color=fff&size=128`;
+
+    // NAME
+    const name = document.createElement("div");
+    name.className = "name-reviews";
+    name.textContent = r.name;
+
+    // STARS
+    const stars = document.createElement("div");
+    stars.className = "stars-reviews";
+    stars.textContent = "⭐".repeat(r.stars || 0);
+
+    // wrapper na tekst + meta
+    const info = document.createElement("div");
+    info.style.display = "flex";
+    info.style.flexDirection = "column";
+
+    info.appendChild(name);
+    info.appendChild(stars);
+
+    header.appendChild(img);
+    header.appendChild(info);
+
+    // TEXT
+    const text = document.createElement("p");
+    text.className = "review-text";
+    text.textContent = r.text;
+
+    div.appendChild(header);
+    div.appendChild(text);
+
+    track.appendChild(div);
+  });
+}
 </script>
 
 
