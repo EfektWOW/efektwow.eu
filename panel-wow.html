@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
   background: white;
   padding: 25px;
@@ -20,8 +20,8 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-h2, h3 {
-  margin-top: 20px;
+h2 {
+  margin-top: 0;
 }
 
 input {
@@ -50,13 +50,6 @@ button:hover {
 .hidden {
   display: none;
 }
-
-.review-item {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-}
 </style>
 
 </head>
@@ -74,13 +67,12 @@ button:hover {
 
   <!-- PANEL -->
   <div id="panelBox" class="hidden">
-
     <h2>⚙️ Panel strony</h2>
 
-    <!-- STATYSTYKI -->
     <h3>Liczby</h3>
     <input id="clients" placeholder="Zadowoleni klienci">
     <input id="fabrics" placeholder="Tkaniny">
+    <input id="reviews" placeholder="Opinie">
 
     <h3>Kalendarz</h3>
     <input id="busyDays" placeholder="np. 3,4,18">
@@ -91,29 +83,12 @@ button:hover {
     <input id="t3" placeholder="Link TikTok 3">
 
     <button onclick="save()">💾 Zapisz zmiany</button>
-
-    <hr>
-
-    <!-- ⭐ OPINIE -->
-    <h2>⭐ Opinie</h2>
-
-    <input id="r_name" placeholder="Imię i nazwisko">
-    <input id="r_text" placeholder="Treść opinii">
-    <input id="r_stars" type="number" min="1" max="5" placeholder="Gwiazdki (1-5)">
-
-    <button onclick="addReview()">➕ Dodaj opinię</button>
-
-    <hr>
-
-    <div id="reviewsList"></div>
-
     <button onclick="logout()">🚪 Wyloguj</button>
   </div>
 
 </div>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { 
   getAuth, 
@@ -123,19 +98,9 @@ import {
   browserLocalPersistence,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-import { 
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-// 🔥 FIREBASE
+// 🔥 KONFIG FIREBASE
 const firebaseConfig = {
   apiKey: "AIzaSyBUU4jcNfegYzyQwAfdUu2mtR7tEnaVN1w",
   authDomain: "panel-wow.firebaseapp.com",
@@ -146,43 +111,34 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-////////////////////////////////////////////////////
-// 🔐 LOGIN
-////////////////////////////////////////////////////
-
+// 🔐 LOGIN Z ZAPAMIĘTYWANIEM
 window.login = async () => {
   try {
-    await setPersistence(auth, browserLocalPersistence);
+    await setPersistence(auth, browserLocalPersistence); // zapamiętaj sesję
     await signInWithEmailAndPassword(auth, email.value, password.value);
-
-    showPanel();
+    // login udany → panel pokaż
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("panelBox").classList.remove("hidden");
+    loadData();
   } catch (e) {
     alert("Błąd logowania");
+    console.log(e);
   }
 };
 
+// 📥 AUTO LOGOWANIE PO ODŚWIEŻENIU
 onAuthStateChanged(auth, (user) => {
-  if (user) showPanel();
-  else showLogin();
+  if (user) {
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("panelBox").classList.remove("hidden");
+    loadData();
+  } else {
+    document.getElementById("loginBox").classList.remove("hidden");
+    document.getElementById("panelBox").classList.add("hidden");
+  }
 });
 
-function showPanel() {
-  loginBox.classList.add("hidden");
-  panelBox.classList.remove("hidden");
-
-  loadData();
-  loadReviews();
-}
-
-function showLogin() {
-  loginBox.classList.remove("hidden");
-  panelBox.classList.add("hidden");
-}
-
-////////////////////////////////////////////////////
-// 📥 SETTINGS
-////////////////////////////////////////////////////
-
+// 📥 POBIERANIE DANYCH Z FIRESTORE
 async function loadData() {
   const snap = await getDoc(doc(db, "settings", "main"));
   const d = snap.data();
@@ -190,6 +146,7 @@ async function loadData() {
 
   clients.value = d.clients || '';
   fabrics.value = d.fabrics || '';
+  reviews.value = d.reviews || '';
   busyDays.value = d.busyDays || '';
 
   t1.value = d.tiktok1 || '';
@@ -197,83 +154,25 @@ async function loadData() {
   t3.value = d.tiktok3 || '';
 }
 
+// 💾 ZAPIS DO FIRESTORE
 window.save = async () => {
   await setDoc(doc(db, "settings", "main"), {
     clients: Number(clients.value),
     fabrics: Number(fabrics.value),
+    reviews: Number(reviews.value),
     busyDays: busyDays.value,
     tiktok1: t1.value,
     tiktok2: t2.value,
     tiktok3: t3.value
   });
-
   alert("Zapisano!");
 };
 
-////////////////////////////////////////////////////
-// ⭐ OPINIE
-////////////////////////////////////////////////////
-
-async function loadReviews() {
-  const snap = await getDocs(collection(db, "reviews"));
-  const list = document.getElementById("reviewsList");
-
-  list.innerHTML = "";
-
-  snap.forEach((docSnap) => {
-    const r = docSnap.data();
-
-    const div = document.createElement("div");
-    div.className = "review-item";
-
-    const stars = "⭐".repeat(r.stars || 0);
-
-    div.innerHTML = `
-      <strong>${r.name}</strong> ${stars}
-      <p>${r.text}</p>
-      <button onclick="deleteReview('${docSnap.id}')">🗑 Usuń</button>
-    `;
-
-    list.appendChild(div);
-  });
-}
-
-window.addReview = async () => {
-  if (!r_name.value || !r_text.value || !r_stars.value) {
-    alert("Uzupełnij dane!");
-    return;
-  }
-
-  await addDoc(collection(db, "reviews"), {
-    name: r_name.value,
-    text: r_text.value,
-    stars: Number(r_stars.value),
-    date: Date.now(),
-    avatar: ""
-  });
-
-  r_name.value = "";
-  r_text.value = "";
-  r_stars.value = "";
-
-  loadReviews();
-};
-
-window.deleteReview = async (id) => {
-  if (!confirm("Usunąć opinię?")) return;
-
-  await deleteDoc(doc(db, "reviews", id));
-  loadReviews();
-};
-
-////////////////////////////////////////////////////
-// 🚪 LOGOUT
-////////////////////////////////////////////////////
-
+// 🚪 WYLOGOWANIE
 window.logout = async () => {
   await signOut(auth);
+  alert("Wylogowano!");
 };
-
 </script>
 
 </body>
