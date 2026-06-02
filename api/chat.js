@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       messages: [
         {
           role: "system",
-          content: "Jesteś asystentem firmy. Odpowiadaj prosto i konkretnie."
+          content: "Jesteś pomocnym asystentem firmy. Odpowiadaj krótko i jasno."
         },
         {
           role: "user",
