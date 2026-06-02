@@ -133,15 +133,15 @@
 </head>
 <body>
 
-  <header class="wow-header">
+ <header class="wow-header">
 
     <div class="wow-navbar">
 
-        <a href="index.html" class="wow-brand">
+        <a href="#" class="wow-brand">
             <img src="assets/images/test.png" alt="">
         </a>
 
-        <!-- HAMBURGER -->
+        <!-- HAMBURGER (mobile) -->
         <button class="wow-mobile-toggle" aria-label="Menu">
             <span></span>
             <span></span>
@@ -151,21 +151,29 @@
         <nav class="wow-nav-shell">
 
             <a href="index.html" class="wow-nav-link">Strona Główna</a>
-
-            <a href="#about" class="wow-nav-link">O nas</a>
-
-            <a href="#features3-1p" class="wow-nav-link">Wykonane Zlecenia</a>
-
-            <a href="#features11-2" class="wow-nav-link">Cennik</a>
-
+            <a href="index.html#about" class="wow-nav-link">O nas</a>
+            <a href="index.html#featuresprojects" class="wow-nav-link">Wykonane Zlecenia</a>
+            <a href="index.html#features11-2" class="wow-nav-link">Cennik</a>
             <a href="#bottom" class="wow-nav-link">Lokalizacja</a>
+
+            <!-- CTA wewnątrz menu (widoczne tylko po rozwinięciu przy scrollu) -->
+            <a href="index.html#contacts2-1r" class="wow-contact-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+                Skontaktuj się
+            </a>
 
         </nav>
 
-        <a href="#jarallax-container-3" class="wow-contact-btn">
+        <!-- CTA na desktopie (pełny navbar) -->
+        <a href="index.html#contacts2-1r" class="wow-contact-btn">
             <i class="fa-solid fa-paper-plane"></i>
             Skontaktuj się
         </a>
+
+        <!-- PRZYCISK ROZWIŃ (widoczny tylko po zwinięciu, desktop) -->
+<button class="wow-expand-btn" aria-label="Rozwiń menu">
+    <i class="fa-solid fa-chevron-down"></i>
+</button>
 
     </div>
 

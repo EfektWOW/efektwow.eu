@@ -2,263 +2,363 @@
    WOW NAVBAR 2026
 =================================== */
 
-.wow-header{
+.wow-header {
     position: fixed;
     top: 18px;
     left: 0;
     width: 100%;
     z-index: 9999;
-
     display: flex;
     justify-content: center;
     pointer-events: none;
 }
 
 /* GŁÓWNA KAPSUŁA */
-
-.wow-navbar{
-
+.wow-navbar {
     display: flex;
     align-items: center;
     gap: 30px;
-
     padding: 12px 16px 12px 24px;
-
     border-radius: 999px;
-
     background: #ffffffcb;
-
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-
     border: 1px solid rgba(255,255,255,0.9);
-
     box-shadow:
         0 12px 40px rgba(0,0,0,.08),
         inset 0 1px 0 rgba(255,255,255,.95);
-
     pointer-events: all;
-
-    transition: .3s ease;
+    transform: translateX(0);
+    transition:
+        padding .55s cubic-bezier(.4,0,.2,1),
+        gap .55s cubic-bezier(.4,0,.2,1),
+        box-shadow .3s ease,
+        transform .6s cubic-bezier(.4,0,.2,1);
 }
 
 /* LOGO */
-
-.wow-brand{
+.wow-brand {
     display: flex;
     align-items: center;
     flex-shrink: 0;
 }
 
-.wow-brand img{
+.wow-brand img {
     height: 36px;
     display: block;
     margin-right: 15px;
+    transition: height .4s cubic-bezier(.4,0,.2,1);
 }
 
-/* MENU */
-
-.wow-nav-shell{
+/* MENU (desktop) */
+.wow-nav-shell {
     display: flex;
     align-items: center;
     gap: 32px;
+    overflow: hidden;
+
+    max-width: 600px;
+    opacity: 1;
+
+    transition:
+        max-width .45s cubic-bezier(.4,0,.2,1),
+        opacity .3s ease,
+        gap .4s ease;
 }
 
-.wow-nav-link{
+.wow-nav-link {
     position: relative;
-
     color: #1f1f1f;
     text-decoration: none;
-
     font-size: 15px;
     font-weight: 500;
-
-    transition: .25s;
+    white-space: nowrap;
+    transition: color .25s;
 }
 
-.wow-nav-link:hover{
-    color: #2d7cbe;
-}
+.wow-nav-link:hover { color: #2d7cbe; }
 
-.wow-nav-link::after{
+.wow-nav-link::after {
     content: "";
-
     position: absolute;
     left: 50%;
     bottom: -6px;
-
     width: 0;
     height: 2px;
-
     background: #2d7cbe;
-
     transform: translateX(-50%);
     transition: .25s;
 }
 
-.wow-nav-link:hover::after{
-    width: 100%;
-}
+.wow-nav-link:hover::after { width: 100%; }
 
-/* PRZYCISK */
-
-.wow-contact-btn{
-
+/* PRZYCISK KONTAKT (desktop) */
+.wow-contact-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-
     padding: 14px 22px;
-
     border-radius: 999px;
-
     background: #2d7cbe;
     color: #fff;
-
     text-decoration: none;
     font-weight: 600;
     font-size: 15px;
     margin-left: 15px;
-    transition: .25s;
+    white-space: nowrap;
+    overflow: hidden;
+
+    max-width: 220px;
+    opacity: 1;
+
+    transition:
+        max-width .45s cubic-bezier(.4,0,.2,1),
+        opacity .3s ease,
+        padding .4s ease,
+        margin .4s ease,
+        background .25s,
+        transform .25s;
 }
 
-.wow-contact-btn:hover{
+.wow-contact-btn:hover {
     background: #23679f;
     color: #fff;
-
     transform: translateY(-2px);
 }
 
-.wow-contact-btn i{
-    font-size: 14px;
+.wow-contact-btn i { font-size: 14px; }
+
+/* ── PRZYCISK "ROZWIŃ" (pojawia się po zwinięciu) ── */
+.wow-expand-btn {
+    display: none; /* początkowo ukryty — pojawi się przy scrollu */
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #2d7cbe;
+    color: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background .25s, transform .25s;
 }
 
-/* EFEKT PO SCROLLU */
+.wow-expand-btn:hover {
+    background: #23679f;
+    transform: scale(1.08);
+}
 
-.wow-header.wow-scrolled .wow-navbar{
+.wow-expand-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #fff;
+    transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
 
+/* ── STAN ZWINIĘTY (po scrollu) ── */
+.wow-header.wow-collapsed .wow-navbar {
+    padding: 8px 8px 8px 18px;
+    gap: 10px;
+    transform: translateX(calc(50vw - 140px));
+    box-shadow:
+        0 8px 28px rgba(0,0,0,.10),
+        inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+.wow-header.wow-collapsed .wow-brand img {
+    height: 28px;
+}
+
+/* chowamy linki i przycisk CTA */
+.wow-header.wow-collapsed .wow-nav-shell {
+    max-width: 0;
+    opacity: 0;
+    gap: 0;
+    pointer-events: none;
+}
+
+.wow-header.wow-collapsed .wow-navbar > .wow-contact-btn {
+    max-width: 0;
+    opacity: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    pointer-events: none;
+}
+
+/* pokazujemy przycisk rozwijania */
+.wow-header.wow-collapsed .wow-expand-btn {
+    display: flex;
+}
+
+/* ── ROZWINIĘTE MENU PO SCROLLU ── */
+.wow-header.wow-collapsed.wow-expanded .wow-navbar {
+    border-radius: 22px;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 14px 18px;
+    align-items: flex-start;
+}
+
+.wow-header.wow-collapsed.wow-expanded .wow-nav-shell {
+    max-width: none;
+    opacity: 1;
+    pointer-events: all;
+
+    /* wyrównanie do prawej krawędzi zwiniętej kapsułki */
+    position: absolute;
+    top: calc(100% + 10px);
+    left: auto;
+    right: 0;
+    min-width: 240px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 14px;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(20px);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.12);
+
+    transform: translateY(0);
+    transition:
+        opacity .3s ease,
+        transform .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* obrót strzałki gdy otwarte */
+.wow-header.wow-collapsed.wow-expanded .wow-expand-btn svg {
+    transform: rotate(180deg);
+}
+
+/* linki w rozwiniętym menu po scrollu */
+.wow-header.wow-collapsed.wow-expanded .wow-nav-link {
+    padding: 14px 10px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.wow-header.wow-collapsed.wow-expanded .wow-nav-link:last-child {
+    border-bottom: 0;
+}
+
+/* CTA w menu po scrollu */
+.wow-header.wow-collapsed.wow-expanded .wow-nav-shell .wow-contact-btn {
+    display: inline-flex;
+    max-width: none;
+    opacity: 1;
+    margin: 12px 0 0 0;
+    pointer-events: all;
+    justify-content: center;
+    width: 100%;
+}
+
+/* ── SCROLL + PEŁNA WERSJA ── */
+.wow-header.wow-scrolled:not(.wow-collapsed) .wow-navbar {
     background: rgba(255,255,255,.88);
-
     box-shadow:
         0 16px 50px rgba(0,0,0,.12),
         inset 0 1px 0 rgba(255,255,255,.95);
 }
 
+/* ── MOBILE (≤991px) – bez zmian dot. hamburger logiki ── */
+@media (max-width: 991px) {
 
-
-
-
-
-@media (max-width: 991px){
-
-    .wow-header{
+    .wow-header {
         top: 12px;
         padding: 0 12px;
     }
 
-    .wow-navbar{
-
+    .wow-navbar {
         width: 100%;
         max-width: 100%;
-
         justify-content: space-between;
-
         padding: 12px 16px;
-
         border-radius: 22px;
     }
 
-    .wow-brand img{
+    .wow-brand img {
         height: 32px;
         margin-right: 0;
     }
 
     /* hamburger */
-
-    .wow-mobile-toggle{
+    .wow-mobile-toggle {
         display: flex;
         flex-direction: column;
         gap: 5px;
-
         background: transparent;
         border: 0;
-
         padding: 0;
         margin: 0;
-
         cursor: pointer;
     }
 
-    .wow-mobile-toggle span{
+    .wow-mobile-toggle span {
         width: 24px;
         height: 2px;
         background: #222;
         border-radius: 20px;
+        transition: .3s;
     }
 
-    /* menu */
-
-    .wow-nav-shell{
-
+    /* menu mobile */
+    .wow-nav-shell {
         position: absolute;
-
         top: calc(100% + 10px);
         left: 0;
         right: 0;
-
-        display: flex;
         flex-direction: column;
         align-items: stretch;
-
         gap: 0;
-
         padding: 14px;
-
-        background: rgba(255,255,255,.95);
-
+        background: rgba(255,255,255,.97);
         backdrop-filter: blur(20px);
-
         border-radius: 22px;
-
-        box-shadow:
-            0 20px 50px rgba(0,0,0,.12);
-
+        box-shadow: 0 20px 50px rgba(0,0,0,.12);
+        max-width: none;
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
-
-        transition: .25s;
+        transition: opacity .25s, transform .25s, visibility .25s;
+        pointer-events: none;
     }
 
-    .wow-nav-link{
+    .wow-nav-link {
         padding: 14px 10px;
         border-bottom: 1px solid rgba(0,0,0,.05);
     }
 
-    .wow-nav-link:last-child{
-        border-bottom: 0;
-    }
+    .wow-nav-link:last-child { border-bottom: 0; }
 
-    .wow-contact-btn{
-
+    .wow-contact-btn {
         margin: 15px 0 0 0;
-
         justify-content: center;
-
         width: 100%;
+        max-width: none;
+        opacity: 1;
     }
 
-    /* ukrycie desktopowego CTA */
-    .wow-navbar > .wow-contact-btn{
-        display: none;
-    }
+    /* ukrycie desktopowego CTA i expand btn na mobile */
+    .wow-navbar > .wow-contact-btn,
+    .wow-expand-btn { display: none !important; }
 
-    /* otwarte menu */
-
-    .wow-navbar.wow-open .wow-nav-shell{
+    /* otwarte menu mobile */
+    .wow-navbar.wow-open .wow-nav-shell {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+        pointer-events: all;
     }
 
+    /* przy scrollu na mobile – navbar nie zwęża się, bo mamy hamburger */
+    .wow-header.wow-collapsed .wow-navbar {
+        padding: 12px 16px;
+        gap: 0;
+        transform: none; /* na mobile nie przesuwamy w prawo */
+    }
+
+    .wow-header.wow-collapsed .wow-brand img { height: 32px; }
+    .wow-header.wow-collapsed .wow-nav-shell { max-width: none; opacity: 0; }
+    .wow-header.wow-collapsed .wow-navbar > .wow-contact-btn { display: none !important; }
 }
