@@ -1,0 +1,36 @@
+backend:
+  name: github
+  repo: TWOJE_GITHUB_USER/TWOJE_REPO
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "pages"
+    label: "Strony"
+    files:
+
+      - label: "Strona główna"
+        name: "home"
+        file: "content/home.json"
+        fields:
+          - label: "Nagłówek"
+            name: "title"
+            widget: "string"
+
+          - label: "Opis"
+            name: "description"
+            widget: "text"
+
+      - label: "O nas"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - label: "Tytuł"
+            name: "title"
+            widget: "string"
+
+          - label: "Tekst"
+            name: "text"
+            widget: "text"

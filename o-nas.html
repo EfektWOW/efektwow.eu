@@ -1329,5 +1329,17 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 
 
+<h1 id="about-title"></h1>
+<p id="about-text"></p>
+
+<script>
+fetch('/content/about.json')
+  .then(r => r.json())
+  .then(data => {
+    document.querySelector('#about-title').innerText = data.title;
+    document.querySelector('#about-text').innerText = data.text;
+  });
+</script>
+
   </body>
 </html>
