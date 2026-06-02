@@ -1,6 +1,16 @@
 export default async function handler(req, res) {
+
+  // 🔴 WAŻNE: tylko POST
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Only POST allowed" });
+  }
+
   try {
-    const message = req.body.message;
+    const body = typeof req.body === "string"
+      ? JSON.parse(req.body)
+      : req.body;
+
+    const message = body.message;
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
