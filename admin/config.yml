@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: TWOJE_GITHUB_USER/TWOJE_REPO
+  repo: EfektWOW/efektwow.eu
   branch: main
 
 media_folder: "assets/uploads"
