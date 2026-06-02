@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Panel admina</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 body {
   font-family: Arial;
@@ -24,12 +26,17 @@ h2 {
   margin-top: 0;
 }
 
-input {
+input, textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
+}
+
+textarea {
+  height: 200px;
+  resize: vertical;
 }
 
 button {
@@ -50,10 +57,48 @@ button:hover {
 .hidden {
   display: none;
 }
+
+/* PODGLĄD */
+#aboutPreview {
+  font-family: 'Poppins', sans-serif;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 120px;
+  margin-bottom: 15px;
+  background: #fff;
+    white-space: pre-wrap;
+}
+
+/* NIEBIESKA LITERKA */
+.blue-letter {
+  color: #2d7cbe;
+  font-size: 1.3em;
+  font-weight: 700;
+}
+#toolbar {
+  position: absolute;
+  background: rgb(24, 24, 24);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 9999;
+  user-select: none;
+}
+#aboutText {
+  font-family: 'Poppins', sans-serif;
+}
+#previewBox {
+  margin-top: 10px;
+}
 </style>
 
 </head>
 <body>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <div class="container">
 
@@ -82,11 +127,40 @@ button:hover {
     <input id="t2" placeholder="Link TikTok 2">
     <input id="t3" placeholder="Link TikTok 3">
 
+    <h3>O nas</h3>
+    <div id="toolbar" style="display:none;">🔵 niebieski</div>
+    <textarea id="aboutText" spellcheck="false" placeholder="Tekst O NAS"></textarea>
+
+<button id="togglePreviewBtn" type="button">
+  👁 Pokaż podgląd tekstu
+</button>
+
+<div id="previewBox" style="display:none;">
+  <h4>Podgląd:</h4>
+  <div id="aboutPreview"></div>
+</div>
+
     <button onclick="save()">💾 Zapisz zmiany</button>
     <button onclick="logout()">🚪 Wyloguj</button>
   </div>
 
 </div>
+
+<script>
+  
+  const togglePreviewBtn = document.getElementById("togglePreviewBtn");
+const previewBox = document.getElementById("previewBox");
+
+togglePreviewBtn.addEventListener("click", () => {
+  const isHidden = previewBox.style.display === "none";
+
+  previewBox.style.display = isHidden ? "block" : "none";
+
+  togglePreviewBtn.textContent = isHidden
+    ? "🙈 Ukryj podgląd tekstu"
+    : "👁 Pokaż podgląd tekstu";
+});
+</script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -98,9 +172,11 @@ import {
   browserLocalPersistence,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// 🔥 KONFIG FIREBASE
+/* ================= FIREBASE ================= */
+
 const firebaseConfig = {
   apiKey: "AIzaSyBUU4jcNfegYzyQwAfdUu2mtR7tEnaVN1w",
   authDomain: "panel-wow.firebaseapp.com",
@@ -111,14 +187,91 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-// 🔐 LOGIN Z ZAPAMIĘTYWANIEM
+/* ================= ELEMENTY DOM ================= */
+
+const toolbar = document.getElementById("toolbar");
+
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+
+const clients = document.getElementById("clients");
+const fabrics = document.getElementById("fabrics");
+const reviews = document.getElementById("reviews");
+const busyDays = document.getElementById("busyDays");
+
+const t1 = document.getElementById("t1");
+const t2 = document.getElementById("t2");
+const t3 = document.getElementById("t3");
+
+const aboutText = document.getElementById("aboutText");
+function updateToolbar() {
+  const start = aboutText.selectionStart;
+  const end = aboutText.selectionEnd;
+
+  // nic nie zaznaczone → chowamy
+  if (start === end) {
+    toolbar.style.display = "none";
+    return;
+  }
+
+  const rect = aboutText.getBoundingClientRect();
+
+  toolbar.style.display = "block";
+
+  // NAD textarea
+  toolbar.style.position = "fixed";
+  toolbar.style.top = (rect.top - 35) + "px";
+  toolbar.style.left = rect.left + "px";
+}
+
+aboutText.addEventListener("mouseup", updateToolbar);
+aboutText.addEventListener("keyup", updateToolbar);
+const aboutPreview = document.getElementById("aboutPreview");
+
+toolbar.addEventListener("click", () => {
+  const start = aboutText.selectionStart;
+  const end = aboutText.selectionEnd;
+
+  const value = aboutText.value;
+
+  const selected = value.substring(start, end);
+
+aboutText.setRangeText(
+  "<blue>" + aboutText.value.substring(start, end) + "</blue>",
+  start,
+  end,
+  "end"
+);
+
+aboutText.dispatchEvent(new Event("input"));
+});
+
+/* ================= PODGLĄD ================= */
+
+function renderAbout(text) {
+  if (!text) return "";
+
+  return text.replace(
+    /<blue>(.*?)<\/blue>/g,
+    '<span class="blue-letter">$1</span>'
+  );
+}
+
+/* LIVE PREVIEW */
+aboutText.addEventListener("input", () => {
+  aboutPreview.innerHTML = renderAbout(aboutText.value);
+});
+
+/* ================= LOGIN ================= */
+
 window.login = async () => {
   try {
-    await setPersistence(auth, browserLocalPersistence); // zapamiętaj sesję
+    await setPersistence(auth, browserLocalPersistence);
     await signInWithEmailAndPassword(auth, email.value, password.value);
-    // login udany → panel pokaż
+
     document.getElementById("loginBox").classList.add("hidden");
     document.getElementById("panelBox").classList.remove("hidden");
+
     loadData();
   } catch (e) {
     alert("Błąd logowania");
@@ -126,7 +279,7 @@ window.login = async () => {
   }
 };
 
-// 📥 AUTO LOGOWANIE PO ODŚWIEŻENIU
+/* AUTO LOGIN */
 onAuthStateChanged(auth, (user) => {
   if (user) {
     document.getElementById("loginBox").classList.add("hidden");
@@ -138,7 +291,8 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// 📥 POBIERANIE DANYCH Z FIRESTORE
+/* ================= FIREBASE LOAD ================= */
+
 async function loadData() {
   const snap = await getDoc(doc(db, "settings", "main"));
   const d = snap.data();
@@ -152,9 +306,14 @@ async function loadData() {
   t1.value = d.tiktok1 || '';
   t2.value = d.tiktok2 || '';
   t3.value = d.tiktok3 || '';
+
+  aboutText.value = d.aboutText || '';
+
+  aboutPreview.innerHTML = renderAbout(d.aboutText || '');
 }
 
-// 💾 ZAPIS DO FIRESTORE
+/* ================= SAVE ================= */
+
 window.save = async () => {
   await setDoc(doc(db, "settings", "main"), {
     clients: Number(clients.value),
@@ -163,12 +322,15 @@ window.save = async () => {
     busyDays: busyDays.value,
     tiktok1: t1.value,
     tiktok2: t2.value,
-    tiktok3: t3.value
+    tiktok3: t3.value,
+    aboutText: aboutText.value
   });
+
   alert("Zapisano!");
 };
 
-// 🚪 WYLOGOWANIE
+/* ================= LOGOUT ================= */
+
 window.logout = async () => {
   await signOut(auth);
   alert("Wylogowano!");
