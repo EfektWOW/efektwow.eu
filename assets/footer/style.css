@@ -191,3 +191,109 @@
 .kontakt-line:hover a {
     color: #2d7cbe;
 }
+
+/* ── Tablet ─────────────────────────────────────── */
+@media(max-width:992px){
+    .footer-content{
+        grid-template-columns:1fr;
+        gap:50px;
+        text-align:center;
+    }
+ 
+    .footer-brand p{
+        margin:auto;
+    }
+ 
+    .socials{
+        justify-content:center;
+    }
+}
+ 
+/* ── Mobile ─────────────────────────────────────── */
+@media(max-width:600px){
+ 
+    .footer-wow{
+        padding-top:50px;
+    }
+ 
+    .footer-content{
+        grid-template-columns:1fr;
+        gap:36px;
+        padding:0 20px 48px;
+        text-align:center;
+    }
+ 
+    /* Logo wyśrodkowany i nieco mniejszy */
+    .footer-logo{
+        width:150px;
+        margin:0 auto 16px;
+        display:block;
+    }
+ 
+    .footer-brand h3{
+        font-size:24px;
+        margin-bottom:10px;
+    }
+ 
+    .footer-brand p{
+        font-size:14px;
+        line-height:1.7;
+        max-width:100%;
+    }
+ 
+    /* Sekcja linków – wyśrodkowane, większy obszar klikania */
+    .footer-links h4,
+    .footer-contact h4{
+        font-size:17px;
+        margin-bottom:16px;
+        letter-spacing:.04em;
+        text-transform:uppercase;
+        opacity:.6;
+    }
+ 
+    .footer-links a{
+        display:inline-block;
+        margin-bottom:12px;
+        font-size:15px;
+        padding:2px 0;
+    }
+ 
+    /* Kontakt – ikona + tekst wyśrodkowane */
+    .kontakt-line{
+        justify-content:center;
+        font-size:14px;
+        gap:8px;
+        margin:8px 0;
+    }
+ 
+    /* Socials – równomierne rozłożenie */
+    .socials{
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:12px;
+        margin-top:20px;
+    }
+ 
+    .socials a{
+        width:44px;
+        height:44px;
+        border-radius:10px;
+    }
+ 
+    /* Przycisk „do góry" – pełna szerokość */
+    .footer-top-btn{
+        display:block;
+        width:100%;
+        max-width:280px;
+        margin:20px auto 0;
+        padding:14px 18px;
+        font-size:15px;
+    }
+ 
+    /* Stopka dolna */
+    .footer-bottom{
+        padding:20px 16px;
+        font-size:13px;
+        line-height:1.6;
+    }
+}
