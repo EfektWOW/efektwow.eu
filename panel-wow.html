@@ -8,207 +8,290 @@
 
 <style>
 body {
-  font-family: Arial;
-  background: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
+  background: #eef2f6;
   padding: 30px;
 }
 
 .container {
-  max-width: 500px;
+  max-width: 720px;
   margin: auto;
   background: white;
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
+/* HEADER */
 h2 {
-  margin-top: 0;
+  margin-bottom: 15px;
 }
 
-input, textarea {
-  width: 100%;
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
   padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-textarea {
-  height: 200px;
-  resize: vertical;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background: black;
-  color: white;
+  border-radius: 10px;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  margin-top: 5px;
+  background: #e9ecef;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
-button:hover {
-  background: #333;
+.tab:hover {
+  transform: translateY(-1px);
 }
 
-.hidden {
+.tab.active {
+  background: #111;
+  color: white;
+}
+
+/* SECTIONS */
+.section {
   display: none;
 }
 
-/* PODGLĄD */
-#aboutPreview {
-  font-family: 'Poppins', sans-serif;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  min-height: 120px;
-  margin-bottom: 15px;
-  background: #fff;
-    white-space: pre-wrap;
+.section.active {
+  display: block;
 }
 
-/* NIEBIESKA LITERKA */
+/* INPUTS */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+textarea {
+  height: 180px;
+  resize: vertical;
+}
+
+/* BUTTONS */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.primary {
+  background: #111;
+  color: white;
+}
+
+.save {
+  background: linear-gradient(135deg,#2d7cff,#1a5cff);
+  color: white;
+}
+
+/* LOGIN */
+.hidden { display: none; }
+
+/* ABOUT */
+#aboutPreview {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  min-height: 120px;
+  background: #fff;
+  white-space: pre-wrap;
+}
+
 .blue-letter {
   color: #2d7cbe;
-  font-size: 1.3em;
   font-weight: 700;
 }
+
+/* TOOLBAR */
 #toolbar {
-  position: absolute;
-  background: rgb(24, 24, 24);
+  position: fixed;
+  background: #111;
   color: white;
   padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 12px;
   cursor: pointer;
+  display: none;
   z-index: 9999;
-  user-select: none;
 }
-#aboutText {
-  font-family: 'Poppins', sans-serif;
+
+/* LOGOUT */
+.logout {
+  margin-top: 15px;
+  background: #ff4d4d;
+  color: white;
 }
-#previewBox {
+.logout:hover {
+  background: #e63b3b;
+}
+#about button {
   margin-top: 10px;
 }
+
+#togglePreviewBtn {
+  margin-bottom: 10px;
+}
+
+#previewBox {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
 </style>
-
 </head>
-<body>
 
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<body>
 
 <div class="container">
 
-  <!-- LOGIN -->
-  <div id="loginBox">
-    <h2>🔐 Logowanie</h2>
-    <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Hasło">
-    <button onclick="login()">Zaloguj</button>
-  </div>
-
-  <!-- PANEL -->
-  <div id="panelBox" class="hidden">
-    <h2>⚙️ Panel strony</h2>
-
-    <h3>Liczby</h3>
-    <input id="clients" placeholder="Zadowoleni klienci">
-    <input id="fabrics" placeholder="Tkaniny">
-    <input id="reviews" placeholder="Opinie">
-
-    <h3>Kalendarz</h3>
-    <input id="busyDays" placeholder="np. 3,4,18">
-
-    <h3>TikTok</h3>
-    <input id="t1" placeholder="Link TikTok 1">
-    <input id="t2" placeholder="Link TikTok 2">
-    <input id="t3" placeholder="Link TikTok 3">
-
-    <h3>O nas</h3>
-    <div id="toolbar" style="display:none;">🔵 niebieski</div>
-    <textarea id="aboutText" spellcheck="false" placeholder="Tekst O NAS"></textarea>
-
-<button id="togglePreviewBtn" type="button">
-  👁 Pokaż podgląd tekstu
-</button>
-
-<div id="previewBox" style="display:none;">
-  <h4>Podgląd:</h4>
-  <div id="aboutPreview"></div>
+<!-- LOGIN -->
+<div id="loginBox">
+  <h2>🔐 Logowanie</h2>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Hasło">
+  <button class="primary" onclick="login()">Zaloguj</button>
 </div>
 
-    <button onclick="save()">💾 Zapisz zmiany</button>
-    <button onclick="logout()">🚪 Wyloguj</button>
-  </div>
+<!-- PANEL -->
+<div id="panelBox" class="hidden">
 
+<h2>⚙️ Panel</h2>
+
+<div class="tabs">
+  <button class="tab active" onclick="openTab('liczby', this)">Liczby</button>
+  <button class="tab" onclick="openTab('kalendarz', this)">Kalendarz</button>
+  <button class="tab" onclick="openTab('tiktok', this)">TikTok</button>
+  <button class="tab" onclick="openTab('about', this)">O nas</button>
 </div>
 
-<script>
-  
-  const togglePreviewBtn = document.getElementById("togglePreviewBtn");
-const previewBox = document.getElementById("previewBox");
+<!-- LICZBY -->
+<div id="liczby" class="section active">
+  <input id="clients" placeholder="Zadowoleni klienci">
+  <input id="fabrics" placeholder="Tkaniny">
+  <input id="reviews" placeholder="Opinie">
+  <button class="save" onclick="saveCategory('liczby')">Zapisz liczby</button>
+</div>
 
-togglePreviewBtn.addEventListener("click", () => {
-  const isHidden = previewBox.style.display === "none";
+<!-- KALENDARZ -->
+<div id="kalendarz" class="section">
+  <input id="busyDays" placeholder="np. 3,4,18">
+  <button class="save" onclick="saveCategory('kalendarz')">Zapisz kalendarz</button>
+</div>
 
-  previewBox.style.display = isHidden ? "block" : "none";
+<!-- TIKTOK -->
+<div id="tiktok" class="section">
+  <input id="t1" placeholder="Link TikTok 1">
+  <input id="t2" placeholder="Link TikTok 2">
+  <input id="t3" placeholder="Link TikTok 3">
+  <button class="save" onclick="saveCategory('tiktok')">Zapisz TikTok</button>
+</div>
 
-  togglePreviewBtn.textContent = isHidden
-    ? "🙈 Ukryj podgląd tekstu"
-    : "👁 Pokaż podgląd tekstu";
-});
-</script>
+<!-- ABOUT -->
+<div id="about" class="section">
+
+  <div id="toolbar">🔵 niebieski</div>
+
+  <textarea id="aboutText"></textarea>
+
+  <button id="togglePreviewBtn" class="primary">👁 Podgląd</button>
+
+  <div id="previewBox" style="display:none; margin-top:10px;">
+    <div id="aboutPreview"></div>
+  </div>
+
+  <button class="save" onclick="saveCategory('about')">Zapisz O nas</button>
+</div>
+
+<button class="logout" onclick="logout()">🚪 Wyloguj</button>
+
+</div>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  onAuthStateChanged,
-  setPersistence,
-  browserLocalPersistence,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserLocalPersistence, signOut }
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc }
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-/* ================= FIREBASE ================= */
-
-const firebaseConfig = {
+/* FIREBASE */
+const app = initializeApp({
   apiKey: "AIzaSyBUU4jcNfegYzyQwAfdUu2mtR7tEnaVN1w",
   authDomain: "panel-wow.firebaseapp.com",
   projectId: "panel-wow"
-};
+});
 
-const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-/* ================= ELEMENTY DOM ================= */
+/* STATE */
+let state = {};
+let currentTab = "liczby";
+let dirty = { liczby:false, kalendarz:false, tiktok:false, about:false };
 
-const toolbar = document.getElementById("toolbar");
-
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-
+/* ELEMENTS */
 const clients = document.getElementById("clients");
 const fabrics = document.getElementById("fabrics");
 const reviews = document.getElementById("reviews");
 const busyDays = document.getElementById("busyDays");
-
 const t1 = document.getElementById("t1");
 const t2 = document.getElementById("t2");
 const t3 = document.getElementById("t3");
-
 const aboutText = document.getElementById("aboutText");
-function updateToolbar() {
+const aboutPreview = document.getElementById("aboutPreview");
+const toolbar = document.getElementById("toolbar");
+
+/* TAB SWITCH */
+window.openTab = (tab, el) => {
+
+  if (tab === currentTab) return;
+
+  if (dirty[currentTab]) {
+    const save = confirm("Masz niezapisane zmiany. Zapisać?");
+    if (save) saveCategory(currentTab);
+    else {
+      const leave = confirm("Przejść bez zapisu?");
+      if (!leave) return;
+    }
+  }
+
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+
+  document.getElementById(tab).classList.add("active");
+  el.classList.add("active");
+
+  currentTab = tab;
+};
+
+/* TOOLBAR (BLUE TEXT) */
+aboutText.addEventListener("mouseup", showToolbar);
+aboutText.addEventListener("keyup", showToolbar);
+
+function showToolbar() {
   const start = aboutText.selectionStart;
   const end = aboutText.selectionEnd;
 
-  // nic nie zaznaczone → chowamy
   if (start === end) {
     toolbar.style.display = "none";
     return;
@@ -217,123 +300,128 @@ function updateToolbar() {
   const rect = aboutText.getBoundingClientRect();
 
   toolbar.style.display = "block";
-
-  // NAD textarea
-  toolbar.style.position = "fixed";
-  toolbar.style.top = (rect.top - 35) + "px";
+  toolbar.style.top = (rect.top - 40) + "px";
   toolbar.style.left = rect.left + "px";
 }
 
-aboutText.addEventListener("mouseup", updateToolbar);
-aboutText.addEventListener("keyup", updateToolbar);
-const aboutPreview = document.getElementById("aboutPreview");
-
+/* INSERT BLUE */
 toolbar.addEventListener("click", () => {
   const start = aboutText.selectionStart;
   const end = aboutText.selectionEnd;
 
-  const value = aboutText.value;
+  const selected = aboutText.value.substring(start, end);
 
-  const selected = value.substring(start, end);
+  if (!selected) return;
 
-aboutText.setRangeText(
-  "<blue>" + aboutText.value.substring(start, end) + "</blue>",
-  start,
-  end,
-  "end"
-);
+  aboutText.setRangeText(
+    `<blue>${selected}</blue>`,
+    start,
+    end,
+    "end"
+  );
 
-aboutText.dispatchEvent(new Event("input"));
+  aboutText.dispatchEvent(new Event("input"));
 });
 
-/* ================= PODGLĄD ================= */
-
-function renderAbout(text) {
-  if (!text) return "";
-
-  return text.replace(
-    /<blue>(.*?)<\/blue>/g,
-    '<span class="blue-letter">$1</span>'
-  );
+/* PREVIEW */
+function renderAbout() {
+  aboutPreview.innerHTML = (aboutText.value || "")
+    .replace(/<blue>(.*?)<\/blue>/g,'<span class="blue-letter">$1</span>');
 }
 
-/* LIVE PREVIEW */
-aboutText.addEventListener("input", () => {
-  aboutPreview.innerHTML = renderAbout(aboutText.value);
+aboutText.addEventListener("input", renderAbout);
+
+/* TOGGLE PREVIEW */
+const previewBox = document.getElementById("previewBox");
+const toggleBtn = document.getElementById("togglePreviewBtn");
+
+toggleBtn.addEventListener("click", () => {
+  const show = previewBox.style.display !== "block";
+  previewBox.style.display = show ? "block" : "none";
+  toggleBtn.textContent = show ? "🙈 Ukryj podgląd" : "👁 Podgląd";
 });
 
-/* ================= LOGIN ================= */
-
-window.login = async () => {
-  try {
-    await setPersistence(auth, browserLocalPersistence);
-    await signInWithEmailAndPassword(auth, email.value, password.value);
-
-    document.getElementById("loginBox").classList.add("hidden");
-    document.getElementById("panelBox").classList.remove("hidden");
-
-    loadData();
-  } catch (e) {
-    alert("Błąd logowania");
-    console.log(e);
-  }
-};
-
-/* AUTO LOGIN */
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.getElementById("loginBox").classList.add("hidden");
-    document.getElementById("panelBox").classList.remove("hidden");
-    loadData();
-  } else {
-    document.getElementById("loginBox").classList.remove("hidden");
-    document.getElementById("panelBox").classList.add("hidden");
-  }
+/* DIRTY TRACKING */
+[clients,fabrics,reviews,busyDays,t1,t2,t3,aboutText].forEach(el=>{
+  el.addEventListener("input", ()=> dirty[currentTab]=true);
 });
 
-/* ================= FIREBASE LOAD ================= */
-
+/* LOAD */
 async function loadData() {
   const snap = await getDoc(doc(db, "settings", "main"));
-  const d = snap.data();
-  if (!d) return;
+  state = snap.data() || {};
 
-  clients.value = d.clients || '';
-  fabrics.value = d.fabrics || '';
-  reviews.value = d.reviews || '';
-  busyDays.value = d.busyDays || '';
+  clients.value = state.clients || "";
+  fabrics.value = state.fabrics || "";
+  reviews.value = state.reviews || "";
+  busyDays.value = state.busyDays || "";
 
-  t1.value = d.tiktok1 || '';
-  t2.value = d.tiktok2 || '';
-  t3.value = d.tiktok3 || '';
+  t1.value = state.tiktok1 || "";
+  t2.value = state.tiktok2 || "";
+  t3.value = state.tiktok3 || "";
 
-  aboutText.value = d.aboutText || '';
+  aboutText.value = state.aboutText || "";
 
-  aboutPreview.innerHTML = renderAbout(d.aboutText || '');
+  renderAbout();
 }
 
-/* ================= SAVE ================= */
+/* SAVE */
+window.saveCategory = async (cat) => {
 
-window.save = async () => {
-  await setDoc(doc(db, "settings", "main"), {
-    clients: Number(clients.value),
-    fabrics: Number(fabrics.value),
-    reviews: Number(reviews.value),
-    busyDays: busyDays.value,
-    tiktok1: t1.value,
-    tiktok2: t2.value,
-    tiktok3: t3.value,
-    aboutText: aboutText.value
-  });
+  const ok = confirm("Czy na pewno zatwierdzić zmiany?");
+  if (!ok) return;
 
+  if (cat === "liczby") {
+    state.clients = Number(clients.value);
+    state.fabrics = Number(fabrics.value);
+    state.reviews = Number(reviews.value);
+  }
+
+  if (cat === "kalendarz") {
+    state.busyDays = busyDays.value;
+  }
+
+  if (cat === "tiktok") {
+    state.tiktok1 = t1.value;
+    state.tiktok2 = t2.value;
+    state.tiktok3 = t3.value;
+  }
+
+  if (cat === "about") {
+    state.aboutText = aboutText.value;
+  }
+
+  await setDoc(doc(db, "settings", "main"), state);
+
+  dirty[cat] = false;
   alert("Zapisano!");
 };
 
-/* ================= LOGOUT ================= */
+/* LOGIN */
+window.login = async () => {
+  await setPersistence(auth, browserLocalPersistence);
+  await signInWithEmailAndPassword(auth, email.value, password.value);
 
+  loginBox.classList.add("hidden");
+  panelBox.classList.remove("hidden");
+
+  loadData();
+};
+
+onAuthStateChanged(auth, (user)=>{
+  if(user){
+    loginBox.classList.add("hidden");
+    panelBox.classList.remove("hidden");
+    loadData();
+  } else {
+    loginBox.classList.remove("hidden");
+    panelBox.classList.add("hidden");
+  }
+});
+
+/* LOGOUT */
 window.logout = async () => {
   await signOut(auth);
-  alert("Wylogowano!");
 };
 </script>
 
