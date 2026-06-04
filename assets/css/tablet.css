@@ -1,0 +1,153 @@
+/* ════════════════════════════════════════
+   TABLET  –  768px do 1024px
+════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* ── Dekoracyjne kształty ── */
+    .footer-wow::before {
+        width: 420px;
+        height: 420px;
+        right: -160px;
+        top: -140px;
+    }
+
+    .footer-wow::after {
+        width: 320px;
+        height: 320px;
+        /* przenosimy na lewą stronę dla ciekawszej kompozycji */
+        left: -120px;
+        right: auto;
+        bottom: -120px;
+        transform: rotate(20deg);
+    }
+
+    /* ── Siatka 2-kolumnowa ── */
+    .footer-content {
+        grid-template-columns: 1.4fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 40px 48px;
+        padding: 0 36px 56px;
+    }
+
+    /* Brand rozciąga się na 2 kolumny */
+    .footer-brand {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: flex-start;
+        gap: 28px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid rgba(255, 255, 255, .07);
+        text-align: left;
+    }
+
+    .footer-brand p {
+        margin: 0;          /* usuwa centrowanie z mobile */
+        font-size: 14.5px;
+    }
+
+    .footer-brand h3 {
+        font-size: 26px;
+    }
+
+    .footer-logo {
+        width: 160px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    /* Socials wróć do lewej */
+    .socials {
+        justify-content: flex-start;
+    }
+
+    /* ── Nagłówki sekcji z akcentem ── */
+    .footer-links h4,
+    .footer-contact h4 {
+        font-size: 17px;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        text-align: left;
+    }
+
+    .footer-links h4::after,
+    .footer-contact h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 28px;
+        height: 2px;
+        background: #2d7cbe;
+        border-radius: 2px;
+    }
+
+    /* ── Linki z ikoną strzałki ── */
+    .footer-links a {
+        font-size: 14.5px;
+        color: #94a3b8;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        text-align: left;
+    }
+
+    .footer-links a::before {
+        content: "›";
+        color: #2d7cbe;
+        font-size: 16px;
+        transition: transform .2s;
+    }
+
+    .footer-links a:hover {
+        color: #e2e8f0;
+        transform: translateX(4px);
+    }
+
+    /* ── Kontakt ── */
+    .kontakt-line {
+        font-size: 14.5px;
+    }
+
+    .kontakt-line i {
+        color: #2d7cbe;
+    }
+
+    /* ── Przycisk powrotu na górę ── */
+    .footer-top-btn {
+        margin-top: 18px;
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #2d7cbe, #1a5a9a);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* ── Pasek dolny: rozciągnięty ── */
+    .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 36px;
+        font-size: 13px;
+        flex-wrap: wrap;
+        gap: 10px;
+        text-align: left;
+    }
+
+    .tiktok-widget-container {
+    display: flex;
+    flex-direction: column;  /* pionowo zamiast poziomo */
+    align-items: center;
+    gap: 30px;
+    margin-top: 45px;
+    margin-bottom: 70px;
+}
+
+.tiktok-widget-container iframe {
+    width: 325px;
+    height: 575px;
+}
+}
