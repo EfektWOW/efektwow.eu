@@ -273,6 +273,7 @@ button:hover {
   <button class="tab" onclick="openTab('tiktok', this)">TikTok</button>
   <button class="tab" onclick="openTab('about', this)">O nas</button>
   <button class="tab" onclick="openTab('opinie', this); loadReviews()">Opinie</button>
+  <button class="tab" onclick="openTab('projekty', this); loadProjects()">Projekty</button>
 </div>
 
 <!-- LICZBY -->
@@ -336,6 +337,27 @@ button:hover {
   </div>
 
   <button class="save" onclick="saveCategory('about')">Zapisz O nas</button>
+</div>
+
+<!-- PROJEKTY -->
+<div id="projekty" class="section">
+
+  <h3>➕ Dodaj nowy projekt</h3>
+
+  <input id="pCounter" placeholder='Etykieta projektu np. "Projekt 01" lub "BMW skóra"'>
+  <input id="pTitle" placeholder="Opis projektu (dłuższy tekst pod etykietą)">
+  <input id="pBefore" placeholder="URL zdjęcia PRZED">
+  <input id="pAfter" placeholder="URL zdjęcia PO">
+
+  <button class="save" onclick="addProject()">Dodaj projekt</button>
+
+  <button class="primary" id="importProjectsBtn" onclick="importOldProjects()" style="margin-top:8px">
+    📥 Importuj istniejące projekty (tylko raz!)
+  </button>
+
+  <h3 style="margin-top:20px">📋 Lista projektów <span style="font-size:12px;color:#999;font-weight:400">(przeciągnij aby zmienić kolejność)</span></h3>
+  <div id="projectsList"></div>
+
 </div>
 
 <button class="logout" onclick="logout()">🚪 Wyloguj</button>
@@ -445,7 +467,102 @@ button:hover {
 .review-edit { background: #2d7cff; }
 .review-edit:hover { background: #1a5cff; }
 
-/* MODAL EDYCJI */
+/* PROJEKT CARDS */
+.project-admin {
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  cursor: grab;
+  transition: box-shadow 0.2s, transform 0.2s;
+  user-select: none;
+}
+
+.project-admin:active { cursor: grabbing; }
+.project-admin.dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.project-admin.drag-over {
+  border: 2px dashed #2d7cff;
+  background: #f0f5ff;
+}
+
+.project-admin-thumb {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.project-admin-thumb img {
+  width: 60px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+.project-admin-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-admin-order {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2d7cff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-admin-title {
+  font-size: 13px;
+  color: #333;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-admin-drag-handle {
+  font-size: 18px;
+  color: #ccc;
+  flex-shrink: 0;
+  cursor: grab;
+}
+
+.project-admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.project-delete, .project-edit {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-delete { background: #ff4d4d; }
+.project-delete:hover { background: #e63b3b; }
+.project-edit { background: #2d7cff; }
+.project-edit:hover { background: #1a5cff; }
+
+
 .edit-modal-overlay {
   position: fixed;
   inset: 0;
@@ -572,6 +689,8 @@ import {
   getDocs,
   addDoc,
   deleteDoc,
+  updateDoc,
+  writeBatch,
   query,
   orderBy
 }
@@ -957,6 +1076,229 @@ window.editReview = (id, btn) => {
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) overlay.remove();
   });
+};
+
+/* ===================== PROJEKTY ===================== */
+
+const OLD_PROJECTS = [
+  { title: "Czarna skóra podłokietnika BMW, która była zabrudzona i miejscami zaplamiona, została dokładnie oczyszczona oraz zaimpregnowana przy użyciu specjalistycznych preparatów do pielęgnacji skóry. Dzięki temu odzyskała swój pierwotny wygląd, miękkość i elegancki połysk.", before: "assets/images/projekty/przed1.png", after: "assets/images/projekty/po1.png" },
+  { title: "Jasna wykładzina bagażnika BMW pełna piasku, brudu oraz licznych plam olejowych. Właściciel był przekonany, że nadaje się już tylko do wymiany. Udało nam się przywrócić jej wygląd niemal jak nowy. Dodane przez nas pasy nadały wnętrzu wyjątkowego uroku i stylu.", before: "assets/images/projekty/przed2.png", after: "assets/images/projekty/po2.png" },
+  { title: "Wentylowany, skórzany fotel pokryty warstwą brudu, ziemi, plam i piasku. Z zachowaniem najwyższej precyzji oczyściliśmy każdy otwór wentylowanego materiału oraz zaimpregnowaliśmy skórę, co wyraźnie widać w efekcie końcowym naszej pracy.", before: "assets/images/projekty/przed3.png", after: "assets/images/projekty/po3.png" },
+  { title: "Wiekowy fotel z wypłowiałym kolorem materiału od kurzu i upływu lat, z widocznym czarnym zabrudzeniem na oparciu. Za pomocą naszych skutecznych odplamiaczy, sprzętu oraz detergentów zrobiliśmy różnicę widoczną w sekundę – odzyskując jego dawny kolor.", before: "assets/images/projekty/przed4.png", after: "assets/images/projekty/po4.png" },
+  { title: "Materac zasikany przez kocura, pozostawiony w tym stanie przez trzy miesiące. Dokładnie wyprany, wypłukany i oczyszczony parowo. Dzięki temu udało się całkowicie usunąć plamy i nieprzyjemny zapach, przywracając świeżość oraz higienę.", before: "assets/images/projekty/przed5.png", after: "assets/images/projekty/po5.png" },
+  { title: "Wentylacja łazienkowa zapchana kurzem oraz gęstym osadem i ciemnymi zabrudzeniami. Dzięki naszej usłudze czyszczenia parowego przywróciliśmy jej pełną drożność oraz wygląd jak w dniu montażu.", before: "assets/images/projekty/przed6.png", after: "assets/images/projekty/po6.png" },
+  { title: "Tylny zderzak samochodu z wypłowiałym, poszarzałym kolorem pod wpływem słońca – mimo młodego wieku wyglądał na mocno zużyty. Dzięki regeneracji przywróciliśmy mu pierwotny kolor i głębię, całkowicie odmieniając wygląd auta od tyłu.", before: "assets/images/projekty/przed7.png", after: "assets/images/projekty/po7.png" }
+];
+
+window.loadProjects = async () => {
+  const box = document.getElementById("projectsList");
+  if (!box) return;
+  box.innerHTML = '<p style="color:#999;font-size:13px">Ładowanie...</p>';
+
+  let snap;
+  try {
+    snap = await getDocs(collection(db, "projects"));
+  } catch(err) {
+    box.innerHTML = '<p style="color:#ff4d4d;font-size:13px">❌ Błąd Firestore: ' + err.message + '<br><br>Sprawdź reguły bezpieczeństwa w Firebase — kolekcja "projects" musi być dozwolona.</p>';
+    return;
+  }
+
+  const arr = [];
+  snap.forEach(d => arr.push({ id: d.id, ...d.data() }));
+  arr.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+
+  box.innerHTML = "";
+
+  if (arr.length === 0) {
+    box.innerHTML = '<p style="color:#999;font-size:13px">Brak projektów. Dodaj pierwszy lub zaimportuj istniejące.</p>';
+    return;
+  }
+
+  arr.forEach((p, idx) => {
+    const div = document.createElement("div");
+    div.className = "project-admin";
+    div.draggable = true;
+    div.dataset.id = p.id;
+    div.dataset.order = p.order ?? idx;
+
+    const shortTitle = p.title ? (p.title.length > 60 ? p.title.slice(0,60)+"…" : p.title) : "(brak opisu)";
+
+    div.innerHTML = `
+      <span class="project-admin-drag-handle" title="Przeciągnij aby zmienić kolejność">☰</span>
+      <div class="project-admin-thumb">
+        ${p.before ? `<img src="${p.before}" alt="przed" title="Przed">` : '<div style="width:60px;height:48px;border-radius:8px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#aaa">brak</div>'}
+        ${p.after ? `<img src="${p.after}" alt="po" title="Po">` : '<div style="width:60px;height:48px;border-radius:8px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#aaa">brak</div>'}
+      </div>
+      <div class="project-admin-body">
+        <div class="project-admin-order">${p.counter || ""}</div>
+        <div class="project-admin-title">${shortTitle}</div>
+      </div>
+      <div class="project-admin-actions">
+        <button class="project-edit" onclick="editProject('${p.id}')" title="Edytuj">✏️</button>
+        <button class="project-delete" onclick="deleteProject('${p.id}')" title="Usuń">✕</button>
+      </div>
+    `;
+
+    box.appendChild(div);
+  });
+
+  initProjectDragDrop(box);
+};
+
+function initProjectDragDrop(box) {
+  let dragSrc = null;
+
+  box.querySelectorAll(".project-admin").forEach(item => {
+    item.addEventListener("dragstart", e => {
+      dragSrc = item;
+      item.classList.add("dragging");
+      e.dataTransfer.effectAllowed = "move";
+    });
+    item.addEventListener("dragend", () => {
+      item.classList.remove("dragging");
+      box.querySelectorAll(".project-admin").forEach(i => i.classList.remove("drag-over"));
+      saveProjectOrder(box);
+    });
+    item.addEventListener("dragover", e => {
+      e.preventDefault();
+      if (item === dragSrc) return;
+      box.querySelectorAll(".project-admin").forEach(i => i.classList.remove("drag-over"));
+      item.classList.add("drag-over");
+      const rect = item.getBoundingClientRect();
+      const mid = rect.top + rect.height / 2;
+      if (e.clientY < mid) {
+        box.insertBefore(dragSrc, item);
+      } else {
+        box.insertBefore(dragSrc, item.nextSibling);
+      }
+    });
+  });
+}
+
+async function saveProjectOrder(box) {
+  const items = box.querySelectorAll(".project-admin");
+  const batch = writeBatch(db);
+  items.forEach((item, idx) => {
+    const ref = doc(db, "projects", item.dataset.id);
+    batch.update(ref, { order: idx });
+
+  });
+  await batch.commit();
+}
+
+window.addProject = async () => {
+  const counter = document.getElementById("pCounter").value.trim();
+  const title = document.getElementById("pTitle").value.trim();
+  const before = document.getElementById("pBefore").value.trim();
+  const after = document.getElementById("pAfter").value.trim();
+
+  if (!counter && !title && !before && !after) {
+    alert("Uzupełnij przynajmniej etykietę, opis lub zdjęcia projektu");
+    return;
+  }
+
+  const ok = confirm("Dodać projekt?");
+  if (!ok) return;
+
+  // get current max order
+  const snap = await getDocs(collection(db, "projects"));
+  let maxOrder = -1;
+  snap.forEach(d => { const o = d.data().order ?? 0; if (o > maxOrder) maxOrder = o; });
+
+  await addDoc(collection(db, "projects"), {
+    counter,
+    title,
+    before,
+    after,
+    order: maxOrder + 1,
+    createdAt: Date.now()
+  });
+
+  document.getElementById("pCounter").value = "";
+  document.getElementById("pTitle").value = "";
+  document.getElementById("pBefore").value = "";
+  document.getElementById("pAfter").value = "";
+
+  loadProjects();
+};
+
+window.deleteProject = async (id) => {
+  const ok = confirm("Na pewno usunąć ten projekt?");
+  if (!ok) return;
+  await deleteDoc(doc(db, "projects", id));
+  loadProjects();
+};
+
+window.editProject = async (id) => {
+  const snap = await getDoc(doc(db, "projects", id));
+  if (!snap.exists()) return;
+  const p = snap.data();
+
+  document.getElementById("editModal")?.remove();
+
+  const overlay = document.createElement("div");
+  overlay.className = "edit-modal-overlay";
+  overlay.id = "editModal";
+
+  overlay.innerHTML = `
+    <div class="edit-modal">
+      <h3>✏️ Edytuj projekt</h3>
+      <input id="epCounter" value="${p.counter || ""}" placeholder="Etykieta np. Projekt 01 / BMW skóra">
+      <textarea id="epTitle" placeholder="Opis projektu" style="height:100px">${p.title || ""}</textarea>
+      <input id="epBefore" value="${p.before || ""}" placeholder="URL zdjęcia PRZED">
+      <input id="epAfter" value="${p.after || ""}" placeholder="URL zdjęcia PO">
+      <div class="edit-modal-btns">
+        <button style="background:#eee;color:#111" onclick="document.getElementById('editModal').remove()">Anuluj</button>
+        <button style="background:linear-gradient(135deg,#2d7cff,#1a5cff);color:white" onclick="saveEditProject('${id}')">Zapisz</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
+};
+
+window.saveEditProject = async (id) => {
+  const counter = document.getElementById("epCounter").value.trim();
+  const title = document.getElementById("epTitle").value.trim();
+  const before = document.getElementById("epBefore").value.trim();
+  const after = document.getElementById("epAfter").value.trim();
+
+  const ok = confirm("Zapisać zmiany?");
+  if (!ok) return;
+
+  await updateDoc(doc(db, "projects", id), { counter, title, before, after, updatedAt: Date.now() });
+  document.getElementById("editModal").remove();
+  loadProjects();
+};
+
+window.importOldProjects = async () => {
+  const ok = confirm(`Zaimportować ${OLD_PROJECTS.length} istniejących projektów do Firebase?\n\nUWAGA: kliknij ten przycisk tylko raz! Jeśli już importowałeś, anuluj.`);
+  if (!ok) return;
+
+  try {
+    for (let i = 0; i < OLD_PROJECTS.length; i++) {
+      const p = OLD_PROJECTS[i];
+      await addDoc(collection(db, "projects"), {
+        counter: "Projekt " + String(i+1).padStart(2,"0"),
+        title: p.title,
+        before: p.before,
+        after: p.after,
+        order: i,
+        createdAt: Date.now()
+      });
+    }
+  } catch(err) {
+    alert("❌ Błąd podczas importu: " + err.message + "\n\nNajprawdopodobniej reguły Firebase blokują zapis do kolekcji 'projects'. Sprawdź Firestore Rules.");
+    loadProjects();
+    return;
+  }
+
+  // ukryj przycisk żeby nie importować dwa razy
+  document.getElementById("importProjectsBtn").style.display = "none";
+
+  alert("Import zakończony! Zaimportowano " + OLD_PROJECTS.length + " projektów.");
+  loadProjects();
 };
 
 window.saveEditReview = async (id) => {
