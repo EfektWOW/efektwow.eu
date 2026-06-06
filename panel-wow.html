@@ -6,6 +6,97 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/fontawesome.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-solid.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-regular.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-light.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/duotone.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/solid.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/regular.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/light.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/brands.css"
+/>
+
+<!-- Additional Fontawesome Pro+ Icons for v7.2.0 -->
+
+<!-- Sharp Duotone -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-duotone-solid.css"
+/>
+<!-- Chisel -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/chisel-regular.css"
+/>
+<!-- Etch -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/etch-solid.css"
+/>
+<!-- Graphite -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/graphite-thin.css"
+/>
+<!-- Jelly -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/jelly-regular.css"
+/>
+<!-- Notdog -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/notdog-solid.css"
+/>
+<!-- Slab -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/slab-regular.css"
+/>
+<!-- Thumb Print -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/thumbprint-light.css"
+/>
+<!-- Utility -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/utility-semibold.css"
+/>
+<!-- Whiteboard -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/whiteboard-semibold.css"
+/>
+
 <style>
 body {
   font-family: 'Poppins', sans-serif;
@@ -181,6 +272,7 @@ button:hover {
   <button class="tab" onclick="openTab('kalendarz', this)">Kalendarz</button>
   <button class="tab" onclick="openTab('tiktok', this)">TikTok</button>
   <button class="tab" onclick="openTab('about', this)">O nas</button>
+  <button class="tab" onclick="openTab('opinie', this); loadReviews()">Opinie</button>
 </div>
 
 <!-- LICZBY -->
@@ -205,6 +297,31 @@ button:hover {
   <button class="save" onclick="saveCategory('tiktok')">Zapisz TikTok</button>
 </div>
 
+<!-- OPINIE -->
+<div id="opinie" class="section">
+
+  <hr style="margin:20px 0">
+
+  <h3>➕ Dodaj nową opinię</h3>
+
+  <input id="rName" placeholder="Imię i nazwisko">
+  <textarea id="rText" placeholder="Treść opinii"></textarea>
+
+  <input id="rDate" placeholder="Data np. 06.06.2026">
+  <input id="rAvatar" placeholder="Link do avatara (puste = aut. inicjały)">
+
+  <input id="rStars" type="number" min="1" max="5" value="5">
+
+  <button class="save" onclick="addReview()">Dodaj opinię</button>
+
+ <!-- <button class="primary" onclick="importOldReviews()">Importuj stare opinie do Firebase</button> -->
+
+  <h3>📋 Lista opinii</h3>
+
+  <div id="reviewsList"></div>
+
+</div>
+
 <!-- ABOUT -->
 <div id="about" class="section">
 
@@ -223,15 +340,241 @@ button:hover {
 
 <button class="logout" onclick="logout()">🚪 Wyloguj</button>
 
+        <button class="scroll-top" id="scrollTopBtn">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
 </div>
 </div>
+
+<style>
+.review-admin {
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 16px 16px 16px 16px;
+  margin-bottom: 12px;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.review-admin-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid #e9ecef;
+}
+
+.review-admin-avatar-placeholder {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2d7cff, #1a5cff);
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.review-admin-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.review-admin-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.review-admin-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #111;
+}
+
+.review-admin-date {
+  font-size: 12px;
+  color: #999;
+}
+
+.review-admin-stars {
+  color: #f5b301;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.review-admin-text {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.review-admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.review-delete, .review-edit {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-delete { background: #ff4d4d; }
+.review-delete:hover { background: #e63b3b; }
+
+.review-edit { background: #2d7cff; }
+.review-edit:hover { background: #1a5cff; }
+
+/* MODAL EDYCJI */
+.edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.edit-modal h3 {
+  margin: 0 0 16px;
+}
+
+.edit-modal input,
+.edit-modal textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.edit-modal textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.edit-modal-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.edit-modal-btns button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+</style>
+
+<style>
+  .scroll-top {
+    position: fixed;
+    right: 105px;   /* KLUCZ: obok Tawk.to */
+    bottom: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #245a86;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: 0.3s ease;
+
+    z-index: 9998; /* ważne: pod Tawk */
+}
+
+.scroll-top:hover {
+    background: #183c58;
+    transform: translateY(-3px);
+}
+
+/* widoczny stan */
+.scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+</style>
+
+<script>
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        scrollBtn.classList.add("show");
+    } else {
+        scrollBtn.classList.remove("show");
+    }
+});
+
+scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserLocalPersistence, signOut }
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-import { getFirestore, doc, getDoc, setDoc }
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  query,
+  orderBy
+}
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 /* FIREBASE */
@@ -365,6 +708,59 @@ async function loadData() {
   renderAbout();
 }
 
+async function loadReviews() {
+  const box = document.getElementById("reviewsList");
+  if (!box) return;
+  box.innerHTML = "";
+
+  const snap = await getDocs(collection(db, "reviews"));
+
+const docsArray = [];
+snap.forEach((docSnap) => {
+  docsArray.push({ id: docSnap.id, data: docSnap.data() });
+});
+
+// sortowanie po dacie DD.MM.YYYY od najnowszej
+docsArray.sort((a, b) => {
+  function parseDate(str) {
+    if (!str) return 0;
+    const [d, m, y] = str.split('.');
+    return new Date(y, m - 1, d).getTime();
+  }
+  return parseDate(b.data.date) - parseDate(a.data.date);
+});
+
+docsArray.forEach(({ id, data: r }) => {
+  const stars = '★'.repeat(r.stars || 5) + '☆'.repeat(5 - (r.stars || 5));
+
+  const initials = (r.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  const avatarHTML = r.avatar
+    ? `<img class="review-admin-avatar" src="${r.avatar}" alt="${r.name}">`
+    : `<div class="review-admin-avatar-placeholder">${initials}</div>`;
+
+  const div = document.createElement("div");
+  div.className = "review-admin";
+
+  div.innerHTML = `
+    ${avatarHTML}
+    <div class="review-admin-body">
+      <div class="review-admin-header">
+        <span class="review-admin-name">${r.name}</span>
+        <span class="review-admin-date">${r.date || ""}</span>
+      </div>
+      <div class="review-admin-stars">${stars}</div>
+      <div class="review-admin-text">${r.text}</div>
+    </div>
+    <div class="review-admin-actions">
+      <button class="review-edit" onclick="editReview('${id}', this)" title="Edytuj">✏️</button>
+      <button class="review-delete" onclick="deleteReview('${id}')" title="Usuń">✕</button>
+    </div>
+  `;
+
+  box.appendChild(div);
+});
+}
+
 /* SAVE */
 window.saveCategory = async (cat) => {
 
@@ -374,7 +770,6 @@ window.saveCategory = async (cat) => {
   if (cat === "liczby") {
     state.clients = Number(clients.value);
     state.fabrics = Number(fabrics.value);
-    state.reviews = Number(reviews.value);
   }
 
   if (cat === "kalendarz") {
@@ -405,7 +800,7 @@ window.login = async () => {
   loginBox.classList.add("hidden");
   panelBox.classList.remove("hidden");
 
-  loadData();
+loadData();
 };
 
 onAuthStateChanged(auth, (user)=>{
@@ -413,6 +808,7 @@ onAuthStateChanged(auth, (user)=>{
     loginBox.classList.add("hidden");
     panelBox.classList.remove("hidden");
     loadData();
+    loadReviews();
   } else {
     loginBox.classList.remove("hidden");
     panelBox.classList.add("hidden");
@@ -422,6 +818,166 @@ onAuthStateChanged(auth, (user)=>{
 /* LOGOUT */
 window.logout = async () => {
   await signOut(auth);
+};
+
+window.addReview = async () => {
+
+  const name = document.getElementById("rName").value;
+  const text = document.getElementById("rText").value;
+  const date = document.getElementById("rDate").value;
+  const avatar = document.getElementById("rAvatar").value;
+  const stars = Number(document.getElementById("rStars").value);
+
+  if (!name || !text) {
+    alert("Uzupełnij imię i treść");
+    return;
+  }
+
+  const ok = confirm("Dodać opinię?");
+  if (!ok) return;
+
+  await addDoc(collection(db, "reviews"), {
+    name,
+    text,
+    date,
+    avatar,
+    stars,
+    createdAt: Date.now(),
+    updatedAt: Date.now()
+  });
+
+  // czyszczenie inputów
+  document.getElementById("rName").value = "";
+  document.getElementById("rText").value = "";
+  document.getElementById("rDate").value = "";
+  document.getElementById("rAvatar").value = "";
+  document.getElementById("rStars").value = 5;
+
+  loadReviews();
+};
+
+window.deleteReview = async (id) => {
+
+  const ok = confirm("Na pewno usunąć tę opinię?");
+  if (!ok) return;
+
+  await deleteDoc(doc(db, "reviews", id));
+
+  loadReviews();
+};
+
+window.importOldReviews = async () => {
+
+  const ok = confirm("Zaimportować stare opinie do Firebase?");
+  if (!ok) return;
+
+  const oldReviews = [
+  {name:"Ewelina Oleksiak",text:"Jestem bardzo zadowolona z usługi czyszczenia kanapy i dywanu. Już od pierwszego kontaktu obsługa była profesjonalna i uprzejma, a cały proces przebiegał sprawnie i bezproblemowo. Kanapa, która wcześniej miała widoczne plamy i ślady użytkowania, wygląda teraz jak nowa – odzyskała świeżość, kolor i przyjemny zapach. Dywan również został dokładnie wyczyszczony, a wszelkie zabrudzenia zostały skutecznie usunięte. Z czystym sumieniem polecam tą firmę każdemu, kto chce odświeżyć swoje meble i dywany – efekt naprawdę robi wrażenie!",stars:5,date:"19.03.2026",avatar:"https://lh3.googleusercontent.com/a/ACg8ocIYh6XU7Eaq1rphXXz0-pL_jtIfpLlDA9yoEbhBPGenJFYlJw=w36-h36-p-rp-mo-br100"},
+  {name:"P L",text:"Szybka i sprawnie wykonana usługa. Dosyć trudne plamy zalanej olejem tapicerki z samochodu po wykonanym praniu i odświeżeniu jak najbardziej odzyskały pierwotny wygląd. Polecam jeśli chodzi o wykonywanie podobnych usług. Konkurencyjna cena oraz szybki termin realizacji.",stars:5,date:"16.03.2026",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjWhK19Pu0PkVcW_4bJPUT8cUlp4GFfrhQS-a5LWLvVP-iA2p8Qh=w36-h36-p-rp-mo-br100"},
+  {name:"Ewa Zaremba-Flis",text:"Polecam! Kanapy i fotele (a także walizka) wyczyszczane perfekcyjnie.",stars:5,date:"08.03.2026",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjVjIln1TtKj3_ZEyIhZ0wOgkFTxQEiWqSyt7J7FcyqQlP9ebIBf=w36-h36-p-rp-mo-br100"},
+  {name:"Robert B",text:"Polecam. Dywany umyte szybko i sprawnie.",stars:5,date:"14.02.2026",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLXDkewzECCcmXdEoJf3ppDDJfdexsKXtZD1n8rvvec5-G9vQ=w36-h36-p-rp-mo-ba3-br100"},
+  {name:"Marta B",text:"Świetny kontakt, szybko i starannie wykonane czyszczenie samochodu wewnątrz, dziękuję raz jeszcze i polecam :)",stars:5,date:"27.12.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocIRCbaYp2bT6P4AsPLUCGm2z-pnFcnG6lNHYhc4ZTHchVksYQ=w36-h36-p-rp-mo-br100"},
+  {name:"Kosma Bit",text:"Profesjonalnie, sprawnie i bardzo dokładnie wykonane czyszczenie. Przesympatyczny Pan. Z pewnością skorzystam z usług ponownie.",stars:5,date:"17.12.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLUH1A8DTOsJqvaAjKcnwGJy-pbPR0idXLVHjmeE9-zlkMZJQ=w36-h36-p-rp-mo-br100"},
+  {name:"Agnieszka Łoza",text:"Jestem bardzo zadowolona, pełny profesjonalizm. Polecam",stars:5,date:"11.12.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKsSbUhLQDe6RrwQmHvWW3UG6zWlOmbtzVyvJWm8RNMZbFolw=s120-c-rp-mo-br100"},
+  {name:"Agnieszka Machałek",text:"Jesteśmy bardzo zadowoleni z profesjonalnej usługi czyszczenia dywanów- wyglądają jak nowe! Świetny kontakt, zaskakujące efekty i konkurencyjna cena. Polecamy szczerze, a my na pewno skorzystamy kolejny raz!",stars:5,date:"29.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocJSEuUWDk2Jv3fP_M5-cXFhal4K_aIBiUo3AKcls4umV_Reuw=s120-c-rp-mo-br100"},
+  {name:"Wojtek Łachno (Wojtaszmc)",text:"Super kontakt oraz super wykonana robota. Na pewno skorzystam jeszcze raz.",stars:5,date:"25.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocICJ2-UL8ZpJUK-eG2mXkq55LZ10JCZiDYxxtcJQHmJxXCsZA=s120-c-rp-mo-br100"},
+  {name:"Grzegorz Oczkowski",text:"Profesjonalizm w każdym calu. Jestem bardzo zadowolony z usługi! 5/5 gwiazdek!",stars:5,date:"21.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLndAeoeHVvX-He_Xp4m-LaBC2eNXsxqdxqqs0LQehJamVF0w=s120-c-rp-mo-br100"},
+  {name:"Ada Ziobro",text:"Świetnie wykonana usługa czyszczenia kanapy, gorąco polecam!",stars:5,date:"14.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocJHt31xozRYtHNiV0wL-tiDGS31AgyQdWsnVuHTl4Jvt4bpii0=s120-c-rp-mo-br100"},
+  {name:"Katarzyna Wilkos",text:"Miałam przyjemność skorzystać z usługi komoleksowego sprzątania auta oraz prania tapicerki 😊 robota wykonana perfekcyjnie, auto było w złym stanie a odebrałam calkiem co innego! Z plam po oleju na jasnej podłodze ani śladu. A cena za tak dobrze wykonaną robotę po prostu niemożliwa🔥 Szczerze polecam!",stars:5,date:"24.09.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKYBik_3NWwMeaUYD1CM3SAo80XuFL3EJkJHI6oeSjLkXhb9g=s120-c-rp-mo-br100"},
+  {name:"rafal4610",text:"Usługa wykonana solidnie. Polecam każdemu",stars:5,date:"21.09.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKhdm5PcTf3xAK4yeC8DMT4TLQR-KXSyvuDVj3qmpwclYdoYQ=s120-c-rp-mo-br100"},
+  {name:"Piotr Teterycz",text:"Szybko sprawnie fachowo polecam 👍",stars:5,date:"28.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocJKeIN9jIGAdGSWlICY7Mcw0RM1lL7jfskLrNh0i1bzTOFlhw=s120-c-rp-mo-br100"},
+  {name:"Sylwia Ja",text:"Serio efekt wow. Dywan wyprany błyskawiczne☺️Polecam",stars:5,date:"25.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocI_xEL1NmymYb2cteJT6cWB0qjniH8aUVRUto7ZKn5vqp1S5g=s120-c-rp-mo-br100"},
+  {name:"Fox'",text:"Polecam. Pan Krystian wyprał wyczyścił mój dywan, który spisałem na straty",stars:5,date:"23.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLANRi0I9jNTWd8kENuFsJQBjIKwOXjV6Haic6MRtfac-emzQ=s120-c-rp-mo-br100"},
+  {name:"piotr sekulka",text:"Profesjonalnie wykonana usługa",stars:5,date:"19.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocIsseaBVRr_V8RonLyRhUf8x0hAbwPvqGGhGaIagp00uaQRzg=s120-c-rp-mo-br100"},
+  {name:"Emilia Jachorek",text:"Oddałam 2 auta na mycie i pranie wnętrza – efekt przerósł moje oczekiwania! Auta wyglądaja jak nowe, pachna świeżo, każdy detal dopracowany. Usługa wykonana perfekcyjnie i z pełnym zaangażowaniem ponad to co oczekiwałam. Zdecydowanie polecam!",stars:5,date:"15.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKE9_ebwyv2rGDP7mlx2DgXxn1YPADyMO1a--3fycjOFwpiTg=s120-c-rp-mo-br100"},
+  {name:"Wioleta Krukowska",text:"Polecam z całego ♥️, usługa dobrze wykonana, tapicerka wygląda jak nowa. Pełen profesjonalizm i sumienność. Wszystko zrobione szybko i dokładnie a co najważniejsze cena naprawdę w porządku.",stars:5,date:"12.07.2025",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjXg5cPZW-rgKau1fsbfbeoFsTo_YpRJnH_iRpOmEtPCooR59W9W=s120-c-rp-mo-br100"},
+  {name:"Sacky",text:"Zdecydowanie polecam! Bardzo dobrze wykonana praca, jakościowe czyszczenie spełniło moje oczekiwania.",stars:5,date:"10.07.2025",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjVleeaYHxVpy9bc3K2eJ9jqwobhyWPQB6YRXlwf6_oBrkREZiF9=s120-c-rp-mo-br100"},
+  {name:"KasiuLa",text:"Polecam. Po czyszczeniu tapicerki w aucie i ogólnie całego środka jestem mega zadowolona!",stars:5,date:"10.07.2025",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjXJByoho1bXJbdp_fcYXB9OZ4iXNuTwDxImsY8_KDMwch1R-50=s120-c-rp-mo-br100"}
+];
+
+  for (const r of oldReviews) {
+    await addDoc(collection(db, "reviews"), {
+      name: r.name,
+      text: r.text,
+      stars: r.stars,
+      date: r.date,
+      avatar: r.avatar,
+      createdAt: Date.now()
+    });
+  }
+
+  alert("Import zakończony! Zaimportowano " + oldReviews.length + " opinii.");
+  loadReviews();
+};
+
+
+window.editReview = (id, btn) => {
+  // znajdź kartę opinii
+  const card = btn.closest('.review-admin');
+  const name = card.querySelector('.review-admin-name').textContent;
+  const date = card.querySelector('.review-admin-date').textContent;
+  const text = card.querySelector('.review-admin-text').textContent;
+  const stars = card.querySelectorAll('.review-admin-stars')[0].textContent
+    .split('').filter(c => c === '★').length;
+  const avatarEl = card.querySelector('.review-admin-avatar');
+  const avatar = avatarEl ? avatarEl.src : '';
+
+  // usuń poprzedni modal jeśli był
+  document.getElementById('editModal')?.remove();
+
+  // stwórz modal
+  const overlay = document.createElement('div');
+  overlay.className = 'edit-modal-overlay';
+  overlay.id = 'editModal';
+
+  overlay.innerHTML = `
+    <div class="edit-modal">
+      <h3>✏️ Edytuj opinię</h3>
+      <input id="eName" value="${name}" placeholder="Imię i nazwisko">
+      <textarea id="eText" placeholder="Treść opinii">${text}</textarea>
+      <input id="eDate" value="${date}" placeholder="Data">
+      <input id="eAvatar" value="${avatar}" placeholder="Link do avatara">
+      <input id="eStars" type="number" min="1" max="5" value="${stars}">
+      <div class="edit-modal-btns">
+        <button style="background:#eee; color:#111"
+          onclick="document.getElementById('editModal').remove()">
+          Anuluj
+        </button>
+        <button style="background:linear-gradient(135deg,#2d7cff,#1a5cff); color:white"
+          onclick="saveEditReview('${id}')">
+          Zapisz
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  // zamknij klikając poza modalem
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.remove();
+  });
+};
+
+window.saveEditReview = async (id) => {
+  const name   = document.getElementById('eName').value;
+  const text   = document.getElementById('eText').value;
+  const date   = document.getElementById('eDate').value;
+  const avatar = document.getElementById('eAvatar').value;
+  const stars  = Number(document.getElementById('eStars').value);
+
+  if (!name || !text) { alert('Uzupełnij imię i treść'); return; }
+
+  const ok = confirm('Zapisać zmiany?');
+  if (!ok) return;
+
+  await setDoc(doc(db, 'reviews', id), {
+    name, text, date, avatar, stars,
+    updatedAt: Date.now()
+  }, { merge: true });
+
+  document.getElementById('editModal').remove();
+  loadReviews();
 };
 </script>
 
