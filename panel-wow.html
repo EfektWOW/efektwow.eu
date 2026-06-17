@@ -2,414 +2,606 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel admina</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/fontawesome.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-solid.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-regular.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-light.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/duotone.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/solid.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/regular.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/light.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/brands.css"
-/>
-
-<!-- Additional Fontawesome Pro+ Icons for v7.2.0 -->
-
-<!-- Sharp Duotone -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-duotone-solid.css"
-/>
-<!-- Chisel -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/chisel-regular.css"
-/>
-<!-- Etch -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/etch-solid.css"
-/>
-<!-- Graphite -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/graphite-thin.css"
-/>
-<!-- Jelly -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/jelly-regular.css"
-/>
-<!-- Notdog -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/notdog-solid.css"
-/>
-<!-- Slab -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/slab-regular.css"
-/>
-<!-- Thumb Print -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/thumbprint-light.css"
-/>
-<!-- Utility -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/utility-semibold.css"
-/>
-<!-- Whiteboard -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/whiteboard-semibold.css"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/fontawesome.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/solid.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/regular.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/brands.css"/>
 
 <style>
+/* ── TOKENS ── */
+:root {
+  --bg:       #0b0d14;
+  --surface:  #111421;
+  --surface2: #161926;
+  --surface3: #1c2033;
+  --border:   #232640;
+  --border2:  #2a2f50;
+  --accent:   #5b73ff;
+  --accent-dim: rgba(91,115,255,.15);
+  --accent-glow: rgba(91,115,255,.35);
+  --success:  #22d3a5;
+  --danger:   #f05252;
+  --warn:     #f59e0b;
+  --text:     #e2e6f3;
+  --muted:    #6b7494;
+  --muted2:   #8b90b8;
+  --sidebar-w: 220px;
+  --header-h:  62px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background: #eef2f6;
-  padding: 30px;
-}
-
-.container {
-  max-width: 720px;
-  margin: auto;
-  background: white;
-  padding: 25px;
-  border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-}
-
-/* HEADER */
-h2 {
-  margin-bottom: 15px;
-}
-
-/* TABS */
-.tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.tab {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  background: #e9ecef;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.tab:hover {
-  transform: translateY(-1px);
-}
-
-.tab.active {
-  background: #111;
-  color: white;
-}
-
-/* SECTIONS */
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-/* INPUTS */
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  outline: none;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
   font-size: 14px;
 }
 
-textarea {
-  height: 180px;
-  resize: vertical;
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+/* ════════════════════════════════════
+   LOGIN PAGE
+════════════════════════════════════ */
+#loginBox {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
 }
 
-/* BUTTONS */
-button {
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(91,115,255,.08);
+}
+
+.login-logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-logo i {
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.login-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.login-card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 28px;
+}
+
+.field-group {
+  margin-bottom: 14px;
+}
+
+.field-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted2);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.field-group .input-wrap {
+  position: relative;
+}
+
+.field-group .input-wrap i {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.field-group input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 12px 11px 36px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.field-group input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.btn-login {
   width: 100%;
   padding: 12px;
-  border-radius: 10px;
+  background: var(--accent);
+  color: white;
   border: none;
-  cursor: pointer;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 600;
-  transition: 0.2s;
+  cursor: pointer;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity .2s, transform .15s, box-shadow .2s;
+  font-family: inherit;
+  box-shadow: 0 4px 20px var(--accent-glow);
 }
 
-button:hover {
+.btn-login:hover {
+  opacity: .9;
   transform: translateY(-1px);
 }
 
-.primary {
-  background: #111;
-  color: white;
-}
+/* ════════════════════════════════════
+   DASHBOARD SHELL
+════════════════════════════════════ */
+#panelBox { display: none; }
+#panelBox.visible { display: flex; min-height: 100vh; }
 
-.save {
-  background: linear-gradient(135deg,#2d7cff,#1a5cff);
-  color: white;
-}
-
-/* LOGIN */
-.hidden { display: none; }
-
-/* ABOUT */
-#aboutPreview {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  min-height: 120px;
-  background: #fff;
-  white-space: pre-wrap;
-}
-
-.blue-letter {
-  color: #2d7cbe;
-  font-weight: 700;
-}
-
-/* TOOLBAR */
-#toolbar {
+/* ── SIDEBAR ── */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
   position: fixed;
-  background: #111;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  cursor: pointer;
-  display: none;
-  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 100;
+  overflow-y: auto;
 }
 
-/* LOGOUT */
-.logout {
-  margin-top: 15px;
-  background: #ff4d4d;
-  color: white;
-}
-.logout:hover {
-  background: #e63b3b;
-}
-#about button {
-  margin-top: 10px;
-}
-
-#togglePreviewBtn {
+.sidebar-logo {
+  padding: 22px 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
   margin-bottom: 10px;
 }
 
-#previewBox {
-  margin-top: 12px;
-  margin-bottom: 12px;
+.sidebar-logo .logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  box-shadow: 0 4px 14px var(--accent-glow);
 }
-</style>
-</head>
 
-<body>
+.sidebar-logo .logo-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -.3px;
+}
 
-<div class="container">
+.sidebar-logo .logo-text span {
+  color: var(--accent);
+}
 
-<!-- LOGIN -->
-<div id="loginBox">
-  <h2>🔐 Logowanie</h2>
-  <input id="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Hasło">
-  <button class="primary" onclick="login()">Zaloguj</button>
-</div>
+.sidebar-section {
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 12px 0 4px;
+}
 
-<!-- PANEL -->
-<div id="panelBox" class="hidden">
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  margin: 2px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--muted2);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: background .15s, color .15s;
+  border: none;
+  background: none;
+  width: calc(100% - 16px);
+  text-align: left;
+  font-family: inherit;
+}
 
-<h2>⚙️ Panel</h2>
+.nav-item i {
+  width: 18px;
+  text-align: center;
+  font-size: 14px;
+}
 
-<div class="tabs">
-  <button class="tab active" onclick="openTab('liczby', this)">Liczby</button>
-  <button class="tab" onclick="openTab('kalendarz', this)">Kalendarz</button>
-  <button class="tab" onclick="openTab('tiktok', this)">TikTok</button>
-  <button class="tab" onclick="openTab('about', this)">O nas</button>
-  <button class="tab" onclick="openTab('opinie', this); loadReviews()">Opinie</button>
-  <button class="tab" onclick="openTab('projekty', this); loadProjects()">Projekty</button>
-</div>
+.nav-item:hover {
+  background: var(--surface3);
+  color: var(--text);
+}
 
-<!-- LICZBY -->
-<div id="liczby" class="section active">
-  <input id="clients" placeholder="Zadowoleni klienci">
-  <input id="fabrics" placeholder="Tkaniny">
-  <input id="reviews" placeholder="Opinie">
-  <button class="save" onclick="saveCategory('liczby')">Zapisz liczby</button>
-</div>
+.nav-item.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
 
-<!-- KALENDARZ -->
-<div id="kalendarz" class="section">
-  <input id="busyDays" placeholder="np. 3,4,18">
-  <button class="save" onclick="saveCategory('kalendarz')">Zapisz kalendarz</button>
-</div>
+.nav-item.active i {
+  color: var(--accent);
+}
 
-<!-- TIKTOK -->
-<div id="tiktok" class="section">
-  <input id="t1" placeholder="Link TikTok 1">
-  <input id="t2" placeholder="Link TikTok 2">
-  <input id="t3" placeholder="Link TikTok 3">
-  <button class="save" onclick="saveCategory('tiktok')">Zapisz TikTok</button>
-</div>
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 8px;
+  border-top: 1px solid var(--border);
+}
 
-<!-- OPINIE -->
-<div id="opinie" class="section">
+.nav-item.logout {
+  color: var(--danger);
+}
 
-  <hr style="margin:20px 0">
+.nav-item.logout i { color: var(--danger); }
+.nav-item.logout:hover { background: rgba(240,82,82,.12); }
 
-  <h3>➕ Dodaj nową opinię</h3>
+/* ── MAIN AREA ── */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  <input id="rName" placeholder="Imię i nazwisko">
-  <textarea id="rText" placeholder="Treść opinii"></textarea>
+/* ── TOPBAR ── */
+.topbar {
+  height: var(--header-h);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
 
-  <input id="rDate" placeholder="Data np. 06.06.2026">
-  <input id="rAvatar" placeholder="Link do avatara (puste = aut. inicjały)">
+.topbar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
 
-  <input id="rStars" type="number" min="1" max="5" value="5">
+.topbar-title span {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 13px;
+  margin-left: 8px;
+}
 
-  <button class="save" onclick="addReview()">Dodaj opinię</button>
+/* ── PAGE CONTENT ── */
+.page-content {
+  padding: 28px;
+  flex: 1;
+}
 
- <!-- <button class="primary" onclick="importOldReviews()">Importuj stare opinie do Firebase</button> -->
+/* ════════════════════════════════════
+   SECTIONS
+════════════════════════════════════ */
+.section { display: none; }
+.section.active { display: block; }
 
-  <h3>📋 Lista opinii</h3>
+.section-header {
+  margin-bottom: 22px;
+}
 
-  <div id="reviewsList"></div>
+.section-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
 
-</div>
+.section-header p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+}
 
-<!-- ABOUT -->
-<div id="about" class="section">
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 16px;
+}
 
-  <div id="toolbar">🔵 niebieski</div>
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
 
-  <textarea id="aboutText"></textarea>
+.card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
 
-  <button id="togglePreviewBtn" class="primary">👁 Podgląd</button>
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
 
-  <div id="previewBox" style="display:none; margin-top:10px;">
-    <div id="aboutPreview"></div>
-  </div>
+.card-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
 
-  <button class="save" onclick="saveCategory('about')">Zapisz O nas</button>
-</div>
+/* ── FORM ELEMENTS ── */
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 6px;
+}
 
-<!-- PROJEKTY -->
-<div id="projekty" class="section">
+.form-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+  margin-bottom: 14px;
+  transition: border-color .2s, box-shadow .2s;
+}
 
-  <h3>➕ Dodaj nowy projekt</h3>
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
 
-  <input id="pCounter" placeholder='Etykieta projektu np. "Projekt 01" lub "BMW skóra"'>
-  <input id="pTitle" placeholder="Opis projektu (dłuższy tekst pod etykietą)">
-  <input id="pBefore" placeholder="URL zdjęcia PRZED">
-  <input id="pAfter" placeholder="URL zdjęcia PO">
+textarea.form-input {
+  height: 160px;
+  resize: vertical;
+}
 
-  <button class="save" onclick="addProject()">Dodaj projekt</button>
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
 
-  <button class="primary" id="importProjectsBtn" onclick="importOldProjects()" style="margin-top:8px">
-    📥 Importuj istniejące projekty (tylko raz!)
-  </button>
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity .2s, transform .15s;
+}
 
-  <h3 style="margin-top:20px">📋 Lista projektów <span style="font-size:12px;color:#999;font-weight:400">(przeciągnij aby zmienić kolejność)</span></h3>
-  <div id="projectsList"></div>
+.btn:hover { opacity: .88; transform: translateY(-1px); }
 
-</div>
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
 
-<button class="logout" onclick="logout()">🚪 Wyloguj</button>
+.btn-save {
+  background: linear-gradient(135deg, #22d3a5, #16b892);
+  color: white;
+  box-shadow: 0 4px 16px rgba(34,211,165,.28);
+}
 
-        <button class="scroll-top" id="scrollTopBtn">
-    <i class="fas fa-arrow-up"></i>
-</button>
+.btn-danger {
+  background: rgba(240,82,82,.12);
+  color: var(--danger);
+}
 
-</div>
-</div>
+.btn-full { width: 100%; }
 
-<style>
+/* ── STATS ROW ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color .2s;
+}
+
+.stat-card:hover { border-color: var(--border2); }
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.stat-icon.green { background: rgba(34,211,165,.12); color: var(--success); }
+.stat-icon.purple { background: rgba(168,85,247,.12); color: #a855f7; }
+
+.stat-content {}
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── TIKTOK GRID ── */
+.tiktok-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.tiktok-item {}
+.tiktok-item label { display: block; font-size: 11px; font-weight: 600; color: var(--muted2); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.tiktok-item .input-wrap { position: relative; }
+.tiktok-item .input-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 13px; }
+.tiktok-item input { padding-left: 34px; }
+
+/* ── ABOUT TOOLBAR ── */
+#toolbar {
+  position: fixed;
+  background: var(--accent);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 4px 16px var(--accent-glow);
+  letter-spacing: .3px;
+}
+
+.blue-letter {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+#aboutPreview {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 100px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* ── REVIEWS ── */
 .review-admin {
-  border: 1px solid #e0e0e0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 16px 16px 16px 16px;
-  margin-bottom: 12px;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 16px;
+  margin-bottom: 10px;
   display: flex;
   gap: 14px;
   align-items: flex-start;
+  transition: border-color .2s;
 }
 
+.review-admin:hover { border-color: var(--border2); }
+
 .review-admin-avatar {
-  width: 46px;
-  height: 46px;
+  width: 42px; height: 42px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--border2);
 }
 
 .review-admin-avatar-placeholder {
-  width: 46px;
-  height: 46px;
+  width: 42px; height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2d7cff, #1a5cff);
-  color: white;
+  background: var(--accent-dim);
+  color: var(--accent);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.review-admin-body {
-  flex: 1;
-  min-width: 0;
-}
+.review-admin-body { flex: 1; min-width: 0; }
 
 .review-admin-header {
   display: flex;
@@ -418,155 +610,119 @@ button:hover {
   margin-bottom: 4px;
 }
 
-.review-admin-name {
-  font-weight: 700;
-  font-size: 15px;
-  color: #111;
-}
+.review-admin-name { font-weight: 600; font-size: 14px; color: var(--text); }
+.review-admin-date { font-size: 11px; color: var(--muted); }
+.review-admin-stars { color: var(--warn); font-size: 13px; margin-bottom: 6px; }
+.review-admin-text { font-size: 13px; color: var(--muted2); line-height: 1.55; }
 
-.review-admin-date {
-  font-size: 12px;
-  color: #999;
-}
-
-.review-admin-stars {
-  color: #f5b301;
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-.review-admin-text {
-  font-size: 13px;
-  color: #444;
-  line-height: 1.5;
-}
-
-.review-admin-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-shrink: 0;
-}
+.review-admin-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 
 .review-delete, .review-edit {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 30px; height: 30px;
+  border-radius: 8px;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: inherit;
+  transition: opacity .2s;
 }
 
-.review-delete { background: #ff4d4d; }
-.review-delete:hover { background: #e63b3b; }
+.review-delete { background: rgba(240,82,82,.18); color: var(--danger); }
+.review-delete:hover { background: var(--danger); color: white; }
+.review-edit { background: var(--accent-dim); color: var(--accent); }
+.review-edit:hover { background: var(--accent); color: white; }
 
-.review-edit { background: #2d7cff; }
-.review-edit:hover { background: #1a5cff; }
-
-/* PROJEKT CARDS */
+/* ── PROJECTS ── */
 .project-admin {
-  border: 1px solid #e0e0e0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 14px;
   margin-bottom: 10px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   display: flex;
   gap: 12px;
   align-items: center;
   cursor: grab;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: border-color .2s, box-shadow .2s;
   user-select: none;
 }
 
 .project-admin:active { cursor: grabbing; }
+
 .project-admin.dragging {
-  opacity: 0.5;
-  transform: scale(0.98);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-}
-.project-admin.drag-over {
-  border: 2px dashed #2d7cff;
-  background: #f0f5ff;
+  opacity: .5;
+  box-shadow: 0 8px 30px rgba(0,0,0,.4);
 }
 
-.project-admin-thumb {
-  display: flex;
-  gap: 6px;
-  flex-shrink: 0;
+.project-admin.drag-over {
+  border: 2px dashed var(--accent);
+  background: var(--accent-dim);
 }
+
+.project-admin-thumb { display: flex; gap: 6px; flex-shrink: 0; }
 
 .project-admin-thumb img {
-  width: 60px;
-  height: 48px;
+  width: 58px; height: 46px;
   border-radius: 8px;
   object-fit: cover;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
 }
 
-.project-admin-body {
-  flex: 1;
-  min-width: 0;
-}
+.project-admin-body { flex: 1; min-width: 0; }
+.project-admin-order { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .8px; }
+.project-admin-title { font-size: 12.5px; color: var(--muted2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.project-admin-drag-handle { font-size: 16px; color: var(--border2); flex-shrink: 0; cursor: grab; }
 
-.project-admin-order {
-  font-size: 11px;
-  font-weight: 700;
-  color: #2d7cff;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.project-admin-title {
-  font-size: 13px;
-  color: #333;
-  margin-top: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.project-admin-drag-handle {
-  font-size: 18px;
-  color: #ccc;
-  flex-shrink: 0;
-  cursor: grab;
-}
-
-.project-admin-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-shrink: 0;
-}
+.project-admin-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 
 .project-delete, .project-edit {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  color: white;
+  width: 30px; height: 30px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: inherit;
+  transition: opacity .2s;
 }
 
-.project-delete { background: #ff4d4d; }
-.project-delete:hover { background: #e63b3b; }
-.project-edit { background: #2d7cff; }
-.project-edit:hover { background: #1a5cff; }
+.project-delete { background: rgba(240,82,82,.15); color: var(--danger); }
+.project-delete:hover { background: var(--danger); color: white; }
+.project-edit { background: var(--accent-dim); color: var(--accent); }
+.project-edit:hover { background: var(--accent); color: white; }
 
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
 
+/* ── BADGE ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--accent-dim);
+  color: var(--accent);
+  letter-spacing: .3px;
+}
+
+/* ── EDIT MODAL ── */
 .edit-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(4px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -574,158 +730,526 @@ button:hover {
 }
 
 .edit-modal {
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  padding: 26px;
   width: 90%;
-  max-width: 500px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  max-width: 480px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
 }
 
 .edit-modal h3 {
-  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .edit-modal input,
 .edit-modal textarea {
   width: 100%;
-  padding: 10px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
   border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
+  padding: 10px 13px;
+  color: var(--text);
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
   margin-bottom: 10px;
-  box-sizing: border-box;
+  transition: border-color .2s, box-shadow .2s;
 }
 
-.edit-modal textarea {
-  height: 120px;
-  resize: vertical;
+.edit-modal input:focus,
+.edit-modal textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
 }
+
+.edit-modal textarea { height: 110px; resize: vertical; }
 
 .edit-modal-btns {
   display: flex;
   gap: 10px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .edit-modal-btns button {
   flex: 1;
-  padding: 10px;
+  padding: 11px;
   border-radius: 10px;
   border: none;
   font-weight: 600;
   cursor: pointer;
+  font-size: 13.5px;
+  font-family: inherit;
+  transition: opacity .2s;
 }
+
+.edit-modal-btns button:hover { opacity: .88; }
+
+/* ── SCROLL TO TOP ── */
+.scroll-top {
+  position: fixed;
+  right: 110px;
+  bottom: 22px;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: .3s ease;
+  z-index: 9998;
+  font-size: 14px;
+}
+
+.scroll-top:hover { background: var(--accent); color: white; transform: translateY(-3px); opacity: 1; }
+.scroll-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+}
+
+.empty-state i {
+  font-size: 36px;
+  color: var(--border2);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.empty-state p { font-size: 13px; }
+
+/* ── ADD FORM CARD ── */
+.add-form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.add-form-card .card-header { margin-bottom: 16px; }
+
+/* hidden */
+.hidden { display: none !important; }
 </style>
+</head>
 
-<style>
-  .scroll-top {
-    position: fixed;
-    right: 105px;   /* KLUCZ: obok Tawk.to */
-    bottom: 20px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #245a86;
-    color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+<body>
 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: 0.3s ease;
+<!-- ════════ LOGIN ════════ -->
+<div id="loginBox">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
+      <span>Panel<span style="color:var(--accent)">Admin</span></span>
+    </div>
+    <h2>Zaloguj się</h2>
+    <p>Wpisz swoje dane dostępowe, aby kontynuować.</p>
 
-    z-index: 9998; /* ważne: pod Tawk */
-}
+    <div class="field-group">
+      <label>Email</label>
+      <div class="input-wrap">
+        <i class="far fa-envelope"></i>
+        <input id="email" type="email" placeholder="twoj@email.pl">
+      </div>
+    </div>
 
-.scroll-top:hover {
-    background: #183c58;
-    transform: translateY(-3px);
-}
+    <div class="field-group">
+      <label>Hasło</label>
+      <div class="input-wrap">
+        <i class="far fa-lock"></i>
+        <input id="password" type="password" placeholder="••••••••">
+      </div>
+    </div>
 
-/* widoczny stan */
-.scroll-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-</style>
+    <button class="btn-login" onclick="login()">
+      <i class="fas fa-arrow-right-to-bracket"></i>
+      Zaloguj się
+    </button>
+  </div>
+</div>
 
+<!-- ════════ PANEL ════════ -->
+<div id="panelBox">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
+      <span class="logo-text">Panel<span>Admin</span></span>
+    </div>
+
+    <div class="sidebar-section">Zarządzanie</div>
+
+    <button class="nav-item active" onclick="openTab('liczby', this)">
+      <i class="fas fa-chart-simple"></i> Liczby
+    </button>
+    <button class="nav-item" onclick="openTab('kalendarz', this)">
+      <i class="fas fa-calendar-days"></i> Kalendarz
+    </button>
+    <button class="nav-item" onclick="openTab('tiktok', this)">
+      <i class="fab fa-tiktok"></i> TikTok
+    </button>
+
+    <div class="sidebar-section">Treści</div>
+
+    <button class="nav-item" onclick="openTab('about', this)">
+      <i class="fas fa-circle-info"></i> O nas
+    </button>
+    <button class="nav-item" onclick="openTab('opinie', this); loadReviews()">
+      <i class="fas fa-star"></i> Opinie
+    </button>
+    <button class="nav-item" onclick="openTab('projekty', this); loadProjects()">
+      <i class="fas fa-images"></i> Projekty
+    </button>
+
+    <div class="sidebar-footer">
+      <button class="nav-item logout" onclick="logout()">
+        <i class="fas fa-arrow-right-from-bracket"></i> Wyloguj
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <span class="topbar-title" id="topbarTitle">
+        Liczby <span>/ Zarządzanie treścią strony</span>
+      </span>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="page-content">
+
+      <!-- ── LICZBY ── -->
+      <div id="liczby" class="section active">
+        <div class="section-header">
+          <h3>Statystyki strony</h3>
+          <p>Edytuj liczby wyświetlane na stronie głównej.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-face-smile"></i></div>
+            <div class="stat-content">
+              <div class="stat-value" id="previewClients">—</div>
+              <div class="stat-label">Zadowoleni klienci</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-scissors"></i></div>
+            <div class="stat-content">
+              <div class="stat-value" id="previewFabrics">—</div>
+              <div class="stat-label">Tkaniny</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-star"></i></div>
+            <div class="stat-content">
+              <div class="stat-value" id="previewReviews">—</div>
+              <div class="stat-label">Opinie</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-pen"></i></div>
+            <div>
+              <div class="card-title">Edytuj wartości</div>
+              <div class="card-sub">Zmiany pojawią się po zapisaniu</div>
+            </div>
+          </div>
+
+          <label class="form-label">Zadowoleni klienci</label>
+          <input id="clients" type="number" class="form-input" placeholder="np. 120">
+
+          <label class="form-label">Tkaniny</label>
+          <input id="fabrics" type="number" class="form-input" placeholder="np. 45">
+
+          <label class="form-label">Opinie</label>
+          <input id="reviews" type="number" class="form-input" placeholder="np. 80">
+
+          <button class="btn btn-save btn-full" onclick="saveCategory('liczby')">
+            <i class="fas fa-floppy-disk"></i> Zapisz liczby
+          </button>
+        </div>
+      </div>
+
+      <!-- ── KALENDARZ ── -->
+      <div id="kalendarz" class="section">
+        <div class="section-header">
+          <h3>Kalendarz dostępności</h3>
+          <p>Podaj numery dni, które mają być oznaczone jako zajęte.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-calendar-xmark"></i></div>
+            <div>
+              <div class="card-title">Zajęte dni</div>
+              <div class="card-sub">Oddziel numery dni przecinkami</div>
+            </div>
+          </div>
+
+          <label class="form-label">Numery dni (np. 3,4,18)</label>
+          <input id="busyDays" class="form-input" placeholder="3,4,18,24">
+
+          <button class="btn btn-save btn-full" onclick="saveCategory('kalendarz')">
+            <i class="fas fa-floppy-disk"></i> Zapisz kalendarz
+          </button>
+        </div>
+      </div>
+
+      <!-- ── TIKTOK ── -->
+      <div id="tiktok" class="section">
+        <div class="section-header">
+          <h3>Linki TikTok</h3>
+          <p>Podaj trzy linki do filmów TikTok wyświetlanych na stronie.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:rgba(0,0,0,.2);color:#fff">
+              <i class="fab fa-tiktok"></i>
+            </div>
+            <div>
+              <div class="card-title">Filmy TikTok</div>
+              <div class="card-sub">Wklej pełny adres URL filmu</div>
+            </div>
+          </div>
+
+          <label class="form-label">Film 1</label>
+          <input id="t1" class="form-input" placeholder="https://www.tiktok.com/...">
+
+          <label class="form-label">Film 2</label>
+          <input id="t2" class="form-input" placeholder="https://www.tiktok.com/...">
+
+          <label class="form-label">Film 3</label>
+          <input id="t3" class="form-input" placeholder="https://www.tiktok.com/...">
+
+          <button class="btn btn-save btn-full" onclick="saveCategory('tiktok')">
+            <i class="fas fa-floppy-disk"></i> Zapisz linki
+          </button>
+        </div>
+      </div>
+
+      <!-- ── ABOUT ── -->
+      <div id="about" class="section">
+        <div id="toolbar"><i class="fas fa-circle" style="font-size:9px"></i> Niebieski tekst</div>
+
+        <div class="section-header">
+          <h3>Sekcja „O nas"</h3>
+          <p>Zaznacz fragment tekstu i kliknij przycisk, aby oznaczyć go na niebiesko.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-file-lines"></i></div>
+            <div>
+              <div class="card-title">Treść</div>
+              <div class="card-sub">Możesz używać znacznika &lt;blue&gt;tekst&lt;/blue&gt;</div>
+            </div>
+          </div>
+
+          <label class="form-label">Tekst</label>
+          <textarea id="aboutText" class="form-input"></textarea>
+
+          <button id="togglePreviewBtn" class="btn btn-primary" style="margin-bottom:12px; width:auto">
+            <i class="far fa-eye"></i> Podgląd
+          </button>
+
+          <div id="previewBox" style="display:none; margin-bottom:14px">
+            <label class="form-label">Podgląd</label>
+            <div id="aboutPreview"></div>
+          </div>
+
+          <button class="btn btn-save btn-full" onclick="saveCategory('about')">
+            <i class="fas fa-floppy-disk"></i> Zapisz „O nas"
+          </button>
+        </div>
+      </div>
+
+      <!-- ── OPINIE ── -->
+      <div id="opinie" class="section">
+        <div class="section-header">
+          <h3>Opinie klientów</h3>
+          <p>Dodawaj, edytuj i usuwaj opinie wyświetlane na stronie.</p>
+        </div>
+
+        <div class="add-form-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-plus"></i></div>
+            <div>
+              <div class="card-title">Dodaj nową opinię</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label class="form-label">Imię i nazwisko</label>
+              <input id="rName" class="form-input" placeholder="Jan Kowalski">
+            </div>
+            <div>
+              <label class="form-label">Data</label>
+              <input id="rDate" class="form-input" placeholder="06.06.2026">
+            </div>
+          </div>
+
+          <label class="form-label">Treść opinii</label>
+          <textarea id="rText" class="form-input" style="height:110px" placeholder="Treść..."></textarea>
+
+          <div class="form-row">
+            <div>
+              <label class="form-label">Link do avatara (opcjonalnie)</label>
+              <input id="rAvatar" class="form-input" placeholder="https://...">
+            </div>
+            <div>
+              <label class="form-label">Ocena (1–5)</label>
+              <input id="rStars" type="number" min="1" max="5" value="5" class="form-input">
+            </div>
+          </div>
+
+          <button class="btn btn-save" onclick="addReview()">
+            <i class="fas fa-plus"></i> Dodaj opinię
+          </button>
+        </div>
+
+        <div class="section-header">
+          <h3>Lista opinii</h3>
+        </div>
+        <div id="reviewsList"></div>
+      </div>
+
+      <!-- ── PROJEKTY ── -->
+      <div id="projekty" class="section">
+        <div class="section-header">
+          <h3>Projekty</h3>
+          <p>Dodawaj i porządkuj projekty wyświetlane w galerii. Przeciągnij kartę, by zmienić kolejność.</p>
+        </div>
+
+        <div class="add-form-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-plus"></i></div>
+            <div>
+              <div class="card-title">Nowy projekt</div>
+            </div>
+          </div>
+
+          <label class="form-label">Etykieta (np. „Projekt 01" / „BMW skóra")</label>
+          <input id="pCounter" class="form-input" placeholder="Projekt 01">
+
+          <label class="form-label">Opis projektu</label>
+          <input id="pTitle" class="form-input" placeholder="Dłuższy opis...">
+
+          <div class="form-row">
+            <div>
+              <label class="form-label">URL zdjęcia PRZED</label>
+              <input id="pBefore" class="form-input" placeholder="https://...">
+            </div>
+            <div>
+              <label class="form-label">URL zdjęcia PO</label>
+              <input id="pAfter" class="form-input" placeholder="https://...">
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn btn-save" onclick="addProject()">
+              <i class="fas fa-plus"></i> Dodaj projekt
+            </button>
+            <button class="btn btn-primary" id="importProjectsBtn" onclick="importOldProjects()">
+              <i class="fas fa-file-import"></i> Importuj istniejące (tylko raz!)
+            </button>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <h3>Lista projektów <span style="font-size:12px;color:var(--muted);font-weight:400">— przeciągnij, by zmienić kolejność</span></h3>
+        </div>
+        <div id="projectsList"></div>
+      </div>
+
+    </div><!-- /page-content -->
+  </main>
+</div><!-- /panelBox -->
+
+<button class="scroll-top" id="scrollTopBtn">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ════════════ SCRIPTS ════════════ -->
 <script>
 const scrollBtn = document.getElementById("scrollTopBtn");
-
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-        scrollBtn.classList.add("show");
-    } else {
-        scrollBtn.classList.remove("show");
-    }
+  scrollBtn.classList.toggle("show", window.scrollY > 300);
 });
-
-scrollBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
+scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 </script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserLocalPersistence, signOut }
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
 import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  collection,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  updateDoc,
-  writeBatch,
-  query,
-  orderBy
-}
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  getFirestore, doc, getDoc, setDoc, collection, getDocs,
+  addDoc, deleteDoc, updateDoc, writeBatch, query, orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-/* FIREBASE */
+/* ── FIREBASE ── */
 const app = initializeApp({
   apiKey: "AIzaSyBUU4jcNfegYzyQwAfdUu2mtR7tEnaVN1w",
   authDomain: "panel-wow.firebaseapp.com",
   projectId: "panel-wow"
 });
-
 const auth = getAuth();
-const db = getFirestore();
+const db   = getFirestore();
 
-/* STATE */
+/* ── STATE ── */
 let state = {};
 let currentTab = "liczby";
 let dirty = { liczby:false, kalendarz:false, tiktok:false, about:false };
 
-/* ELEMENTS */
-const clients = document.getElementById("clients");
-const fabrics = document.getElementById("fabrics");
-const reviews = document.getElementById("reviews");
-const busyDays = document.getElementById("busyDays");
+/* ── ELEMENTS ── */
+const clients   = document.getElementById("clients");
+const fabrics   = document.getElementById("fabrics");
+const reviews   = document.getElementById("reviews");
+const busyDays  = document.getElementById("busyDays");
 const t1 = document.getElementById("t1");
 const t2 = document.getElementById("t2");
 const t3 = document.getElementById("t3");
 const aboutText = document.getElementById("aboutText");
 const aboutPreview = document.getElementById("aboutPreview");
-const toolbar = document.getElementById("toolbar");
+const toolbar   = document.getElementById("toolbar");
 
-/* TAB SWITCH */
+/* ── TAB SWITCH ── */
+const TAB_TITLES = {
+  liczby:    'Liczby <span>/ Zarządzanie treścią strony</span>',
+  kalendarz: 'Kalendarz <span>/ Dostępność</span>',
+  tiktok:    'TikTok <span>/ Linki do filmów</span>',
+  about:     'O nas <span>/ Opis firmy</span>',
+  opinie:    'Opinie <span>/ Zarządzanie opiniami</span>',
+  projekty:  'Projekty <span>/ Galeria realizacji</span>',
+};
+
 window.openTab = (tab, el) => {
-
   if (tab === currentTab) return;
 
   if (dirty[currentTab]) {
@@ -738,348 +1262,248 @@ window.openTab = (tab, el) => {
   }
 
   document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-
+  document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
   document.getElementById(tab).classList.add("active");
   el.classList.add("active");
 
   currentTab = tab;
+  document.getElementById("topbarTitle").innerHTML = TAB_TITLES[tab] || tab;
 };
 
-/* TOOLBAR (BLUE TEXT) */
+/* ── TOOLBAR (blue text) ── */
 aboutText.addEventListener("mouseup", showToolbar);
-aboutText.addEventListener("keyup", showToolbar);
+aboutText.addEventListener("keyup",   showToolbar);
 
 function showToolbar() {
   const start = aboutText.selectionStart;
-  const end = aboutText.selectionEnd;
-
-  if (start === end) {
-    toolbar.style.display = "none";
-    return;
-  }
-
+  const end   = aboutText.selectionEnd;
+  if (start === end) { toolbar.style.display = "none"; return; }
   const rect = aboutText.getBoundingClientRect();
-
   toolbar.style.display = "block";
-  toolbar.style.top = (rect.top - 40) + "px";
+  toolbar.style.top  = (rect.top - 44 + window.scrollY) + "px";
   toolbar.style.left = rect.left + "px";
 }
 
-/* INSERT BLUE */
 toolbar.addEventListener("click", () => {
   const start = aboutText.selectionStart;
-  const end = aboutText.selectionEnd;
-
-  const selected = aboutText.value.substring(start, end);
-
-  if (!selected) return;
-
-  aboutText.setRangeText(
-    `<blue>${selected}</blue>`,
-    start,
-    end,
-    "end"
-  );
-
+  const end   = aboutText.selectionEnd;
+  const sel   = aboutText.value.substring(start, end);
+  if (!sel) return;
+  aboutText.setRangeText(`<blue>${sel}</blue>`, start, end, "end");
   aboutText.dispatchEvent(new Event("input"));
+  toolbar.style.display = "none";
 });
 
-/* PREVIEW */
+/* ── PREVIEW ── */
 function renderAbout() {
   aboutPreview.innerHTML = (aboutText.value || "")
-    .replace(/<blue>(.*?)<\/blue>/g,'<span class="blue-letter">$1</span>');
+    .replace(/<blue>(.*?)<\/blue>/g, '<span class="blue-letter">$1</span>');
 }
-
 aboutText.addEventListener("input", renderAbout);
 
-/* TOGGLE PREVIEW */
 const previewBox = document.getElementById("previewBox");
-const toggleBtn = document.getElementById("togglePreviewBtn");
-
+const toggleBtn  = document.getElementById("togglePreviewBtn");
 toggleBtn.addEventListener("click", () => {
   const show = previewBox.style.display !== "block";
   previewBox.style.display = show ? "block" : "none";
-  toggleBtn.textContent = show ? "🙈 Ukryj podgląd" : "👁 Podgląd";
+  toggleBtn.innerHTML = show
+    ? '<i class="far fa-eye-slash"></i> Ukryj podgląd'
+    : '<i class="far fa-eye"></i> Podgląd';
 });
 
-/* DIRTY TRACKING */
-[clients,fabrics,reviews,busyDays,t1,t2,t3,aboutText].forEach(el=>{
-  el.addEventListener("input", ()=> dirty[currentTab]=true);
+/* ── DIRTY TRACKING ── */
+[clients,fabrics,reviews,busyDays,t1,t2,t3,aboutText].forEach(el => {
+  el.addEventListener("input", () => dirty[currentTab] = true);
 });
 
-/* LOAD */
+/* ── UPDATE STAT PREVIEW ── */
+function updateStatPreviews() {
+  document.getElementById("previewClients").textContent = clients.value || "—";
+  document.getElementById("previewFabrics").textContent = fabrics.value || "—";
+  document.getElementById("previewReviews").textContent = reviews.value || "—";
+}
+[clients,fabrics,reviews].forEach(el => el.addEventListener("input", updateStatPreviews));
+
+/* ── LOAD ── */
 async function loadData() {
   const snap = await getDoc(doc(db, "settings", "main"));
   state = snap.data() || {};
-
-  clients.value = state.clients || "";
-  fabrics.value = state.fabrics || "";
-  reviews.value = state.reviews || "";
+  clients.value  = state.clients || "";
+  fabrics.value  = state.fabrics || "";
+  reviews.value  = state.reviews || "";
   busyDays.value = state.busyDays || "";
-
   t1.value = state.tiktok1 || "";
   t2.value = state.tiktok2 || "";
   t3.value = state.tiktok3 || "";
-
   aboutText.value = state.aboutText || "";
-
+  updateStatPreviews();
   renderAbout();
 }
 
 async function loadReviews() {
   const box = document.getElementById("reviewsList");
   if (!box) return;
-  box.innerHTML = "";
+  box.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Ładowanie opinii…</p></div>';
 
   const snap = await getDocs(collection(db, "reviews"));
+  const arr = [];
+  snap.forEach(d => arr.push({ id: d.id, data: d.data() }));
 
-const docsArray = [];
-snap.forEach((docSnap) => {
-  docsArray.push({ id: docSnap.id, data: docSnap.data() });
-});
+  arr.sort((a, b) => {
+    const parse = s => { if (!s) return 0; const [d,m,y] = s.split('.'); return new Date(y,m-1,d).getTime(); };
+    return parse(b.data.date) - parse(a.data.date);
+  });
 
-// sortowanie po dacie DD.MM.YYYY od najnowszej
-docsArray.sort((a, b) => {
-  function parseDate(str) {
-    if (!str) return 0;
-    const [d, m, y] = str.split('.');
-    return new Date(y, m - 1, d).getTime();
+  box.innerHTML = "";
+  if (!arr.length) {
+    box.innerHTML = '<div class="empty-state"><i class="far fa-star"></i><p>Brak opinii. Dodaj pierwszą powyżej.</p></div>';
+    return;
   }
-  return parseDate(b.data.date) - parseDate(a.data.date);
-});
 
-docsArray.forEach(({ id, data: r }) => {
-  const stars = '★'.repeat(r.stars || 5) + '☆'.repeat(5 - (r.stars || 5));
+  arr.forEach(({ id, data: r }) => {
+    const stars = '★'.repeat(r.stars||5) + '☆'.repeat(5-(r.stars||5));
+    const initials = (r.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    const avatarHTML = r.avatar
+      ? `<img class="review-admin-avatar" src="${r.avatar}" alt="${r.name}">`
+      : `<div class="review-admin-avatar-placeholder">${initials}</div>`;
 
-  const initials = (r.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
-  const avatarHTML = r.avatar
-    ? `<img class="review-admin-avatar" src="${r.avatar}" alt="${r.name}">`
-    : `<div class="review-admin-avatar-placeholder">${initials}</div>`;
-
-  const div = document.createElement("div");
-  div.className = "review-admin";
-
-  div.innerHTML = `
-    ${avatarHTML}
-    <div class="review-admin-body">
-      <div class="review-admin-header">
-        <span class="review-admin-name">${r.name}</span>
-        <span class="review-admin-date">${r.date || ""}</span>
+    const div = document.createElement("div");
+    div.className = "review-admin";
+    div.innerHTML = `
+      ${avatarHTML}
+      <div class="review-admin-body">
+        <div class="review-admin-header">
+          <span class="review-admin-name">${r.name}</span>
+          <span class="review-admin-date">${r.date||""}</span>
+        </div>
+        <div class="review-admin-stars">${stars}</div>
+        <div class="review-admin-text">${r.text}</div>
       </div>
-      <div class="review-admin-stars">${stars}</div>
-      <div class="review-admin-text">${r.text}</div>
-    </div>
-    <div class="review-admin-actions">
-      <button class="review-edit" onclick="editReview('${id}', this)" title="Edytuj">✏️</button>
-      <button class="review-delete" onclick="deleteReview('${id}')" title="Usuń">✕</button>
-    </div>
-  `;
-
-  box.appendChild(div);
-});
+      <div class="review-admin-actions">
+        <button class="review-edit" onclick="editReview('${id}', this)" title="Edytuj"><i class="fas fa-pen"></i></button>
+        <button class="review-delete" onclick="deleteReview('${id}')" title="Usuń"><i class="fas fa-trash"></i></button>
+      </div>`;
+    box.appendChild(div);
+  });
 }
 
-/* SAVE */
+/* ── SAVE ── */
 window.saveCategory = async (cat) => {
-
   const ok = confirm("Czy na pewno zatwierdzić zmiany?");
   if (!ok) return;
 
   if (cat === "liczby") {
     state.clients = Number(clients.value);
     state.fabrics = Number(fabrics.value);
+    state.reviews = Number(reviews.value);
   }
-
-  if (cat === "kalendarz") {
-    state.busyDays = busyDays.value;
-  }
-
-  if (cat === "tiktok") {
-    state.tiktok1 = t1.value;
-    state.tiktok2 = t2.value;
-    state.tiktok3 = t3.value;
-  }
-
-  if (cat === "about") {
-    state.aboutText = aboutText.value;
-  }
+  if (cat === "kalendarz") state.busyDays = busyDays.value;
+  if (cat === "tiktok") { state.tiktok1 = t1.value; state.tiktok2 = t2.value; state.tiktok3 = t3.value; }
+  if (cat === "about") state.aboutText = aboutText.value;
 
   await setDoc(doc(db, "settings", "main"), state);
-
   dirty[cat] = false;
   alert("Zapisano!");
 };
 
-/* LOGIN */
+/* ── AUTH ── */
 window.login = async () => {
-  await setPersistence(auth, browserLocalPersistence);
-  await signInWithEmailAndPassword(auth, email.value, password.value);
-
-  loginBox.classList.add("hidden");
-  panelBox.classList.remove("hidden");
-
-loadData();
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+    await signInWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value);
+  } catch(e) {
+    alert("Błąd logowania: " + e.message);
+  }
 };
 
-onAuthStateChanged(auth, (user)=>{
-  if(user){
-    loginBox.classList.add("hidden");
-    panelBox.classList.remove("hidden");
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("loginBox").classList.add("hidden");
+    const pb = document.getElementById("panelBox");
+    pb.classList.remove("hidden");
+    pb.classList.add("visible");
     loadData();
     loadReviews();
   } else {
-    loginBox.classList.remove("hidden");
-    panelBox.classList.add("hidden");
+    document.getElementById("loginBox").classList.remove("hidden");
+    const pb = document.getElementById("panelBox");
+    pb.classList.add("hidden");
+    pb.classList.remove("visible");
   }
 });
 
-/* LOGOUT */
-window.logout = async () => {
-  await signOut(auth);
-};
+window.logout = async () => { await signOut(auth); };
 
+/* ── ADD REVIEW ── */
 window.addReview = async () => {
-
-  const name = document.getElementById("rName").value;
-  const text = document.getElementById("rText").value;
-  const date = document.getElementById("rDate").value;
+  const name  = document.getElementById("rName").value;
+  const text  = document.getElementById("rText").value;
+  const date  = document.getElementById("rDate").value;
   const avatar = document.getElementById("rAvatar").value;
   const stars = Number(document.getElementById("rStars").value);
 
-  if (!name || !text) {
-    alert("Uzupełnij imię i treść");
-    return;
-  }
+  if (!name || !text) { alert("Uzupełnij imię i treść"); return; }
+  if (!confirm("Dodać opinię?")) return;
 
-  const ok = confirm("Dodać opinię?");
-  if (!ok) return;
-
-  await addDoc(collection(db, "reviews"), {
-    name,
-    text,
-    date,
-    avatar,
-    stars,
-    createdAt: Date.now(),
-    updatedAt: Date.now()
-  });
-
-  // czyszczenie inputów
-  document.getElementById("rName").value = "";
-  document.getElementById("rText").value = "";
-  document.getElementById("rDate").value = "";
-  document.getElementById("rAvatar").value = "";
+  await addDoc(collection(db, "reviews"), { name, text, date, avatar, stars, createdAt: Date.now(), updatedAt: Date.now() });
+  ["rName","rText","rDate","rAvatar"].forEach(id => document.getElementById(id).value = "");
   document.getElementById("rStars").value = 5;
-
   loadReviews();
 };
 
 window.deleteReview = async (id) => {
-
-  const ok = confirm("Na pewno usunąć tę opinię?");
-  if (!ok) return;
-
+  if (!confirm("Na pewno usunąć tę opinię?")) return;
   await deleteDoc(doc(db, "reviews", id));
-
   loadReviews();
 };
-
-window.importOldReviews = async () => {
-
-  const ok = confirm("Zaimportować stare opinie do Firebase?");
-  if (!ok) return;
-
-  const oldReviews = [
-  {name:"Ewelina Oleksiak",text:"Jestem bardzo zadowolona z usługi czyszczenia kanapy i dywanu. Już od pierwszego kontaktu obsługa była profesjonalna i uprzejma, a cały proces przebiegał sprawnie i bezproblemowo. Kanapa, która wcześniej miała widoczne plamy i ślady użytkowania, wygląda teraz jak nowa – odzyskała świeżość, kolor i przyjemny zapach. Dywan również został dokładnie wyczyszczony, a wszelkie zabrudzenia zostały skutecznie usunięte. Z czystym sumieniem polecam tą firmę każdemu, kto chce odświeżyć swoje meble i dywany – efekt naprawdę robi wrażenie!",stars:5,date:"19.03.2026",avatar:"https://lh3.googleusercontent.com/a/ACg8ocIYh6XU7Eaq1rphXXz0-pL_jtIfpLlDA9yoEbhBPGenJFYlJw=w36-h36-p-rp-mo-br100"},
-  {name:"P L",text:"Szybka i sprawnie wykonana usługa. Dosyć trudne plamy zalanej olejem tapicerki z samochodu po wykonanym praniu i odświeżeniu jak najbardziej odzyskały pierwotny wygląd. Polecam jeśli chodzi o wykonywanie podobnych usług. Konkurencyjna cena oraz szybki termin realizacji.",stars:5,date:"16.03.2026",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjWhK19Pu0PkVcW_4bJPUT8cUlp4GFfrhQS-a5LWLvVP-iA2p8Qh=w36-h36-p-rp-mo-br100"},
-  {name:"Ewa Zaremba-Flis",text:"Polecam! Kanapy i fotele (a także walizka) wyczyszczane perfekcyjnie.",stars:5,date:"08.03.2026",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjVjIln1TtKj3_ZEyIhZ0wOgkFTxQEiWqSyt7J7FcyqQlP9ebIBf=w36-h36-p-rp-mo-br100"},
-  {name:"Robert B",text:"Polecam. Dywany umyte szybko i sprawnie.",stars:5,date:"14.02.2026",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLXDkewzECCcmXdEoJf3ppDDJfdexsKXtZD1n8rvvec5-G9vQ=w36-h36-p-rp-mo-ba3-br100"},
-  {name:"Marta B",text:"Świetny kontakt, szybko i starannie wykonane czyszczenie samochodu wewnątrz, dziękuję raz jeszcze i polecam :)",stars:5,date:"27.12.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocIRCbaYp2bT6P4AsPLUCGm2z-pnFcnG6lNHYhc4ZTHchVksYQ=w36-h36-p-rp-mo-br100"},
-  {name:"Kosma Bit",text:"Profesjonalnie, sprawnie i bardzo dokładnie wykonane czyszczenie. Przesympatyczny Pan. Z pewnością skorzystam z usług ponownie.",stars:5,date:"17.12.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLUH1A8DTOsJqvaAjKcnwGJy-pbPR0idXLVHjmeE9-zlkMZJQ=w36-h36-p-rp-mo-br100"},
-  {name:"Agnieszka Łoza",text:"Jestem bardzo zadowolona, pełny profesjonalizm. Polecam",stars:5,date:"11.12.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKsSbUhLQDe6RrwQmHvWW3UG6zWlOmbtzVyvJWm8RNMZbFolw=s120-c-rp-mo-br100"},
-  {name:"Agnieszka Machałek",text:"Jesteśmy bardzo zadowoleni z profesjonalnej usługi czyszczenia dywanów- wyglądają jak nowe! Świetny kontakt, zaskakujące efekty i konkurencyjna cena. Polecamy szczerze, a my na pewno skorzystamy kolejny raz!",stars:5,date:"29.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocJSEuUWDk2Jv3fP_M5-cXFhal4K_aIBiUo3AKcls4umV_Reuw=s120-c-rp-mo-br100"},
-  {name:"Wojtek Łachno (Wojtaszmc)",text:"Super kontakt oraz super wykonana robota. Na pewno skorzystam jeszcze raz.",stars:5,date:"25.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocICJ2-UL8ZpJUK-eG2mXkq55LZ10JCZiDYxxtcJQHmJxXCsZA=s120-c-rp-mo-br100"},
-  {name:"Grzegorz Oczkowski",text:"Profesjonalizm w każdym calu. Jestem bardzo zadowolony z usługi! 5/5 gwiazdek!",stars:5,date:"21.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLndAeoeHVvX-He_Xp4m-LaBC2eNXsxqdxqqs0LQehJamVF0w=s120-c-rp-mo-br100"},
-  {name:"Ada Ziobro",text:"Świetnie wykonana usługa czyszczenia kanapy, gorąco polecam!",stars:5,date:"14.11.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocJHt31xozRYtHNiV0wL-tiDGS31AgyQdWsnVuHTl4Jvt4bpii0=s120-c-rp-mo-br100"},
-  {name:"Katarzyna Wilkos",text:"Miałam przyjemność skorzystać z usługi komoleksowego sprzątania auta oraz prania tapicerki 😊 robota wykonana perfekcyjnie, auto było w złym stanie a odebrałam calkiem co innego! Z plam po oleju na jasnej podłodze ani śladu. A cena za tak dobrze wykonaną robotę po prostu niemożliwa🔥 Szczerze polecam!",stars:5,date:"24.09.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKYBik_3NWwMeaUYD1CM3SAo80XuFL3EJkJHI6oeSjLkXhb9g=s120-c-rp-mo-br100"},
-  {name:"rafal4610",text:"Usługa wykonana solidnie. Polecam każdemu",stars:5,date:"21.09.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKhdm5PcTf3xAK4yeC8DMT4TLQR-KXSyvuDVj3qmpwclYdoYQ=s120-c-rp-mo-br100"},
-  {name:"Piotr Teterycz",text:"Szybko sprawnie fachowo polecam 👍",stars:5,date:"28.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocJKeIN9jIGAdGSWlICY7Mcw0RM1lL7jfskLrNh0i1bzTOFlhw=s120-c-rp-mo-br100"},
-  {name:"Sylwia Ja",text:"Serio efekt wow. Dywan wyprany błyskawiczne☺️Polecam",stars:5,date:"25.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocI_xEL1NmymYb2cteJT6cWB0qjniH8aUVRUto7ZKn5vqp1S5g=s120-c-rp-mo-br100"},
-  {name:"Fox'",text:"Polecam. Pan Krystian wyprał wyczyścił mój dywan, który spisałem na straty",stars:5,date:"23.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocLANRi0I9jNTWd8kENuFsJQBjIKwOXjV6Haic6MRtfac-emzQ=s120-c-rp-mo-br100"},
-  {name:"piotr sekulka",text:"Profesjonalnie wykonana usługa",stars:5,date:"19.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocIsseaBVRr_V8RonLyRhUf8x0hAbwPvqGGhGaIagp00uaQRzg=s120-c-rp-mo-br100"},
-  {name:"Emilia Jachorek",text:"Oddałam 2 auta na mycie i pranie wnętrza – efekt przerósł moje oczekiwania! Auta wyglądaja jak nowe, pachna świeżo, każdy detal dopracowany. Usługa wykonana perfekcyjnie i z pełnym zaangażowaniem ponad to co oczekiwałam. Zdecydowanie polecam!",stars:5,date:"15.08.2025",avatar:"https://lh3.googleusercontent.com/a/ACg8ocKE9_ebwyv2rGDP7mlx2DgXxn1YPADyMO1a--3fycjOFwpiTg=s120-c-rp-mo-br100"},
-  {name:"Wioleta Krukowska",text:"Polecam z całego ♥️, usługa dobrze wykonana, tapicerka wygląda jak nowa. Pełen profesjonalizm i sumienność. Wszystko zrobione szybko i dokładnie a co najważniejsze cena naprawdę w porządku.",stars:5,date:"12.07.2025",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjXg5cPZW-rgKau1fsbfbeoFsTo_YpRJnH_iRpOmEtPCooR59W9W=s120-c-rp-mo-br100"},
-  {name:"Sacky",text:"Zdecydowanie polecam! Bardzo dobrze wykonana praca, jakościowe czyszczenie spełniło moje oczekiwania.",stars:5,date:"10.07.2025",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjVleeaYHxVpy9bc3K2eJ9jqwobhyWPQB6YRXlwf6_oBrkREZiF9=s120-c-rp-mo-br100"},
-  {name:"KasiuLa",text:"Polecam. Po czyszczeniu tapicerki w aucie i ogólnie całego środka jestem mega zadowolona!",stars:5,date:"10.07.2025",avatar:"https://lh3.googleusercontent.com/a-/ALV-UjXJByoho1bXJbdp_fcYXB9OZ4iXNuTwDxImsY8_KDMwch1R-50=s120-c-rp-mo-br100"}
-];
-
-  for (const r of oldReviews) {
-    await addDoc(collection(db, "reviews"), {
-      name: r.name,
-      text: r.text,
-      stars: r.stars,
-      date: r.date,
-      avatar: r.avatar,
-      createdAt: Date.now()
-    });
-  }
-
-  alert("Import zakończony! Zaimportowano " + oldReviews.length + " opinii.");
-  loadReviews();
-};
-
 
 window.editReview = (id, btn) => {
-  // znajdź kartę opinii
-  const card = btn.closest('.review-admin');
-  const name = card.querySelector('.review-admin-name').textContent;
-  const date = card.querySelector('.review-admin-date').textContent;
-  const text = card.querySelector('.review-admin-text').textContent;
-  const stars = card.querySelectorAll('.review-admin-stars')[0].textContent
-    .split('').filter(c => c === '★').length;
+  const card   = btn.closest('.review-admin');
+  const name   = card.querySelector('.review-admin-name').textContent;
+  const date   = card.querySelector('.review-admin-date').textContent;
+  const text   = card.querySelector('.review-admin-text').textContent;
+  const stars  = card.querySelector('.review-admin-stars').textContent.split('').filter(c=>c==='★').length;
   const avatarEl = card.querySelector('.review-admin-avatar');
   const avatar = avatarEl ? avatarEl.src : '';
 
-  // usuń poprzedni modal jeśli był
   document.getElementById('editModal')?.remove();
 
-  // stwórz modal
   const overlay = document.createElement('div');
   overlay.className = 'edit-modal-overlay';
   overlay.id = 'editModal';
-
   overlay.innerHTML = `
     <div class="edit-modal">
-      <h3>✏️ Edytuj opinię</h3>
+      <h3><i class="fas fa-pen" style="color:var(--accent);font-size:14px"></i> Edytuj opinię</h3>
       <input id="eName" value="${name}" placeholder="Imię i nazwisko">
       <textarea id="eText" placeholder="Treść opinii">${text}</textarea>
       <input id="eDate" value="${date}" placeholder="Data">
       <input id="eAvatar" value="${avatar}" placeholder="Link do avatara">
       <input id="eStars" type="number" min="1" max="5" value="${stars}">
       <div class="edit-modal-btns">
-        <button style="background:#eee; color:#111"
-          onclick="document.getElementById('editModal').remove()">
-          Anuluj
-        </button>
-        <button style="background:linear-gradient(135deg,#2d7cff,#1a5cff); color:white"
-          onclick="saveEditReview('${id}')">
-          Zapisz
-        </button>
+        <button style="background:var(--surface2);color:var(--text)" onclick="document.getElementById('editModal').remove()">Anuluj</button>
+        <button style="background:var(--accent);color:white" onclick="saveEditReview('${id}')">Zapisz</button>
       </div>
-    </div>
-  `;
-
+    </div>`;
   document.body.appendChild(overlay);
-
-  // zamknij klikając poza modalem
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) overlay.remove();
-  });
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
 };
 
-/* ===================== PROJEKTY ===================== */
+window.saveEditReview = async (id) => {
+  const name  = document.getElementById('eName').value;
+  const text  = document.getElementById('eText').value;
+  const date  = document.getElementById('eDate').value;
+  const avatar = document.getElementById('eAvatar').value;
+  const stars = Number(document.getElementById('eStars').value);
 
+  if (!name || !text) { alert('Uzupełnij imię i treść'); return; }
+  if (!confirm('Zapisać zmiany?')) return;
+
+  await setDoc(doc(db, 'reviews', id), { name, text, date, avatar, stars, updatedAt: Date.now() }, { merge: true });
+  document.getElementById('editModal').remove();
+  loadReviews();
+};
+
+/* ── PROJECTS ── */
 const OLD_PROJECTS = [
   { title: "Czarna skóra podłokietnika BMW, która była zabrudzona i miejscami zaplamiona, została dokładnie oczyszczona oraz zaimpregnowana przy użyciu specjalistycznych preparatów do pielęgnacji skóry. Dzięki temu odzyskała swój pierwotny wygląd, miękkość i elegancki połysk.", before: "assets/images/projekty/przed1.png", after: "assets/images/projekty/po1.png" },
   { title: "Jasna wykładzina bagażnika BMW pełna piasku, brudu oraz licznych plam olejowych. Właściciel był przekonany, że nadaje się już tylko do wymiany. Udało nam się przywrócić jej wygląd niemal jak nowy. Dodane przez nas pasy nadały wnętrzu wyjątkowego uroku i stylu.", before: "assets/images/projekty/przed2.png", after: "assets/images/projekty/po2.png" },
@@ -1093,24 +1517,23 @@ const OLD_PROJECTS = [
 window.loadProjects = async () => {
   const box = document.getElementById("projectsList");
   if (!box) return;
-  box.innerHTML = '<p style="color:#999;font-size:13px">Ładowanie...</p>';
+  box.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Ładowanie projektów…</p></div>';
 
   let snap;
   try {
     snap = await getDocs(collection(db, "projects"));
   } catch(err) {
-    box.innerHTML = '<p style="color:#ff4d4d;font-size:13px">❌ Błąd Firestore: ' + err.message + '<br><br>Sprawdź reguły bezpieczeństwa w Firebase — kolekcja "projects" musi być dozwolona.</p>';
+    box.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation" style="color:var(--danger)"></i><p>Błąd Firestore: ${err.message}</p></div>`;
     return;
   }
 
   const arr = [];
   snap.forEach(d => arr.push({ id: d.id, ...d.data() }));
-  arr.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+  arr.sort((a,b) => (a.order??999) - (b.order??999));
 
   box.innerHTML = "";
-
-  if (arr.length === 0) {
-    box.innerHTML = '<p style="color:#999;font-size:13px">Brak projektów. Dodaj pierwszy lub zaimportuj istniejące.</p>';
+  if (!arr.length) {
+    box.innerHTML = '<div class="empty-state"><i class="far fa-images"></i><p>Brak projektów. Dodaj pierwszy lub zaimportuj istniejące.</p></div>';
     return;
   }
 
@@ -1121,24 +1544,22 @@ window.loadProjects = async () => {
     div.dataset.id = p.id;
     div.dataset.order = p.order ?? idx;
 
-    const shortTitle = p.title ? (p.title.length > 60 ? p.title.slice(0,60)+"…" : p.title) : "(brak opisu)";
+    const shortTitle = p.title ? (p.title.length>60 ? p.title.slice(0,60)+"…" : p.title) : "(brak opisu)";
 
     div.innerHTML = `
-      <span class="project-admin-drag-handle" title="Przeciągnij aby zmienić kolejność">☰</span>
+      <span class="project-admin-drag-handle" title="Przeciągnij">⠿</span>
       <div class="project-admin-thumb">
-        ${p.before ? `<img src="${p.before}" alt="przed" title="Przed">` : '<div style="width:60px;height:48px;border-radius:8px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#aaa">brak</div>'}
-        ${p.after ? `<img src="${p.after}" alt="po" title="Po">` : '<div style="width:60px;height:48px;border-radius:8px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#aaa">brak</div>'}
+        ${p.before ? `<img src="${p.before}" alt="przed">` : '<div style="width:58px;height:46px;border-radius:8px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted)">brak</div>'}
+        ${p.after  ? `<img src="${p.after}"  alt="po">`    : '<div style="width:58px;height:46px;border-radius:8px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted)">brak</div>'}
       </div>
       <div class="project-admin-body">
-        <div class="project-admin-order">${p.counter || ""}</div>
+        <div class="project-admin-order">${p.counter||""}</div>
         <div class="project-admin-title">${shortTitle}</div>
       </div>
       <div class="project-admin-actions">
-        <button class="project-edit" onclick="editProject('${p.id}')" title="Edytuj">✏️</button>
-        <button class="project-delete" onclick="deleteProject('${p.id}')" title="Usuń">✕</button>
-      </div>
-    `;
-
+        <button class="project-edit"   onclick="editProject('${p.id}')"   title="Edytuj"><i class="fas fa-pen"></i></button>
+        <button class="project-delete" onclick="deleteProject('${p.id}')" title="Usuń"><i class="fas fa-trash"></i></button>
+      </div>`;
     box.appendChild(div);
   });
 
@@ -1147,30 +1568,17 @@ window.loadProjects = async () => {
 
 function initProjectDragDrop(box) {
   let dragSrc = null;
-
   box.querySelectorAll(".project-admin").forEach(item => {
-    item.addEventListener("dragstart", e => {
-      dragSrc = item;
-      item.classList.add("dragging");
-      e.dataTransfer.effectAllowed = "move";
-    });
-    item.addEventListener("dragend", () => {
-      item.classList.remove("dragging");
-      box.querySelectorAll(".project-admin").forEach(i => i.classList.remove("drag-over"));
-      saveProjectOrder(box);
-    });
+    item.addEventListener("dragstart", e => { dragSrc = item; item.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; });
+    item.addEventListener("dragend", () => { item.classList.remove("dragging"); box.querySelectorAll(".project-admin").forEach(i=>i.classList.remove("drag-over")); saveProjectOrder(box); });
     item.addEventListener("dragover", e => {
       e.preventDefault();
       if (item === dragSrc) return;
-      box.querySelectorAll(".project-admin").forEach(i => i.classList.remove("drag-over"));
+      box.querySelectorAll(".project-admin").forEach(i=>i.classList.remove("drag-over"));
       item.classList.add("drag-over");
-      const rect = item.getBoundingClientRect();
-      const mid = rect.top + rect.height / 2;
-      if (e.clientY < mid) {
-        box.insertBefore(dragSrc, item);
-      } else {
-        box.insertBefore(dragSrc, item.nextSibling);
-      }
+      const mid = item.getBoundingClientRect().top + item.getBoundingClientRect().height/2;
+      if (e.clientY < mid) box.insertBefore(dragSrc, item);
+      else box.insertBefore(dragSrc, item.nextSibling);
     });
   });
 }
@@ -1178,148 +1586,89 @@ function initProjectDragDrop(box) {
 async function saveProjectOrder(box) {
   const items = box.querySelectorAll(".project-admin");
   const batch = writeBatch(db);
-  items.forEach((item, idx) => {
-    const ref = doc(db, "projects", item.dataset.id);
-    batch.update(ref, { order: idx });
-
-  });
+  items.forEach((item,idx) => batch.update(doc(db,"projects",item.dataset.id), { order: idx }));
   await batch.commit();
 }
 
 window.addProject = async () => {
   const counter = document.getElementById("pCounter").value.trim();
-  const title = document.getElementById("pTitle").value.trim();
-  const before = document.getElementById("pBefore").value.trim();
-  const after = document.getElementById("pAfter").value.trim();
+  const title   = document.getElementById("pTitle").value.trim();
+  const before  = document.getElementById("pBefore").value.trim();
+  const after   = document.getElementById("pAfter").value.trim();
 
-  if (!counter && !title && !before && !after) {
-    alert("Uzupełnij przynajmniej etykietę, opis lub zdjęcia projektu");
-    return;
-  }
+  if (!counter && !title && !before && !after) { alert("Uzupełnij przynajmniej jedno pole"); return; }
+  if (!confirm("Dodać projekt?")) return;
 
-  const ok = confirm("Dodać projekt?");
-  if (!ok) return;
-
-  // get current max order
-  const snap = await getDocs(collection(db, "projects"));
+  const snap = await getDocs(collection(db,"projects"));
   let maxOrder = -1;
-  snap.forEach(d => { const o = d.data().order ?? 0; if (o > maxOrder) maxOrder = o; });
+  snap.forEach(d => { const o = d.data().order??0; if(o>maxOrder) maxOrder=o; });
 
-  await addDoc(collection(db, "projects"), {
-    counter,
-    title,
-    before,
-    after,
-    order: maxOrder + 1,
-    createdAt: Date.now()
-  });
-
-  document.getElementById("pCounter").value = "";
-  document.getElementById("pTitle").value = "";
-  document.getElementById("pBefore").value = "";
-  document.getElementById("pAfter").value = "";
-
+  await addDoc(collection(db,"projects"), { counter, title, before, after, order: maxOrder+1, createdAt: Date.now() });
+  ["pCounter","pTitle","pBefore","pAfter"].forEach(id => document.getElementById(id).value="");
   loadProjects();
 };
 
 window.deleteProject = async (id) => {
-  const ok = confirm("Na pewno usunąć ten projekt?");
-  if (!ok) return;
-  await deleteDoc(doc(db, "projects", id));
+  if (!confirm("Na pewno usunąć ten projekt?")) return;
+  await deleteDoc(doc(db,"projects",id));
   loadProjects();
 };
 
 window.editProject = async (id) => {
-  const snap = await getDoc(doc(db, "projects", id));
+  const snap = await getDoc(doc(db,"projects",id));
   if (!snap.exists()) return;
   const p = snap.data();
 
   document.getElementById("editModal")?.remove();
-
   const overlay = document.createElement("div");
   overlay.className = "edit-modal-overlay";
   overlay.id = "editModal";
-
   overlay.innerHTML = `
     <div class="edit-modal">
-      <h3>✏️ Edytuj projekt</h3>
-      <input id="epCounter" value="${p.counter || ""}" placeholder="Etykieta np. Projekt 01 / BMW skóra">
-      <textarea id="epTitle" placeholder="Opis projektu" style="height:100px">${p.title || ""}</textarea>
-      <input id="epBefore" value="${p.before || ""}" placeholder="URL zdjęcia PRZED">
-      <input id="epAfter" value="${p.after || ""}" placeholder="URL zdjęcia PO">
+      <h3><i class="fas fa-pen" style="color:var(--accent);font-size:14px"></i> Edytuj projekt</h3>
+      <input id="epCounter" value="${p.counter||""}" placeholder="Etykieta np. Projekt 01">
+      <textarea id="epTitle" placeholder="Opis projektu" style="height:90px">${p.title||""}</textarea>
+      <input id="epBefore" value="${p.before||""}" placeholder="URL zdjęcia PRZED">
+      <input id="epAfter"  value="${p.after||""}"  placeholder="URL zdjęcia PO">
       <div class="edit-modal-btns">
-        <button style="background:#eee;color:#111" onclick="document.getElementById('editModal').remove()">Anuluj</button>
-        <button style="background:linear-gradient(135deg,#2d7cff,#1a5cff);color:white" onclick="saveEditProject('${id}')">Zapisz</button>
+        <button style="background:var(--surface2);color:var(--text)" onclick="document.getElementById('editModal').remove()">Anuluj</button>
+        <button style="background:var(--accent);color:white" onclick="saveEditProject('${id}')">Zapisz</button>
       </div>
-    </div>
-  `;
-
+    </div>`;
   document.body.appendChild(overlay);
-  overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
+  overlay.addEventListener("click", e => { if(e.target===overlay) overlay.remove(); });
 };
 
 window.saveEditProject = async (id) => {
   const counter = document.getElementById("epCounter").value.trim();
-  const title = document.getElementById("epTitle").value.trim();
-  const before = document.getElementById("epBefore").value.trim();
-  const after = document.getElementById("epAfter").value.trim();
+  const title   = document.getElementById("epTitle").value.trim();
+  const before  = document.getElementById("epBefore").value.trim();
+  const after   = document.getElementById("epAfter").value.trim();
 
-  const ok = confirm("Zapisać zmiany?");
-  if (!ok) return;
-
-  await updateDoc(doc(db, "projects", id), { counter, title, before, after, updatedAt: Date.now() });
+  if (!confirm("Zapisać zmiany?")) return;
+  await updateDoc(doc(db,"projects",id), { counter, title, before, after, updatedAt: Date.now() });
   document.getElementById("editModal").remove();
   loadProjects();
 };
 
 window.importOldProjects = async () => {
-  const ok = confirm(`Zaimportować ${OLD_PROJECTS.length} istniejących projektów do Firebase?\n\nUWAGA: kliknij ten przycisk tylko raz! Jeśli już importowałeś, anuluj.`);
-  if (!ok) return;
-
+  if (!confirm(`Zaimportować ${OLD_PROJECTS.length} istniejących projektów?\n\nUWAGA: kliknij tylko raz!`)) return;
   try {
-    for (let i = 0; i < OLD_PROJECTS.length; i++) {
+    for (let i=0; i<OLD_PROJECTS.length; i++) {
       const p = OLD_PROJECTS[i];
-      await addDoc(collection(db, "projects"), {
-        counter: "Projekt " + String(i+1).padStart(2,"0"),
-        title: p.title,
-        before: p.before,
-        after: p.after,
-        order: i,
-        createdAt: Date.now()
-      });
+      await addDoc(collection(db,"projects"), { counter:"Projekt "+String(i+1).padStart(2,"0"), title:p.title, before:p.before, after:p.after, order:i, createdAt:Date.now() });
     }
   } catch(err) {
-    alert("❌ Błąd podczas importu: " + err.message + "\n\nNajprawdopodobniej reguły Firebase blokują zapis do kolekcji 'projects'. Sprawdź Firestore Rules.");
-    loadProjects();
-    return;
+    alert("Błąd importu: "+err.message);
+    loadProjects(); return;
   }
-
-  // ukryj przycisk żeby nie importować dwa razy
   document.getElementById("importProjectsBtn").style.display = "none";
-
-  alert("Import zakończony! Zaimportowano " + OLD_PROJECTS.length + " projektów.");
+  alert("Import zakończony! Zaimportowano "+OLD_PROJECTS.length+" projektów.");
   loadProjects();
 };
 
-window.saveEditReview = async (id) => {
-  const name   = document.getElementById('eName').value;
-  const text   = document.getElementById('eText').value;
-  const date   = document.getElementById('eDate').value;
-  const avatar = document.getElementById('eAvatar').value;
-  const stars  = Number(document.getElementById('eStars').value);
-
-  if (!name || !text) { alert('Uzupełnij imię i treść'); return; }
-
-  const ok = confirm('Zapisać zmiany?');
-  if (!ok) return;
-
-  await setDoc(doc(db, 'reviews', id), {
-    name, text, date, avatar, stars,
-    updatedAt: Date.now()
-  }, { merge: true });
-
-  document.getElementById('editModal').remove();
-  loadReviews();
+window.importOldReviews = async () => {
+  alert("Funkcja importu opinii dostępna – odkomentuj w kodzie.");
 };
 </script>
 
