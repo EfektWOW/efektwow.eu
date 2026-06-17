@@ -845,6 +845,162 @@ textarea.form-input {
 
 .add-form-card .card-header { margin-bottom: 16px; }
 
+/* ── PROJECT MOVE BUTTONS (mobile reorder) ── */
+.project-move {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  background: var(--surface3);
+  color: var(--muted2);
+  transition: opacity .2s, background .2s, color .2s;
+}
+
+.project-move:hover { background: var(--accent); color: white; }
+.project-move:disabled { opacity: .3; cursor: not-allowed; }
+
+/* ── MOBILE MENU TOGGLE ── */
+.menu-toggle {
+  display: none;
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.menu-toggle:active { background: var(--surface3); }
+
+/* ── SIDEBAR CLOSE BUTTON (mobile drawer) ── */
+.sidebar-close {
+  display: none;
+  width: 32px; height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: var(--surface3);
+  color: var(--muted2);
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* ── SIDEBAR BACKDROP (mobile drawer overlay) ── */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+
+.sidebar-backdrop.show { opacity: 1; visibility: visible; }
+
+/* ════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  .menu-toggle { display: flex; }
+  .sidebar-close { display: flex; }
+
+  /* sidebar becomes an off-canvas drawer */
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform .28s ease;
+    box-shadow: 0 0 50px rgba(0,0,0,.55);
+    width: min(78vw, 280px);
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  .main { margin-left: 0; }
+
+  .nav-item {
+    padding: 13px 16px;
+    font-size: 14.5px;
+  }
+
+  .topbar {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .topbar-title { font-size: 14.5px; }
+  .topbar-title span { display: block; font-size: 11.5px; margin-left: 0; margin-top: 1px; }
+
+  .page-content { padding: 16px; }
+
+  .card, .add-form-card { padding: 16px; border-radius: 14px; }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tiktok-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+
+  /* prevent iOS auto-zoom on focus */
+  .form-input, input, textarea, .edit-modal input, .edit-modal textarea {
+    font-size: 16px;
+  }
+
+  /* comfortable tap targets */
+  .btn { padding: 12px 18px; min-height: 44px; }
+  .review-edit, .review-delete, .project-edit, .project-delete, .project-move {
+    width: 36px; height: 36px; font-size: 13px;
+  }
+
+  /* reorder by buttons instead of drag on touch */
+  .project-move { display: flex; }
+  .project-admin-drag-handle { display: none; }
+  .project-admin { cursor: default; }
+
+  .edit-modal { padding: 20px; width: 92%; max-height: 86vh; overflow-y: auto; }
+
+  .scroll-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
+
+  #toolbar { font-size: 13px; padding: 8px 16px; }
+}
+
+@media (max-width: 480px) {
+
+  .stats-grid { grid-template-columns: 1fr; }
+
+  .login-card { padding: 30px 22px; border-radius: 16px; }
+
+  .stat-card { padding: 16px; gap: 12px; }
+  .stat-icon { width: 38px; height: 38px; font-size: 16px; }
+  .stat-value { font-size: 20px; }
+
+  .project-admin-thumb img {
+    width: 46px; height: 38px;
+  }
+
+  .review-admin, .project-admin { padding: 12px; gap: 10px; }
+
+  .review-admin-avatar, .review-admin-avatar-placeholder { width: 36px; height: 36px; }
+
+  .add-form-card .card-header,
+  .card-header { gap: 8px; }
+
+  /* let action buttons in forms fill the row evenly */
+  #projekty .add-form-card > div[style*="display:flex"] > button { flex: 1; }
+}
+
 /* hidden */
 .hidden { display: none !important; }
 </style>
@@ -856,9 +1012,8 @@ textarea.form-input {
 <div id="loginBox">
   <div class="login-card">
     <div class="login-logo">
-      <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
-      <span>Panel<span style="color:var(--accent)">Admin</span></span>
-    </div>
+  <img src="assets/images/logo-biale.png" alt="Logo" style="height: 36px;">
+</div>
     <h2>Zaloguj się</h2>
     <p>Wpisz swoje dane dostępowe, aby kontynuować.</p>
 
@@ -885,15 +1040,23 @@ textarea.form-input {
   </div>
 </div>
 
+<style>
+  .sidebar-logo {
+  padding: 18px;
+}
+</style>
+
 <!-- ════════ PANEL ════════ -->
 <div id="panelBox">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
-      <span class="logo-text">Panel<span>Admin</span></span>
-    </div>
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="assets/images/logo-biale.png" alt="Logo" style="height: 18px;">
+    <button class="sidebar-close" id="sidebarClose" aria-label="Zamknij menu">
+      <i class="fas fa-xmark"></i>
+    </button>
+  </div>
 
     <div class="sidebar-section">Zarządzanie</div>
 
@@ -926,11 +1089,16 @@ textarea.form-input {
     </div>
   </aside>
 
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
   <!-- MAIN -->
   <main class="main">
 
     <!-- TOPBAR -->
     <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Otwórz menu">
+        <i class="fas fa-bars"></i>
+      </button>
       <span class="topbar-title" id="topbarTitle">
         Liczby <span>/ Zarządzanie treścią strony</span>
       </span>
@@ -1202,6 +1370,28 @@ window.addEventListener("scroll", () => {
   scrollBtn.classList.toggle("show", window.scrollY > 300);
 });
 scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+/* ── MOBILE SIDEBAR DRAWER ── */
+const sidebarEl    = document.querySelector(".sidebar");
+const backdropEl   = document.getElementById("sidebarBackdrop");
+const menuToggleEl = document.getElementById("menuToggle");
+const sidebarCloseEl = document.getElementById("sidebarClose");
+
+window.openSidebar = () => {
+  sidebarEl.classList.add("open");
+  backdropEl.classList.add("show");
+  document.body.style.overflow = "hidden";
+};
+window.closeSidebar = () => {
+  sidebarEl.classList.remove("open");
+  backdropEl.classList.remove("show");
+  document.body.style.overflow = "";
+};
+menuToggleEl?.addEventListener("click", () => {
+  sidebarEl.classList.contains("open") ? closeSidebar() : openSidebar();
+});
+backdropEl?.addEventListener("click", closeSidebar);
+sidebarCloseEl?.addEventListener("click", closeSidebar);
 </script>
 
 <script type="module">
@@ -1268,6 +1458,8 @@ window.openTab = (tab, el) => {
 
   currentTab = tab;
   document.getElementById("topbarTitle").innerHTML = TAB_TITLES[tab] || tab;
+
+  if (window.innerWidth <= 768) window.closeSidebar?.();
 };
 
 /* ── TOOLBAR (blue text) ── */
@@ -1557,6 +1749,8 @@ window.loadProjects = async () => {
         <div class="project-admin-title">${shortTitle}</div>
       </div>
       <div class="project-admin-actions">
+        <button class="project-move" onclick="moveProject('${p.id}','up')" title="Przesuń wyżej"><i class="fas fa-chevron-up"></i></button>
+        <button class="project-move" onclick="moveProject('${p.id}','down')" title="Przesuń niżej"><i class="fas fa-chevron-down"></i></button>
         <button class="project-edit"   onclick="editProject('${p.id}')"   title="Edytuj"><i class="fas fa-pen"></i></button>
         <button class="project-delete" onclick="deleteProject('${p.id}')" title="Usuń"><i class="fas fa-trash"></i></button>
       </div>`;
@@ -1589,6 +1783,19 @@ async function saveProjectOrder(box) {
   items.forEach((item,idx) => batch.update(doc(db,"projects",item.dataset.id), { order: idx }));
   await batch.commit();
 }
+
+window.moveProject = async (id, direction) => {
+  const box = document.getElementById("projectsList");
+  if (!box) return;
+  const items = Array.from(box.querySelectorAll(".project-admin"));
+  const idx = items.findIndex(it => it.dataset.id === id);
+  if (idx === -1) return;
+  const targetIdx = direction === "up" ? idx - 1 : idx + 1;
+  if (targetIdx < 0 || targetIdx >= items.length) return;
+  if (direction === "up") box.insertBefore(items[idx], items[targetIdx]);
+  else box.insertBefore(items[targetIdx], items[idx]);
+  await saveProjectOrder(box);
+};
 
 window.addProject = async () => {
   const counter = document.getElementById("pCounter").value.trim();
