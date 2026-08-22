@@ -902,7 +902,7 @@ document.addEventListener("DOMContentLoaded", function() {
 /* Ikona w panelu */
 .ikonka-wrapper {
     font-size: 40px;
-    color: #0d6efd;
+    color: #2d7cbe;
     margin-right: 20px; /* trochę większy odstęp od tekstu */
     display: flex;
     align-items: center;
@@ -1080,6 +1080,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <a href="index.html#featuresprojects">Realizacje</a>
             <a href="index.html#cennik">Cennik</a>
             <a href="#map2-1y">Lokalizacja</a>
+            <a href="polityka.html">Polityka prywatności</a>
         </div>
 
         <!-- PRAWA STRONA -->
@@ -1118,6 +1119,10 @@ document.addEventListener("DOMContentLoaded", function() {
 </footer>
 
 <link rel="stylesheet" href="assets/footer/style.css">
+<style>
+.footer-bottom-link{color:#8ab4f8;text-decoration:none;transition:color .2s ease;}
+.footer-bottom-link:hover{color:#2d7cbe;text-decoration:underline;}
+</style>
 
         <button class="scroll-top" id="scrollTopBtn">
     <i class="fas fa-arrow-up"></i>
@@ -1200,21 +1205,215 @@ scrollBtn.addEventListener("click", () => {
 
     </style>
 
-<!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script (ładowany dopiero po zgodzie użytkownika na cookies) -->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a1dc97d406ae81c377bef2a/1jq25m5bc';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+function loadTawkTo() {
+  if (window.Tawk_API && window.Tawk_API.__loaded) return;
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  window.Tawk_API = Tawk_API;
+  window.Tawk_API.__loaded = true;
+  window.Tawk_LoadStart = Tawk_LoadStart;
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6a1dc97d406ae81c377bef2a/1jq25m5bc';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+}
 </script>
 <!--End of Tawk.to Script-->
 
 <link rel="stylesheet" href="assets/css/mobile.css">
 <link rel="stylesheet" href="assets/css/tablet.css">
-  </body>
+  <!-- Baner plików cookies -->
+<style>
+#cookieBanner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999998;
+  background: #ffffff;
+  border-top: 3px solid #2d7cbe;
+  box-shadow: 0 -4px 18px rgba(0,0,0,0.12);
+  padding: 18px 24px;
+  font-family: 'Poppins', sans-serif;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+#cookieBanner.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#cookieBanner .cookie-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#cookieBanner .cookie-text {
+  flex: 1 1 480px;
+  color: #222;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+#cookieBanner .cookie-text strong {
+  color: #2d7cbe;
+}
+
+#cookieBanner .cookie-text a {
+  color: #2d7cbe;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+#cookieBanner .cookie-actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#cookieBanner .cookie-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+#cookieBanner .cookie-accept {
+  background-color: #2d7cbe;
+  color: #fff;
+}
+
+#cookieBanner .cookie-accept:hover {
+  background-color: #24669c;
+}
+
+#cookieBanner .cookie-reject {
+  background-color: #e9ecef;
+  color: #333;
+}
+
+#cookieBanner .cookie-reject:hover {
+  background-color: #dcdde0;
+}
+
+@media (max-width: 700px) {
+  #cookieBanner .cookie-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  #cookieBanner .cookie-btn {
+    flex: 1 1 0;
+  }
+}
+</style>
+
+<div id="cookieBanner" role="dialog" aria-live="polite" aria-label="Zgoda na pliki cookies">
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <strong>Ta strona używa plików cookies.</strong>
+      Wykorzystujemy je do zapewnienia prawidłowego działania Strony oraz do uruchomienia czatu z konsultantem (widget Tawk.to).
+      Więcej informacji znajdziesz w naszej
+      <a href="polityka.html">Polityce Prywatności</a>.
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-reject" id="cookieReject">Odrzuć</button>
+      <button class="cookie-btn cookie-accept" id="cookieAccept">Akceptuję</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'efektwow_cookie_consent';
+  var banner = document.getElementById('cookieBanner');
+
+  function hasChoice() {
+    try {
+      return localStorage.getItem(STORAGE_KEY) !== null;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function saveChoice(value) {
+    try {
+      localStorage.setItem(STORAGE_KEY, value);
+    } catch (e) {}
+  }
+
+  // Odsuwa treść strony, żeby przypięty baner nie zasłaniał stopki (np. linku do Polityki Prywatności)
+  function adjustBodySpacing() {
+    document.body.style.paddingBottom = banner.offsetHeight + 'px';
+  }
+
+  function resetBodySpacing() {
+    document.body.style.paddingBottom = '';
+  }
+
+  function showBanner() {
+    banner.style.display = 'block';
+    adjustBodySpacing();
+    requestAnimationFrame(function () {
+      banner.classList.add('show');
+    });
+    window.addEventListener('resize', adjustBodySpacing);
+  }
+
+  function hideBanner() {
+    banner.classList.remove('show');
+    window.removeEventListener('resize', adjustBodySpacing);
+    setTimeout(function () {
+      banner.style.display = 'none';
+      resetBodySpacing();
+    }, 400);
+  }
+
+  function getChoice() {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  if (!hasChoice()) {
+    setTimeout(showBanner, 400);
+  } else {
+    banner.style.display = 'none';
+    if (getChoice() === 'accepted' && typeof loadTawkTo === 'function') {
+      loadTawkTo();
+    }
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function () {
+    saveChoice('accepted');
+    if (typeof loadTawkTo === 'function') {
+      loadTawkTo();
+    }
+    hideBanner();
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function () {
+    saveChoice('rejected');
+    hideBanner();
+  });
+})();
+</script>
+
+</body>
 </html>
