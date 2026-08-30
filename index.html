@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html  >
 <head>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+iconify-icon{display:inline-block;vertical-align:-0.125em;}
+.icon-bounce{animation:icon-bounce 1s ease infinite;}
+@keyframes icon-bounce{
+  0%,10%,20%,50%,80%,100%{transform:translateY(0);}
+  40%{transform:translateY(-18%);}
+  60%{transform:translateY(-9%);}
+}
+.icon-spin{animation:icon-spin 1.2s linear infinite;}
+@keyframes icon-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+</style>
+
   <!-- Site made with Mobirise Website Builder v6.1.9, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,95 +36,26 @@
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=UAumX8"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=UAumX8" type="text/css">
 <script type="text/javascript" src="https://rating.wiserreview.com/iframeReSize.js"></script>
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/fontawesome.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-solid.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-regular.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-light.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/duotone.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/solid.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/regular.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/light.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/brands.css"
-/>
+
+
+
+
+
+
+
 
 <!-- Additional Fontawesome Pro+ Icons for v7.2.0 -->
 
 <!-- Sharp Duotone -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-duotone-solid.css"
-/>
 <!-- Chisel -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/chisel-regular.css"
-/>
 <!-- Etch -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/etch-solid.css"
-/>
 <!-- Graphite -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/graphite-thin.css"
-/>
 <!-- Jelly -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/jelly-regular.css"
-/>
 <!-- Notdog -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/notdog-solid.css"
-/>
 <!-- Slab -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/slab-regular.css"
-/>
 <!-- Thumb Print -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/thumbprint-light.css"
-/>
 <!-- Utility -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/utility-semibold.css"
-/>
 <!-- Whiteboard -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/whiteboard-semibold.css"
-/>
   
   
   <!-- Open Graph Meta Tags -->
@@ -161,7 +105,7 @@
   transform: translateX(0);
 }
 
-.notification i {
+.notification i, .notification iconify-icon {
   color: #2d7cbe;
   font-size: 24px;
   margin-top: 4px;
@@ -234,7 +178,7 @@
 <audio id="notifSound" src="assets/sounds/notification.mp3" preload="auto"></audio>
 
 <div class="notification" id="errorNotification">
-  <i class="fa-solid fa-gift fa-bounce"></i>
+  <iconify-icon icon="fa6-solid:gift" class="icon-bounce"></iconify-icon>
   <div class="notification-content">
     <div class="notification-title">Hej, mamy dla Ciebie prezent!</div>
     <div class="notification-message">
@@ -314,7 +258,7 @@
 
             <!-- CTA wewnątrz menu (widoczne tylko po rozwinięciu przy scrollu) -->
             <a href="#jarallax-container-3" class="wow-contact-btn">
-                <i class="fa-solid fa-paper-plane"></i>
+                <iconify-icon icon="fa6-solid:paper-plane"></iconify-icon>
                 Skontaktuj się
             </a>
 
@@ -322,13 +266,13 @@
 
         <!-- CTA na desktopie (pełny navbar) -->
         <a href="#jarallax-container-3" class="wow-contact-btn">
-            <i class="fa-solid fa-paper-plane"></i>
+            <iconify-icon icon="fa6-solid:paper-plane"></iconify-icon>
             Skontaktuj się
         </a>
 
         <!-- PRZYCISK ROZWIŃ (widoczny tylko po zwinięciu, desktop) -->
 <button class="wow-expand-btn" aria-label="Rozwiń menu">
-    <i class="fa-solid fa-chevron-down"></i>
+    <iconify-icon icon="fa6-solid:chevron-down"></iconify-icon>
 </button>
 
     </div>
@@ -365,7 +309,7 @@
                         </a>
 
                         <a class="btn btn-black display-4" href="#about">
-                            Czytaj dalej <i class="fa-solid fa-arrow-right ms-2"></i>
+                            Czytaj dalej <iconify-icon icon="fa6-solid:arrow-right" class="ms-2"></iconify-icon>
                         </a>
 
                     </div>
@@ -422,42 +366,42 @@
         </div>
 <div class="services-container">
   <div class="service-item">
-    <i class="fa-solid fa-car-side"></i>
+    <iconify-icon icon="fa6-solid:car-side"></iconify-icon>
     <h3>Pranie ekstracyjne tapicerki samochodowej</h3>
     <p>Usuwamy zabrudzenia i plamy przy użyciu bezpiecznych i skutecznych środków, a następnie płuczemy tkaninę profesjonalną płukanką, która nadaje kwiatowy zapach i wydłuża odporność materiału na zabrudzenia.</p>
   </div>
   <div class="service-item fade-in">
-    <i class="fa-solid fa-couch"></i>
+    <iconify-icon icon="fa6-solid:couch"></iconify-icon>
     <h3>Pranie ekstracyjne kanapy/łóżka/materaca/foteli</h3>
     <p>Głębokie czyszczenie mebli domowych łączy skuteczne odplamianie z dokładnym płukaniem, dzięki czemu tkaniny pozostają świeże, pachnące i odporne na kolejne zabrudzenia.</p>
   </div>
   <div class="service-item fade-in">
-    <i class="fa-solid fa-vacuum"></i>
+    <iconify-icon icon="mdi:vacuum-cleaner"></iconify-icon>
     <h3>Całkowite czyszczenie wnętrza samochodu</h3>
     <p>Kompleksowo czyścimy wnętrza samochodów – tapicerkę, podsufitki i plastiki. Stosujemy satynowy dressing, który przywraca blask i świeżość niczym w aucie prosto z salonu. Profesjonalne płukanie pozostawia delikatny, kwiatowy zapach</p>
   </div>
   <div class="service-item fade-in">
-    <i class="fa-solid fa-rug"></i>
+    <iconify-icon icon="fa6-solid:rug"></iconify-icon>
     <h3>Pranie ekstracyjne dywanów</h3>
     <p>Przywracamy świeżość i intensywność kolorów dywanom i wykładzinom, łącząc skuteczne odplamianie z dokładnym płukaniem, które wydłuża jego świeżość i chroni włókna.</p>
   </div>
   <div class="service-item fade-in">
-    <i class="fa-solid fa-spray-can"></i>
+    <iconify-icon icon="fa6-solid:spray-can"></iconify-icon>
     <h3>Regeneracja wypłowiałych od słońca plastików samochodowych</h3>
     <p>Odnawiamy zewnętrzne czarne plastiki auta bez użycia opalarki czy innych agresywnych metod. Szybko, tanio i skutecznie — efekt widać od razu, a trwałość to minimum rok.</p>
   </div>
   <div class="service-item fade-in">
-    <i class="fa-solid fa-hand-sparkles"></i>
+    <iconify-icon icon="fa6-solid:hand-sparkles"></iconify-icon>
     <h3>Konserwacja i pielęgnacja skór</h3>
     <p>Dogłębnie czyścimy skórę specjalnymi preparatami, a następnie zabezpieczamy ją mleczkiem ochronnym. Skóra staje się miękka, czysta i odporna na zabrudzenia oraz przedwczesne zużycie.</p>
   </div>
   <div class="service-item fade-in">
-    <i class="fa-solid fa-kitchen-set"></i>
+    <iconify-icon icon="fa6-solid:kitchen-set"></iconify-icon>
     <h3>Czyszczenie garnków, okapów kuchennych, fug i wentylacji metodą parową</h3>
     <p>Usuwamy uporczywe zabrudzenia dzięki kombinacji pary pod ciśnieniem i skutecznych środków chemicznych, przywracając powierzchniom kuchennym pierwotny wygląd i higieniczną czystość.</p>
   </div>
   <div class="service-item fade-in">
-    <i class="fa-solid fa-wind"></i>
+    <iconify-icon icon="fa6-solid:wind"></iconify-icon>
     <h3>Usuwanie nieprzyjemnych zapachów z tkanin parą</h3>
     <p>Eliminujemy nieprzyjemne zapachy z mebli i tapicerki przy użyciu pary wodnej i bezpiecznych preparatów, pozostawiając tkaniny świeże, pachnące i przyjemne w dotyku.</p>
   </div>
@@ -480,13 +424,13 @@
   padding: 20px 10px; /* więcej miejsca wewnątrz bloku */
 }
 
-.service-item i {
+.service-item i, .service-item iconify-icon {
   font-size: 45px;             /* wielkość ikony */
   color: #2d7cbe;              /* kolor ikony */
   margin-bottom: 20px;         /* odstęp od nagłówka */
     transition: all 0.3s ease;   /* płynna animacja przy hover */
 }
-.service-item:hover i {
+.service-item:hover i, .service-item:hover iconify-icon {
   color: #24669c;              /* kolor po najechaniu */
   transform: scale(1.1);       /* lekko powiększa ikonę */
 }
@@ -555,7 +499,7 @@
 
                 <a href="o-nas.html" class="about-btn fade-in">
                     Poznaj nas
-                    <i class="fas fa-arrow-right"></i>
+                    <iconify-icon icon="fa6-solid:arrow-right"></iconify-icon>
                 </a>
 
             </div>
@@ -734,12 +678,12 @@ font-size: 44px;
 <!-- Navigation -->
 <nav class="carousel-nav" id="carouselNav" aria-label="Nawigacja projektów" style="display:none;">
   <button class="nav-btn" id="prevBtn" aria-label="Poprzedni">
-    <i class="fa-solid fa-chevron-left"></i>
+    <iconify-icon icon="fa6-solid:chevron-left"></iconify-icon>
   </button>
   <div class="carousel-dots" id="dotsContainer" role="tablist"></div>
   <div class="nav-counter" id="navCounter">1 / 1</div>
   <button class="nav-btn" id="nextBtn" aria-label="Następny">
-    <i class="fa-solid fa-chevron-right"></i>
+    <iconify-icon icon="fa6-solid:chevron-right"></iconify-icon>
   </button>
 </nav>
 
@@ -1382,17 +1326,17 @@ function buildSlide(p) {
 
     <div class="pricing-nav">
         <button class="pricing-nav__item is-active" data-target="auto">
-            <i class="fa-solid fa-car"></i>
+            <iconify-icon icon="fa6-solid:car"></iconify-icon>
             <span>AUTO</span>
         </button>
 
         <button class="pricing-nav__item" data-target="autoplus">
-            <i class="fa-solid fa-cars"></i>
+            <iconify-icon icon="mdi:car-multiple"></iconify-icon>
             <span>AUTO+</span>
         </button>
 
         <button class="pricing-nav__item" data-target="dom">
-            <i class="fa-solid fa-house"></i>
+            <iconify-icon icon="fa6-solid:house"></iconify-icon>
             <span>DOM</span>
         </button>
 
@@ -1403,7 +1347,7 @@ function buildSlide(p) {
     <div class="tab-content active" id="auto">
 
         <div class="service-card service-card--bestseller">
-            <div class="service-icon"><i class="fa-solid fa-broom"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:broom"></iconify-icon></div>
 
             <h3 class="service-title">Odświeżenie wnętrza</h3>
             <span class="service-tag">BEZ PRANIA</span>
@@ -1422,7 +1366,7 @@ function buildSlide(p) {
 
 
         <div class="service-card service-card--bestseller">
-            <div class="service-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:star"></iconify-icon></div>
 
             <h3 class="service-title">Pakiet LUXUS</h3>
             <span class="service-tag">TAPICERKA MATERIAŁOWA</span>
@@ -1441,7 +1385,7 @@ function buildSlide(p) {
 
 
         <div class="service-card service-card--bestseller">
-            <div class="service-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:star"></iconify-icon></div>
 
             <h3 class="service-title">Pakiet LUXUS</h3>
             <span class="service-tag">TAPICERKA SKÓRZANA</span>
@@ -1460,7 +1404,7 @@ function buildSlide(p) {
 
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-soap"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:soap"></iconify-icon></div>
 
             <h3 class="service-title">Pranie tapicerki auta</h3>
 
@@ -1477,7 +1421,7 @@ function buildSlide(p) {
         </div>
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-sparkles"></i></div>
+            <div class="service-icon"><iconify-icon icon="mdi:sparkles"></iconify-icon></div>
 
             <h3 class="service-title">Całkowite wyczyszczenie</h3>
 
@@ -1499,7 +1443,7 @@ function buildSlide(p) {
     <div class="tab-content" id="autoplus">
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-rotate"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:rotate"></iconify-icon></div>
 
             <h3 class="service-title">Regeneracja koloru zewnętrznego plastiku auta</h3>
 
@@ -1516,7 +1460,7 @@ function buildSlide(p) {
         </div>
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon></div>
 
             <h3 class="service-title">Dressing elementów wnętrza/nadanie koloru plastikom</h3>
 
@@ -1533,7 +1477,7 @@ function buildSlide(p) {
         </div>
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-wind"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:wind"></iconify-icon></div>
 
             <h3 class="service-title">Czyszczenie parowe wnętrza pojazdu</h3>
 
@@ -1550,7 +1494,7 @@ function buildSlide(p) {
         </div>
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-ban"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:ban"></iconify-icon></div>
 
             <h3 class="service-title">Specjalistyczne pranie parowe eliminujące przykre zapachy</h3>
 
@@ -1573,7 +1517,7 @@ function buildSlide(p) {
 
 
         <div class="service-card service-card--bestseller">
-            <div class="service-icon"><i class="fa-solid fa-rug"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:rug"></iconify-icon></div>
 
             <h3 class="service-title">Pranie dywanów</h3>
 
@@ -1591,7 +1535,7 @@ function buildSlide(p) {
 
 
         <div class="service-card service-card--bestseller">
-            <div class="service-icon"><i class="fa-solid fa-bed"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:bed"></iconify-icon></div>
 
             <h3 class="service-title">Pranie kanapy / łóżka / materaca</h3>
 
@@ -1609,7 +1553,7 @@ function buildSlide(p) {
 
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon></div>
 
             <h3 class="service-title">Perfumowanie tkanin</h3>
             <span class="service-tag">DODATEK PREMIUM</span>
@@ -1628,7 +1572,7 @@ function buildSlide(p) {
 
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-couch"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:couch"></iconify-icon></div>
 
             <h3 class="service-title">Pranie fotela</h3>
 
@@ -1646,7 +1590,7 @@ function buildSlide(p) {
 
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-ban"></i></div>
+            <div class="service-icon"><iconify-icon icon="fa6-solid:ban"></iconify-icon></div>
 
             <h3 class="service-title">Specjalistyczne czyszczenie parowe eliminujące przykre zapachy</h3>
 
@@ -1663,7 +1607,7 @@ function buildSlide(p) {
         </div>
 
         <div class="service-card">
-            <div class="service-icon"><i class="fa-solid fa-air-conditioner"></i></div>
+            <div class="service-icon"><iconify-icon icon="mdi:air-conditioner"></iconify-icon></div>
 
             <h3 class="service-title">Czyszczenie parą okapu / wentylacji / fugi</h3>
 
@@ -1717,7 +1661,7 @@ function buildSlide(p) {
     background: #fff8e1;
 }
 
-.service-card--bestseller .service-icon i{
+.service-card--bestseller .service-icon i, .service-card--bestseller .service-icon iconify-icon{
     color: #c99700;
 }
 
@@ -1805,7 +1749,7 @@ function buildSlide(p) {
     transform: scale(1.05);
 }
 
-.pricing-nav__item i{
+.pricing-nav__item i, .pricing-nav__item iconify-icon{
     font-size:14px;
 }
 
@@ -1948,7 +1892,7 @@ document.addEventListener("DOMContentLoaded", () => {
     color:#fff;
 }
 
-.tab-btn i{
+.tab-btn i, .tab-btn iconify-icon{
     margin-right:8px;
 }
 
@@ -2027,7 +1971,7 @@ document.addEventListener("DOMContentLoaded", () => {
     margin-bottom:18px;
 }
 
-.service-icon i{
+.service-icon i, .service-icon iconify-icon{
 
     color:#2d7cbe;
     font-size:22px;
@@ -2221,14 +2165,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <div class="reviews-container">
-  <button class="arrow-reviews left"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="arrow-reviews left"><iconify-icon icon="fa6-solid:chevron-left"></iconify-icon></button>
 
   <div class="reviews-wrapper">
     <div class="reviews-track" id="reviewsTrack"></div>
   </div>
 
 
-  <button class="arrow-reviews right"><i class="fa-solid fa-chevron-right"></i></button>
+  <button class="arrow-reviews right"><iconify-icon icon="fa6-solid:chevron-right"></iconify-icon></button>
 </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
@@ -2421,8 +2365,8 @@ function createCard(r) {
       </div>
     </div>
     <div class="stars-reviews">
-      ${'<i class="fa-solid fa-star"></i>'.repeat(r.stars || 5)}
-      ${'<i class="fa-regular fa-star"></i>'.repeat(5 - (r.stars || 5))}
+      ${'<iconify-icon icon="fa6-solid:star"></iconify-icon>'.repeat(r.stars || 5)}
+      ${'<iconify-icon icon="fa6-regular:star"></iconify-icon>'.repeat(5 - (r.stars || 5))}
     </div>
     <div class="review-text">${r.text}</div>
   `;
@@ -3196,15 +3140,15 @@ elements.forEach(el => observer.observe(el));
 
             <div class="socials">
                 <a href="https://www.facebook.com/efektpraniawow" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
+                    <iconify-icon icon="fa6-brands:facebook-f"></iconify-icon>
                 </a>
 
                 <a href="https://www.tiktok.com/@efektwowpranie" target="_blank">
-                    <i class="fab fa-tiktok"></i>
+                    <iconify-icon icon="fa6-brands:tiktok"></iconify-icon>
                 </a>
 
                 <a href="mailto:efektwowzamosc@gmail.com">
-                    <i class="fas fa-envelope"></i>
+                    <iconify-icon icon="fa6-solid:envelope"></iconify-icon>
                 </a>
             </div>
         </div>
@@ -3226,17 +3170,17 @@ elements.forEach(el => observer.observe(el));
             <h4>Kontakt</h4>
 
 <p class="kontakt-line">
-    <i class="fa-solid fa-phone"></i>
+    <iconify-icon icon="fa6-solid:phone"></iconify-icon>
     <a href="tel:+48668454924">+48 668 454 924</a>
 </p>
 
 <p class="kontakt-line">
-    <i class="fa-solid fa-envelope"></i>
+    <iconify-icon icon="fa6-solid:envelope"></iconify-icon>
     <a href="mailto:efektwowzamosc@gmail.com">efektwowzamosc@gmail.com</a>
 </p>
 
 <p class="kontakt-line">
-    <i class="fa-solid fa-location-dot"></i>
+    <iconify-icon icon="fa6-solid:location-dot"></iconify-icon>
     <a href="#map2-1y" target="_blank">
         Żdanówek 140, 22-400 Zamość
     </a>
@@ -3263,7 +3207,7 @@ elements.forEach(el => observer.observe(el));
 </style>
 
         <button class="scroll-top" id="scrollTopBtn">
-    <i class="fas fa-arrow-up"></i>
+    <iconify-icon icon="fa6-solid:arrow-up"></iconify-icon>
 </button>
 
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script> <script src="assets/embla/embla.min.js"></script>  <script src="assets/embla/script.js"></script> <script src="assets/theme/js/script.js"></script>  <script src="assets/formoid/formoid.min.js"></script>  

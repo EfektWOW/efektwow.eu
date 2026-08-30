@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html  >
 <head>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+iconify-icon{display:inline-block;vertical-align:-0.125em;}
+.icon-bounce{animation:icon-bounce 1s ease infinite;}
+@keyframes icon-bounce{
+  0%,10%,20%,50%,80%,100%{transform:translateY(0);}
+  40%{transform:translateY(-18%);}
+  60%{transform:translateY(-9%);}
+}
+.icon-spin{animation:icon-spin 1.2s linear infinite;}
+@keyframes icon-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+</style>
+
   <!-- Site made with Mobirise Website Builder v6.1.9, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,95 +35,26 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=UAumX8"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=UAumX8" type="text/css">
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/fontawesome.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-solid.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-regular.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-light.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/duotone.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/solid.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/regular.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/light.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/brands.css"
-/>
+
+
+
+
+
+
+
 
 <!-- Additional Fontawesome Pro+ Icons for v7.2.0 -->
 
 <!-- Sharp Duotone -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/sharp-duotone-solid.css"
-/>
 <!-- Chisel -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/chisel-regular.css"
-/>
 <!-- Etch -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/etch-solid.css"
-/>
 <!-- Graphite -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/graphite-thin.css"
-/>
 <!-- Jelly -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/jelly-regular.css"
-/>
 <!-- Notdog -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/notdog-solid.css"
-/>
 <!-- Slab -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/slab-regular.css"
-/>
 <!-- Thumb Print -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/thumbprint-light.css"
-/>
 <!-- Utility -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/utility-semibold.css"
-/>
 <!-- Whiteboard -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/whiteboard-semibold.css"
-/>
   
   
   <!-- Open Graph Meta Tags -->
@@ -158,7 +102,7 @@
 
             <!-- CTA wewnątrz menu (widoczne tylko po rozwinięciu przy scrollu) -->
             <a href="index.html#contacts2-1r" class="wow-contact-btn">
-                <i class="fa-solid fa-paper-plane"></i>
+                <iconify-icon icon="fa6-solid:paper-plane"></iconify-icon>
                 Skontaktuj się
             </a>
 
@@ -166,13 +110,13 @@
 
         <!-- CTA na desktopie (pełny navbar) -->
         <a href="index.html#contacts2-1r" class="wow-contact-btn">
-            <i class="fa-solid fa-paper-plane"></i>
+            <iconify-icon icon="fa6-solid:paper-plane"></iconify-icon>
             Skontaktuj się
         </a>
 
         <!-- PRZYCISK ROZWIŃ (widoczny tylko po zwinięciu, desktop) -->
 <button class="wow-expand-btn" aria-label="Rozwiń menu">
-    <i class="fa-solid fa-chevron-down"></i>
+    <iconify-icon icon="fa6-solid:chevron-down"></iconify-icon>
 </button>
 
     </div>
@@ -343,8 +287,6 @@ Masz pytania dotyczące przetwarzania Twoich danych? Napisz do nas:
 }
 </style>
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pVyzbR8/0y7Zp6J6f+5Rm2ZtWn5a6WxJ1sP6+nS9Lr6e4PzH2Yg/6Pxt/2J9tT6H6DcWl/Y+Xy+4cCj9+gQ8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <footer class="footer-wow">
 
     <div class="footer-bg"></div>
@@ -364,15 +306,15 @@ Masz pytania dotyczące przetwarzania Twoich danych? Napisz do nas:
 
             <div class="socials">
                 <a href="https://www.facebook.com/efektpraniawow" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
+                    <iconify-icon icon="fa6-brands:facebook-f"></iconify-icon>
                 </a>
 
                 <a href="https://www.tiktok.com/@efektwowpranie" target="_blank">
-                    <i class="fab fa-tiktok"></i>
+                    <iconify-icon icon="fa6-brands:tiktok"></iconify-icon>
                 </a>
 
                 <a href="mailto:efektwowzamosc@gmail.com">
-                    <i class="fas fa-envelope"></i>
+                    <iconify-icon icon="fa6-solid:envelope"></iconify-icon>
                 </a>
             </div>
         </div>
@@ -394,17 +336,17 @@ Masz pytania dotyczące przetwarzania Twoich danych? Napisz do nas:
             <h4>Kontakt</h4>
 
 <p class="kontakt-line">
-    <i class="fa-solid fa-phone"></i>
+    <iconify-icon icon="fa6-solid:phone"></iconify-icon>
     <a href="tel:+48668454924">+48 668 454 924</a>
 </p>
 
 <p class="kontakt-line">
-    <i class="fa-solid fa-envelope"></i>
+    <iconify-icon icon="fa6-solid:envelope"></iconify-icon>
     <a href="mailto:efektwowzamosc@gmail.com">efektwowzamosc@gmail.com</a>
 </p>
 
 <p class="kontakt-line">
-    <i class="fa-solid fa-location-dot"></i>
+    <iconify-icon icon="fa6-solid:location-dot"></iconify-icon>
     <a href="index.html#map2-1y" target="_blank">
         Żdanówek 140, 22-400 Zamość
     </a>
@@ -431,7 +373,7 @@ Masz pytania dotyczące przetwarzania Twoich danych? Napisz do nas:
 </style>
 
         <button class="scroll-top" id="scrollTopBtn">
-    <i class="fas fa-arrow-up"></i>
+    <iconify-icon icon="fa6-solid:arrow-up"></iconify-icon>
 </button>
 
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script> <script src="assets/embla/embla.min.js"></script>  <script src="assets/embla/script.js"></script> <script src="assets/theme/js/script.js"></script>  <script src="assets/formoid/formoid.min.js"></script>  

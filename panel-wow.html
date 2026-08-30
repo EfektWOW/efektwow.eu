@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+iconify-icon{display:inline-block;vertical-align:-0.125em;}
+.icon-bounce{animation:icon-bounce 1s ease infinite;}
+@keyframes icon-bounce{
+  0%,10%,20%,50%,80%,100%{transform:translateY(0);}
+  40%{transform:translateY(-18%);}
+  60%{transform:translateY(-9%);}
+}
+.icon-spin{animation:icon-spin 1.2s linear infinite;}
+@keyframes icon-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+</style>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel admina</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/fontawesome.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/solid.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/regular.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rizmyabdulla/fontawesome-pro@main/releases/v7.2.0/css/brands.css"/>
+
+
+
 
 <style>
 /* ── TOKENS ── */
@@ -81,7 +93,7 @@ body {
   gap: 10px;
 }
 
-.login-logo i {
+.login-logo i, .login-logo iconify-icon {
   color: var(--accent);
   font-size: 20px;
 }
@@ -117,7 +129,7 @@ body {
   position: relative;
 }
 
-.field-group .input-wrap i {
+.field-group .input-wrap i, .field-group .input-wrap iconify-icon {
   position: absolute;
   left: 13px;
   top: 50%;
@@ -252,7 +264,7 @@ body {
   font-family: inherit;
 }
 
-.nav-item i {
+.nav-item i, .nav-item iconify-icon {
   width: 18px;
   text-align: center;
   font-size: 14px;
@@ -268,7 +280,7 @@ body {
   color: var(--accent);
 }
 
-.nav-item.active i {
+.nav-item.active i, .nav-item.active iconify-icon {
   color: var(--accent);
 }
 
@@ -282,7 +294,7 @@ body {
   color: var(--danger);
 }
 
-.nav-item.logout i { color: var(--danger); }
+.nav-item.logout i, .nav-item.logout iconify-icon { color: var(--danger); }
 .nav-item.logout:hover { background: rgba(240,82,82,.12); }
 
 /* ── MAIN AREA ── */
@@ -529,7 +541,7 @@ textarea.form-input {
 .tiktok-item {}
 .tiktok-item label { display: block; font-size: 11px; font-weight: 600; color: var(--muted2); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
 .tiktok-item .input-wrap { position: relative; }
-.tiktok-item .input-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 13px; }
+.tiktok-item .input-wrap i, .tiktok-item .input-wrap iconify-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 13px; }
 .tiktok-item input { padding-left: 34px; }
 
 /* ── ABOUT TOOLBAR ── */
@@ -825,7 +837,7 @@ textarea.form-input {
   color: var(--muted);
 }
 
-.empty-state i {
+.empty-state i, .empty-state iconify-icon {
   font-size: 36px;
   color: var(--border2);
   margin-bottom: 14px;
@@ -1020,7 +1032,7 @@ textarea.form-input {
     <div class="field-group">
       <label>Email</label>
       <div class="input-wrap">
-        <i class="far fa-envelope"></i>
+        <iconify-icon icon="fa6-regular:envelope"></iconify-icon>
         <input id="email" type="email" placeholder="twoj@email.pl">
       </div>
     </div>
@@ -1028,13 +1040,13 @@ textarea.form-input {
     <div class="field-group">
       <label>Hasło</label>
       <div class="input-wrap">
-        <i class="far fa-lock"></i>
+        <iconify-icon icon="fa6-solid:lock"></iconify-icon>
         <input id="password" type="password" placeholder="••••••••">
       </div>
     </div>
 
     <button class="btn-login" onclick="login()">
-      <i class="fas fa-arrow-right-to-bracket"></i>
+      <iconify-icon icon="fa6-solid:arrow-right-to-bracket"></iconify-icon>
       Zaloguj się
     </button>
   </div>
@@ -1054,37 +1066,37 @@ textarea.form-input {
   <div class="sidebar-logo">
     <img src="assets/images/logo-biale.png" alt="Logo" style="height: 18px;">
     <button class="sidebar-close" id="sidebarClose" aria-label="Zamknij menu">
-      <i class="fas fa-xmark"></i>
+      <iconify-icon icon="fa6-solid:xmark"></iconify-icon>
     </button>
   </div>
 
     <div class="sidebar-section">Zarządzanie</div>
 
     <button class="nav-item active" onclick="openTab('liczby', this)">
-      <i class="fas fa-chart-simple"></i> Liczby
+      <iconify-icon icon="fa6-solid:chart-simple"></iconify-icon> Liczby
     </button>
     <button class="nav-item" onclick="openTab('kalendarz', this)">
-      <i class="fas fa-calendar-days"></i> Kalendarz
+      <iconify-icon icon="fa6-solid:calendar-days"></iconify-icon> Kalendarz
     </button>
     <button class="nav-item" onclick="openTab('tiktok', this)">
-      <i class="fab fa-tiktok"></i> TikTok
+      <iconify-icon icon="fa6-brands:tiktok"></iconify-icon> TikTok
     </button>
 
     <div class="sidebar-section">Treści</div>
 
     <button class="nav-item" onclick="openTab('about', this)">
-      <i class="fas fa-circle-info"></i> O nas
+      <iconify-icon icon="fa6-solid:circle-info"></iconify-icon> O nas
     </button>
     <button class="nav-item" onclick="openTab('opinie', this); loadReviews()">
-      <i class="fas fa-star"></i> Opinie
+      <iconify-icon icon="fa6-solid:star"></iconify-icon> Opinie
     </button>
     <button class="nav-item" onclick="openTab('projekty', this); loadProjects()">
-      <i class="fas fa-images"></i> Projekty
+      <iconify-icon icon="fa6-solid:images"></iconify-icon> Projekty
     </button>
 
     <div class="sidebar-footer">
       <button class="nav-item logout" onclick="logout()">
-        <i class="fas fa-arrow-right-from-bracket"></i> Wyloguj
+        <iconify-icon icon="fa6-solid:arrow-right-from-bracket"></iconify-icon> Wyloguj
       </button>
     </div>
   </aside>
@@ -1097,7 +1109,7 @@ textarea.form-input {
     <!-- TOPBAR -->
     <header class="topbar">
       <button class="menu-toggle" id="menuToggle" aria-label="Otwórz menu">
-        <i class="fas fa-bars"></i>
+        <iconify-icon icon="fa6-solid:bars"></iconify-icon>
       </button>
       <span class="topbar-title" id="topbarTitle">
         Liczby <span>/ Zarządzanie treścią strony</span>
@@ -1116,21 +1128,21 @@ textarea.form-input {
 
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-face-smile"></i></div>
+            <div class="stat-icon"><iconify-icon icon="fa6-solid:face-smile"></iconify-icon></div>
             <div class="stat-content">
               <div class="stat-value" id="previewClients">—</div>
               <div class="stat-label">Zadowoleni klienci</div>
             </div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon green"><i class="fas fa-scissors"></i></div>
+            <div class="stat-icon green"><iconify-icon icon="fa6-solid:scissors"></iconify-icon></div>
             <div class="stat-content">
               <div class="stat-value" id="previewFabrics">—</div>
               <div class="stat-label">Tkaniny</div>
             </div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon purple"><i class="fas fa-star"></i></div>
+            <div class="stat-icon purple"><iconify-icon icon="fa6-solid:star"></iconify-icon></div>
             <div class="stat-content">
               <div class="stat-value" id="previewReviews">—</div>
               <div class="stat-label">Opinie</div>
@@ -1140,7 +1152,7 @@ textarea.form-input {
 
         <div class="card">
           <div class="card-header">
-            <div class="card-icon"><i class="fas fa-pen"></i></div>
+            <div class="card-icon"><iconify-icon icon="fa6-solid:pen"></iconify-icon></div>
             <div>
               <div class="card-title">Edytuj wartości</div>
               <div class="card-sub">Zmiany pojawią się po zapisaniu</div>
@@ -1157,7 +1169,7 @@ textarea.form-input {
           <input id="reviews" type="number" class="form-input" placeholder="np. 80">
 
           <button class="btn btn-save btn-full" onclick="saveCategory('liczby')">
-            <i class="fas fa-floppy-disk"></i> Zapisz liczby
+            <iconify-icon icon="fa6-solid:floppy-disk"></iconify-icon> Zapisz liczby
           </button>
         </div>
       </div>
@@ -1171,7 +1183,7 @@ textarea.form-input {
 
         <div class="card">
           <div class="card-header">
-            <div class="card-icon"><i class="fas fa-calendar-xmark"></i></div>
+            <div class="card-icon"><iconify-icon icon="fa6-solid:calendar-xmark"></iconify-icon></div>
             <div>
               <div class="card-title">Zajęte dni</div>
               <div class="card-sub">Oddziel numery dni przecinkami</div>
@@ -1182,7 +1194,7 @@ textarea.form-input {
           <input id="busyDays" class="form-input" placeholder="3,4,18,24">
 
           <button class="btn btn-save btn-full" onclick="saveCategory('kalendarz')">
-            <i class="fas fa-floppy-disk"></i> Zapisz kalendarz
+            <iconify-icon icon="fa6-solid:floppy-disk"></iconify-icon> Zapisz kalendarz
           </button>
         </div>
       </div>
@@ -1197,7 +1209,7 @@ textarea.form-input {
         <div class="card">
           <div class="card-header">
             <div class="card-icon" style="background:rgba(0,0,0,.2);color:#fff">
-              <i class="fab fa-tiktok"></i>
+              <iconify-icon icon="fa6-brands:tiktok"></iconify-icon>
             </div>
             <div>
               <div class="card-title">Filmy TikTok</div>
@@ -1215,14 +1227,14 @@ textarea.form-input {
           <input id="t3" class="form-input" placeholder="https://www.tiktok.com/...">
 
           <button class="btn btn-save btn-full" onclick="saveCategory('tiktok')">
-            <i class="fas fa-floppy-disk"></i> Zapisz linki
+            <iconify-icon icon="fa6-solid:floppy-disk"></iconify-icon> Zapisz linki
           </button>
         </div>
       </div>
 
       <!-- ── ABOUT ── -->
       <div id="about" class="section">
-        <div id="toolbar"><i class="fas fa-circle" style="font-size:9px"></i> Niebieski tekst</div>
+        <div id="toolbar"><iconify-icon icon="fa6-solid:circle" style="font-size:9px"></iconify-icon> Niebieski tekst</div>
 
         <div class="section-header">
           <h3>Sekcja „O nas"</h3>
@@ -1231,7 +1243,7 @@ textarea.form-input {
 
         <div class="card">
           <div class="card-header">
-            <div class="card-icon"><i class="fas fa-file-lines"></i></div>
+            <div class="card-icon"><iconify-icon icon="fa6-solid:file-lines"></iconify-icon></div>
             <div>
               <div class="card-title">Treść</div>
               <div class="card-sub">Możesz używać znacznika &lt;blue&gt;tekst&lt;/blue&gt;</div>
@@ -1242,7 +1254,7 @@ textarea.form-input {
           <textarea id="aboutText" class="form-input"></textarea>
 
           <button id="togglePreviewBtn" class="btn btn-primary" style="margin-bottom:12px; width:auto">
-            <i class="far fa-eye"></i> Podgląd
+            <iconify-icon icon="fa6-regular:eye"></iconify-icon> Podgląd
           </button>
 
           <div id="previewBox" style="display:none; margin-bottom:14px">
@@ -1251,7 +1263,7 @@ textarea.form-input {
           </div>
 
           <button class="btn btn-save btn-full" onclick="saveCategory('about')">
-            <i class="fas fa-floppy-disk"></i> Zapisz „O nas"
+            <iconify-icon icon="fa6-solid:floppy-disk"></iconify-icon> Zapisz „O nas"
           </button>
         </div>
       </div>
@@ -1265,7 +1277,7 @@ textarea.form-input {
 
         <div class="add-form-card">
           <div class="card-header">
-            <div class="card-icon"><i class="fas fa-plus"></i></div>
+            <div class="card-icon"><iconify-icon icon="fa6-solid:plus"></iconify-icon></div>
             <div>
               <div class="card-title">Dodaj nową opinię</div>
             </div>
@@ -1297,7 +1309,7 @@ textarea.form-input {
           </div>
 
           <button class="btn btn-save" onclick="addReview()">
-            <i class="fas fa-plus"></i> Dodaj opinię
+            <iconify-icon icon="fa6-solid:plus"></iconify-icon> Dodaj opinię
           </button>
         </div>
 
@@ -1316,7 +1328,7 @@ textarea.form-input {
 
         <div class="add-form-card">
           <div class="card-header">
-            <div class="card-icon"><i class="fas fa-plus"></i></div>
+            <div class="card-icon"><iconify-icon icon="fa6-solid:plus"></iconify-icon></div>
             <div>
               <div class="card-title">Nowy projekt</div>
             </div>
@@ -1341,10 +1353,10 @@ textarea.form-input {
 
           <div style="display:flex; gap:10px; flex-wrap:wrap">
             <button class="btn btn-save" onclick="addProject()">
-              <i class="fas fa-plus"></i> Dodaj projekt
+              <iconify-icon icon="fa6-solid:plus"></iconify-icon> Dodaj projekt
             </button>
             <button class="btn btn-primary" id="importProjectsBtn" onclick="importOldProjects()">
-              <i class="fas fa-file-import"></i> Importuj istniejące (tylko raz!)
+              <iconify-icon icon="fa6-solid:file-import"></iconify-icon> Importuj istniejące (tylko raz!)
             </button>
           </div>
         </div>
@@ -1360,7 +1372,7 @@ textarea.form-input {
 </div><!-- /panelBox -->
 
 <button class="scroll-top" id="scrollTopBtn">
-  <i class="fas fa-arrow-up"></i>
+  <iconify-icon icon="fa6-solid:arrow-up"></iconify-icon>
 </button>
 
 <!-- ════════════ SCRIPTS ════════════ -->
@@ -1499,8 +1511,8 @@ toggleBtn.addEventListener("click", () => {
   const show = previewBox.style.display !== "block";
   previewBox.style.display = show ? "block" : "none";
   toggleBtn.innerHTML = show
-    ? '<i class="far fa-eye-slash"></i> Ukryj podgląd'
-    : '<i class="far fa-eye"></i> Podgląd';
+    ? '<iconify-icon icon="fa6-regular:eye-slash"></iconify-icon> Ukryj podgląd'
+    : '<iconify-icon icon="fa6-regular:eye"></iconify-icon> Podgląd';
 });
 
 /* ── DIRTY TRACKING ── */
@@ -1535,7 +1547,7 @@ async function loadData() {
 async function loadReviews() {
   const box = document.getElementById("reviewsList");
   if (!box) return;
-  box.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Ładowanie opinii…</p></div>';
+  box.innerHTML = '<div class="empty-state"><iconify-icon icon="fa6-solid:spinner" class="icon-spin"></iconify-icon><p>Ładowanie opinii…</p></div>';
 
   const snap = await getDocs(collection(db, "reviews"));
   const arr = [];
@@ -1548,7 +1560,7 @@ async function loadReviews() {
 
   box.innerHTML = "";
   if (!arr.length) {
-    box.innerHTML = '<div class="empty-state"><i class="far fa-star"></i><p>Brak opinii. Dodaj pierwszą powyżej.</p></div>';
+    box.innerHTML = '<div class="empty-state"><iconify-icon icon="fa6-regular:star"></iconify-icon><p>Brak opinii. Dodaj pierwszą powyżej.</p></div>';
     return;
   }
 
@@ -1572,8 +1584,8 @@ async function loadReviews() {
         <div class="review-admin-text">${r.text}</div>
       </div>
       <div class="review-admin-actions">
-        <button class="review-edit" onclick="editReview('${id}', this)" title="Edytuj"><i class="fas fa-pen"></i></button>
-        <button class="review-delete" onclick="deleteReview('${id}')" title="Usuń"><i class="fas fa-trash"></i></button>
+        <button class="review-edit" onclick="editReview('${id}', this)" title="Edytuj"><iconify-icon icon="fa6-solid:pen"></iconify-icon></button>
+        <button class="review-delete" onclick="deleteReview('${id}')" title="Usuń"><iconify-icon icon="fa6-solid:trash"></iconify-icon></button>
       </div>`;
     box.appendChild(div);
   });
@@ -1665,7 +1677,7 @@ window.editReview = (id, btn) => {
   overlay.id = 'editModal';
   overlay.innerHTML = `
     <div class="edit-modal">
-      <h3><i class="fas fa-pen" style="color:var(--accent);font-size:14px"></i> Edytuj opinię</h3>
+      <h3><iconify-icon icon="fa6-solid:pen" style="color:var(--accent);font-size:14px"></iconify-icon> Edytuj opinię</h3>
       <input id="eName" value="${name}" placeholder="Imię i nazwisko">
       <textarea id="eText" placeholder="Treść opinii">${text}</textarea>
       <input id="eDate" value="${date}" placeholder="Data">
@@ -1709,13 +1721,13 @@ const OLD_PROJECTS = [
 window.loadProjects = async () => {
   const box = document.getElementById("projectsList");
   if (!box) return;
-  box.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Ładowanie projektów…</p></div>';
+  box.innerHTML = '<div class="empty-state"><iconify-icon icon="fa6-solid:spinner" class="icon-spin"></iconify-icon><p>Ładowanie projektów…</p></div>';
 
   let snap;
   try {
     snap = await getDocs(collection(db, "projects"));
   } catch(err) {
-    box.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation" style="color:var(--danger)"></i><p>Błąd Firestore: ${err.message}</p></div>`;
+    box.innerHTML = `<div class="empty-state"><iconify-icon icon="fa6-solid:triangle-exclamation" style="color:var(--danger)"></iconify-icon><p>Błąd Firestore: ${err.message}</p></div>`;
     return;
   }
 
@@ -1725,7 +1737,7 @@ window.loadProjects = async () => {
 
   box.innerHTML = "";
   if (!arr.length) {
-    box.innerHTML = '<div class="empty-state"><i class="far fa-images"></i><p>Brak projektów. Dodaj pierwszy lub zaimportuj istniejące.</p></div>';
+    box.innerHTML = '<div class="empty-state"><iconify-icon icon="fa6-regular:images"></iconify-icon><p>Brak projektów. Dodaj pierwszy lub zaimportuj istniejące.</p></div>';
     return;
   }
 
@@ -1749,10 +1761,10 @@ window.loadProjects = async () => {
         <div class="project-admin-title">${shortTitle}</div>
       </div>
       <div class="project-admin-actions">
-        <button class="project-move" onclick="moveProject('${p.id}','up')" title="Przesuń wyżej"><i class="fas fa-chevron-up"></i></button>
-        <button class="project-move" onclick="moveProject('${p.id}','down')" title="Przesuń niżej"><i class="fas fa-chevron-down"></i></button>
-        <button class="project-edit"   onclick="editProject('${p.id}')"   title="Edytuj"><i class="fas fa-pen"></i></button>
-        <button class="project-delete" onclick="deleteProject('${p.id}')" title="Usuń"><i class="fas fa-trash"></i></button>
+        <button class="project-move" onclick="moveProject('${p.id}','up')" title="Przesuń wyżej"><iconify-icon icon="fa6-solid:chevron-up"></iconify-icon></button>
+        <button class="project-move" onclick="moveProject('${p.id}','down')" title="Przesuń niżej"><iconify-icon icon="fa6-solid:chevron-down"></iconify-icon></button>
+        <button class="project-edit"   onclick="editProject('${p.id}')"   title="Edytuj"><iconify-icon icon="fa6-solid:pen"></iconify-icon></button>
+        <button class="project-delete" onclick="deleteProject('${p.id}')" title="Usuń"><iconify-icon icon="fa6-solid:trash"></iconify-icon></button>
       </div>`;
     box.appendChild(div);
   });
@@ -1832,7 +1844,7 @@ window.editProject = async (id) => {
   overlay.id = "editModal";
   overlay.innerHTML = `
     <div class="edit-modal">
-      <h3><i class="fas fa-pen" style="color:var(--accent);font-size:14px"></i> Edytuj projekt</h3>
+      <h3><iconify-icon icon="fa6-solid:pen" style="color:var(--accent);font-size:14px"></iconify-icon> Edytuj projekt</h3>
       <input id="epCounter" value="${p.counter||""}" placeholder="Etykieta np. Projekt 01">
       <textarea id="epTitle" placeholder="Opis projektu" style="height:90px">${p.title||""}</textarea>
       <input id="epBefore" value="${p.before||""}" placeholder="URL zdjęcia PRZED">
